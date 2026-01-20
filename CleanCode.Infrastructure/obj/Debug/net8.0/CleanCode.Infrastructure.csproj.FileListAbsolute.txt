@@ -1,0 +1,5 @@
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.AssemblyInfo.cs
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.csproj.CoreCompileInputs.cache

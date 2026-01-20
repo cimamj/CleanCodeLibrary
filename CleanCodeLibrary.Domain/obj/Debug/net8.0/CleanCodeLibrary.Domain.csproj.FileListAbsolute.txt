@@ -1,0 +1,11 @@
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\bin\Debug\net8.0\CleanCodeLibrary.Domain.deps.json
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\bin\Debug\net8.0\CleanCodeLibrary.Domain.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\bin\Debug\net8.0\CleanCodeLibrary.Domain.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.AssemblyInfo.cs
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\refint\CleanCodeLibrary.Domain.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\ref\CleanCodeLibrary.Domain.dll
