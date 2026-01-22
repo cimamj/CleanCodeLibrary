@@ -8,6 +8,7 @@ using CleanCodeLibrary.Domain.Persistance.Books;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CleanCodeLibrary.Domain.Persistance.Borrows;
 
 namespace CleanCode.Infrastructure
 {
@@ -46,7 +47,8 @@ namespace CleanCode.Infrastructure
             services.AddScoped<IStudentRepository, StudentRepository>(); //za specificne metode, ali i ovo mozes koristiti za CRUD
                                                                          //jel ovo gori za sad dovoljno za moje metode
             services.AddScoped<IBookRepository, BookRepository>();
-
+            services.AddScoped<IBorrowRepository, BorrowRepository>(); 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         private static void AddDapper(IServiceCollection services)

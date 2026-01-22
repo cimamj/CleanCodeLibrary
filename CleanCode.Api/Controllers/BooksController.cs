@@ -4,8 +4,6 @@ using CleanCodeLibrary.Application.Common.Model;
 using CleanCode.Api.Common;
 using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Persistance.Books;
-using CleanCodeLibrary.Application.Students.Student;
-using CleanCodeLibrary.Domain.Persistance.Students;
 
 namespace CleanCode.Api.Controllers
 {
@@ -13,10 +11,6 @@ namespace CleanCode.Api.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-
-
-
-
 
         // POST IMAMO
         [HttpPost] //ova metoda doli reagira samo na POST

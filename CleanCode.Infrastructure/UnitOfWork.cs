@@ -1,11 +1,11 @@
 ﻿using CleanCode.Infrastructure.Database;
+using CleanCode.Infrastructure.Repositories;
+using CleanCodeLibrary.Domain.Persistance.Books;
+using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
+using CleanCodeLibrary.Domain.Persistance.Students;
 using Microsoft.EntityFrameworkCore.Storage; //storage radi _transaction
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CleanCode.Infrastructure
 {
@@ -14,9 +14,20 @@ namespace CleanCode.Infrastructure
         private readonly ApplicationDbContext _dbContext;
         private IDbContextTransaction _transaction;
 
-        public UnitOfWork(ApplicationDbContext dbContext)
+        public IStudentRepository StudentRepository { get; }
+        public IBookRepository BookRepository { get; }
+        public IBorrowRepository BorrowRepository { get; }
+
+        public UnitOfWork(
+            ApplicationDbContext dbContext,
+            IStudentRepository studentRepository,
+            IBookRepository bookRepository,
+            IBorrowRepository borrowRepository)
         {
             _dbContext = dbContext;
+            StudentRepository = studentRepository;
+            BookRepository = bookRepository;
+            BorrowRepository = borrowRepository;
         }
 
         public async Task CreateTransaction()
