@@ -11,5 +11,6 @@ namespace CleanCodeLibrary.Domain.Persistance.Common
 
         Task<bool> DeleteAsync(TId id);
         Task SaveAsync(); 
+        //ode nemam updateasync, borrow ne uzima istog
     }
 }

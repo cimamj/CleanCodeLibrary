@@ -25,12 +25,36 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
             {
                 return new Result<int?>(null, validationResult);
             }
-
+           
             await unitOfWork.BorrowRepository.InsertAsync(this);  
             return new Result<int?>(this.Id, validationResult);
         }
 
-        private async Task<ValidationResult> BorrowValidation(IUnitOfWork unitOfWork)
+        //metoda za vratit knjigu, u request dto ide borrow id jer mozes istu knjigu vise puta posudit
+        public static async Task<Result<int?>> Return(IUnitOfWork unitOfWork, int borrowId)
+        {
+            var validationResult = new ValidationResult();
+
+            var borrow = await unitOfWork.BorrowRepository.GetById(borrowId);
+            if (borrow == null)
+            {
+                validationResult.AddValidationItem(ValidationItems.Borrow.BorrowNotFound);
+                return new Result<int?>(null, validationResult);
+            }
+            if (borrow.ReturnDate != null)
+            {
+                validationResult.AddValidationItem(ValidationItems.Borrow.AlreadyReturned);
+                return new Result<int?>(null, validationResult);
+            }
+
+            borrow.ReturnDate = DateTime.UtcNow;
+            unitOfWork.BorrowRepository.Update(borrow); //lakse ovako nego slat u fju za validaciju 
+
+            return new Result<int?>(borrow.Id, validationResult);
+        }
+
+
+        public async Task<ValidationResult> BorrowValidation(IUnitOfWork unitOfWork)
         {
             var vr = new ValidationResult();
 
@@ -49,5 +73,17 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
 
             return vr;
         }
+        //public async Task<ValidationResult> ReturnValidation(IUnitOfWork unitOfWork)
+        //{
+        //    var vr = new ValidationResult();
+
+        //    var borrow = await unitOfWork.BorrowRepository.GetById(Id); //id od this tj request
+        //    if (borrow == null || borrow.ReturnDate != null) //ako postoji returndate od this a this ima id
+        //        vr.AddValidationItem(ValidationItems.Borrow.AlreadyReturned);
+
+        //    return vr;
+        //}
+
+
     }
 }

@@ -7,4 +7,4 @@ namespace CleanCodeLibrary.Domain.Persistance.Students
         IStudentRepository Repository { get; }
     }
 }
- 
+  

@@ -30,8 +30,23 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationSeverity = ValidationSeverity.Error,
                 ValidationType = ValidationType.FormalValidation
             };
+            public static readonly ValidationItem AlreadyReturned = new ValidationItem
+            {
+                Code = $"{CodePrefix}1",
+                Message = $"Knjiga je već vracena tj nije posudena",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.FormalValidation
+            };
+            public static readonly ValidationItem BorrowNotFound = new ValidationItem
+            {
+                Code = $"{CodePrefix}1",
+                Message = $"Posudba ne postoji",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.FormalValidation
+            };
 
-        
+
+
         }
     }
 }

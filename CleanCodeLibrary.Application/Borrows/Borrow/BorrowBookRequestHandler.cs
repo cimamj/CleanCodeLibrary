@@ -36,12 +36,12 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
             if (result.HasError)
             {
                 //mozda rollback?
-                await _unitOfWork.Rollback();
+                //await _unitOfWork.Rollback();
                 return result;
             }
 
             await _unitOfWork.SaveAsync();
-            await _unitOfWork.Commit(); //jel triba ovo 
+            //await _unitOfWork.Commit(); //jel triba ovo 
 
             result.SetResult(new SuccessPostResponse(domainResult.Value)); 
 

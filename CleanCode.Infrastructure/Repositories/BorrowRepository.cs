@@ -28,12 +28,8 @@ namespace CleanCode.Infrastructure.Repositories
 
         public async Task<bool> IsBookCurrentlyBorrowed(int bookId)
         {
-            var book = await _dbContext.Borrows.AnyAsync(b => b.Id == bookId && b.ReturnDate == null); //any ili firstordefault koja je razlika
-            if (book == null)
-            {
-                return false;
-            }
-            return true;
+            return await _dbContext.Borrows.AnyAsync(b => b.BookId == bookId && b.ReturnDate == null); //any ili firstordefault koja je razlika
+           //any vraca bool
         }
     }
 }

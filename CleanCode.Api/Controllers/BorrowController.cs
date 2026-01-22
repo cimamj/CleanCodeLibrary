@@ -19,5 +19,17 @@ namespace CleanCode.Api.Controllers
             var result = await handler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }
+
+        [HttpPut("{id}")] 
+        public async Task<ActionResult> ReturnBook(
+            [FromRoute] int id,
+            [FromServices] IUnitOfWork unitOfWork,
+            [FromBody] ReturnBookRequest request)
+        {
+            request.BorrowId = id;
+            var handler = new ReturnBookRequestHandler(unitOfWork);
+            var result = await handler.ProcessAuthorizedRequestAsync(request);
+            return result.ToActionResult(this);
+        }
     }
 }
