@@ -40,7 +40,6 @@ namespace CleanCodeLibrary.Application.Students.Student
             await _studentRepository.SaveAsync();
             //nisam instacira znaci moram direktno iz repoziroija zvat savechanges
 
-
             result.SetResult(new SuccessPostResponse(domainDeleteResult.Value));
             return result;
         

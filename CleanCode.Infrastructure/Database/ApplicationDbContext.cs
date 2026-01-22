@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CleanCodeLibrary.Domain.Entities.Students;
+using CleanCodeLibrary.Domain.Entities.Books;
 
 namespace CleanCode.Infrastructure.Database
 {
@@ -10,7 +11,7 @@ namespace CleanCode.Infrastructure.Database
 
   
         public DbSet<Student> Students {  get; set; } //s ovim poljem se pristupa ugradenim funkcijama za query
-        //public DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; }
         // itd.
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,8 +1,10 @@
 ﻿using CleanCode.Infrastructure.Database;
 using CleanCode.Infrastructure.Repositories;
 using CleanCodeLibrary.Application.Students.Student;
+using CleanCodeLibrary.Application.Books.Book;
 using CleanCodeLibrary.Domain.Persistance.Common;
 using CleanCodeLibrary.Domain.Persistance.Students;
+using CleanCodeLibrary.Domain.Persistance.Books;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,7 +44,8 @@ namespace CleanCode.Infrastructure
 
             services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>)); //za CRUD metode, fromservices IRepository<Student, int> repo ti daje  Repository<Student, int> koji ima samo osnovne CRUD operacije, ali glupo opet, ugl ovo je da radi s bilo kojim entitetom
             services.AddScoped<IStudentRepository, StudentRepository>(); //za specificne metode, ali i ovo mozes koristiti za CRUD
-            //jel ovo gori za sad dovoljno za moje metode
+                                                                         //jel ovo gori za sad dovoljno za moje metode
+            services.AddScoped<IBookRepository, BookRepository>();
 
         }
 

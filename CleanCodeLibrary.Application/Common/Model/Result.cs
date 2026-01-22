@@ -10,7 +10,8 @@ namespace CleanCodeLibrary.Application.Common.Model
         private List<ValidationResultItem> _errors = new List<ValidationResultItem>();
         private List<ValidationResultItem> _warnings = new List<ValidationResultItem>();
 
-        public TValue? Value { get; set; } //iako je naglaseno da je klasa, a znamo da u domainu ce biti ID, mi smo napravili klasu successpostreposne koja ima ID polje
+        public TValue? Value { get; set; } //iako je naglaseno da je klasa, a znamo da u domainu ce biti ID, mi smo napravili klasu successpostreposne koja ima ID polje //moze li imati i pod value 
+        //jer je klasa moze imati ta klasa bilo koju vrijednost od liste do int
         public Guid RequestId { get; set; }
         public bool isAuthorized { get; set; } = true;
 
