@@ -4,6 +4,7 @@ using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Common.Validation.ValidationItems;
 using Microsoft.VisualBasic;
 using CleanCodeLibrary.Domain.Persistance.Common;
+using static CleanCodeLibrary.Domain.Common.Validation.ValidationItems.ValidationItems;
 
 namespace CleanCodeLibrary.Domain.Entities.Borrows
 {
@@ -16,10 +17,12 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
         public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 
-        public async Task<Result<int?>> BorrowBook(IUnitOfWork unitOfWork)
+        public async Task<Result<int?>> BorrowBook(IUnitOfWork unitOfWork, int amount) 
         {
+            //dakle sad kad imam amount , ode moram ocito transkaciju radit, jer createm redak u Borrow i updateam redak u Books pod amount 
+            //takoder dodajem dodatne provjere, pod amount > 0?
 
-            var validationResult = await BorrowValidation(unitOfWork);
+            var validationResult = await BorrowValidation(unitOfWork, amount);
 
             if (validationResult.HasError)
             {
@@ -54,14 +57,21 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
         }
 
 
-        public async Task<ValidationResult> BorrowValidation(IUnitOfWork unitOfWork)
+        public async Task<ValidationResult> BorrowValidation(IUnitOfWork unitOfWork, int amount)
         {
             var vr = new ValidationResult();
 
-            // Provjere preko repozitorija iz UnitOfWork
-            var bookExists = await unitOfWork.BookRepository.GetById(BookId) != null;
-            if (!bookExists)
+            //provjere preko repozitorija iz UnitOfWork
+            var bookExists = await unitOfWork.BookRepository.GetById(BookId);
+            if (bookExists == null)
                 vr.AddValidationItem(ValidationItems.Borrow.NoBookFound);
+
+
+
+            if(bookExists.Amount < amount) //doda ovu provjeru za TRANSAKCIJU, ako je na lageru vise ili jednako,mos posudit, inace ne
+                vr.AddValidationItem(ValidationItems.Borrow.NotEnoughBooks(bookExists.Amount, amount)); //Brutalnooooooooo
+
+
 
             var studentExists = await unitOfWork.StudentRepository.GetById(StudentId) != null;
             if (!studentExists)

@@ -9,3 +9,4 @@ C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\n
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\refint\CleanCodeLibrary.Domain.dll
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.pdb
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\ref\CleanCodeLibrary.Domain.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Domain\obj\Debug\net8.0\CleanCodeLibrary.Domain.sourcelink.json

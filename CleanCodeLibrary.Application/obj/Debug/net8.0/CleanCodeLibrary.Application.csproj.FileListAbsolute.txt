@@ -3,3 +3,4 @@ C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\De
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.AssemblyInfoInputs.cache
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.AssemblyInfo.cs
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.sourcelink.json

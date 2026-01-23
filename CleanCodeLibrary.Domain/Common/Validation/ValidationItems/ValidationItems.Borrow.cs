@@ -45,6 +45,17 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationType = ValidationType.FormalValidation
             };
 
+            //sad cemo metodu
+            public static ValidationItem NotEnoughBooks(int available, int requested) => new ValidationItem
+            {
+                Code = $"{CodePrefix}1",
+                Message = $"Nema dovoljno knjiga na raspolaganju, dostupno: {available}, trazili ste: {requested}", //kako da posaljem koliko tocno jos ima?
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.FormalValidation
+            };
+
+        
+
 
 
         }

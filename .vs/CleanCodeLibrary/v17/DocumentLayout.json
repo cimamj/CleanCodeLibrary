@@ -3,36 +3,104 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\entities\\borrows\\borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\entities\\borrows\\borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\updatebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\updatebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\entities\\students\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\entities\\students\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\deletebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\deletebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\entities\\books\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\entities\\books\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\getallbooksrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\getallbooksrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\borrows\\borrow\\returnbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\borrows\\borrow\\returnbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\createbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\createbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\controllers\\borrowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\controllers\\borrowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\repositories\\borrowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repositories\\borrowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\controllers\\borrowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\controllers\\borrowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\transactions\\borrowandbook\\createborrowandupdatebookamountrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\transactions\\borrowandbook\\createborrowandupdatebookamountrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\entities\\books\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\entities\\books\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\borrows\\borrow\\borrowbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\borrows\\borrow\\borrowbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\validation\\validationitems\\validationitems.borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\validation\\validationitems\\validationitems.borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\entities\\borrows\\borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\entities\\borrows\\borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\validation\\validationitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\validation\\validationitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\persistance\\common\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\persistance\\common\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\persistance\\students\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\persistance\\students\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\model\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\model\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\database\\configurations\\books\\bookconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\database\\configurations\\books\\bookconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\persistance\\common\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\persistance\\common\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\common\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\common\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\entities\\students\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\entities\\students\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\borrows\\borrow\\returnbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\borrows\\borrow\\returnbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\common\\model\\successresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,24 +111,8 @@
       "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\persistance\\borrows\\iborrowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\validation\\validationitems\\validationitems.borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\validation\\validationitems\\validationitems.borrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\repositories\\borrowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repositories\\borrowrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\borrows\\borrow\\borrowbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\borrows\\borrow\\borrowbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\repositories\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repositories\\studentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\persistance\\students\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\persistance\\students\\istudentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\persistance\\students\\istudentunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -71,44 +123,16 @@
       "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repositories\\studentunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\persistance\\common\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\persistance\\common\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\common\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\common\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.api\\common\\responseextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D65E6E96-B924-4779-925C-9B293FB1E827}|CleanCode.Api\\CleanCode.Api.csproj|solutionrelative:cleancode.api\\common\\responseextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\createbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\createbookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\persistance\\books\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\persistance\\books\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\database\\configurations\\books\\bookconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|solutionrelative:cleancode.infrastructure\\database\\configurations\\books\\bookconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3931A217-32FF-460B-ABA3-504B5638BE02}|CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancode.infrastructure\\idappermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -139,20 +163,12 @@
       "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\entities\\books\\genresenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\model\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\model\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\validation\\validationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\validation\\validationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\getbyidrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\getbyidrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\getallbooksrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\getallbooksrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\students\\student\\getallstudentsrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -173,14 +189,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\common\\model\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\common\\model\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\deletebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\deletebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\books\\book\\updatebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|solutionrelative:cleancodelibrary.application\\books\\book\\updatebookrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4E3598A0-A10E-45D8-91AE-4F1FD8B4F687}|CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.application\\students\\student\\deletestudentrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -217,10 +225,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\validation\\validationitems\\validationitems.student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\validation\\validationitems\\validationitems.student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\validation\\validationitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|solutionrelative:cleancodelibrary.domain\\common\\validation\\validationitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E3EA5A1-AB7F-4D5C-9585-674695779346}|CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj|c:\\users\\admin\\source\\repos\\cleancodelibrary\\cleancodelibrary.domain\\common\\validation\\validationseverity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -266,37 +270,193 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ReturnBookRequestHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA7AAAA",
+              "DocumentIndex": 4,
+              "Title": "BorrowRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
+              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
+              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAzwBwAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T16:31:21.933Z",
+              "WhenOpened": "2026-01-22T12:21:54.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateBookRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAADwvw8AAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T17:05:12.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetAllBooksRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAIwD0AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T16:35:55.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DeleteBookRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAIA9wBQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-21T16:12:18.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UpdateBookRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAIwCoAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T17:25:23.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BooksController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BooksController.cs",
+              "RelativeDocumentMoniker": "CleanCode.Api\\Controllers\\BooksController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BooksController.cs",
+              "RelativeToolTip": "CleanCode.Api\\Controllers\\BooksController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T17:25:56.999Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repository.cs",
-              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repository.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repository.cs",
-              "RelativeToolTip": "CleanCode.Infrastructure\\Repository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAARAAAA",
+              "Title": "BorrowController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BorrowController.cs",
+              "RelativeDocumentMoniker": "CleanCode.Api\\Controllers\\BorrowController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BorrowController.cs",
+              "RelativeToolTip": "CleanCode.Api\\Controllers\\BorrowController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBYAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-07T15:08:45.69Z",
+              "WhenOpened": "2026-01-22T13:53:54.593Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "CreateBorrowAndUpdateBookAmountRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Transactions\\BorrowAndBook\\CreateBorrowAndUpdateBookAmountRequestHandler.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Transactions\\BorrowAndBook\\CreateBorrowAndUpdateBookAmountRequestHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Transactions\\BorrowAndBook\\CreateBorrowAndUpdateBookAmountRequestHandler.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Transactions\\BorrowAndBook\\CreateBorrowAndUpdateBookAmountRequestHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEkAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T16:45:30.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\UnitOfWork.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\UnitOfWork.cs",
+              "RelativeToolTip": "CleanCode.Infrastructure\\UnitOfWork.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAuwB0AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T14:58:52.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T15:23:06.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BorrowBookRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAowB8AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-22T13:29:47.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ValidationItems.Borrow.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAQwCwAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-22T11:22:29.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Borrow.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAkwBsAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-22T11:06:13.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ValidationItem.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T19:07:16.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "IRepository.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Common\\IRepository.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Common\\IRepository.cs",
@@ -309,150 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BorrowController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BorrowController.cs",
-              "RelativeDocumentMoniker": "CleanCode.Api\\Controllers\\BorrowController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BorrowController.cs",
-              "RelativeToolTip": "CleanCode.Api\\Controllers\\BorrowController.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAQwB0AAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T13:53:54.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BooksController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BooksController.cs",
-              "RelativeDocumentMoniker": "CleanCode.Api\\Controllers\\BooksController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\BooksController.cs",
-              "RelativeToolTip": "CleanCode.Api\\Controllers\\BooksController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwB0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T17:25:56.999Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Entities\\Books\\Book.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T15:23:06.714Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Student.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T18:47:43.001Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Borrow.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Entities\\Borrows\\Borrow.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAADwvxEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T11:06:13.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SuccessResponse.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T15:55:18.053Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IBorrowRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T12:01:12.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "BorrowRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
-              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
-              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\BorrowRepository.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAQwBwAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T12:21:54.216Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "BorrowBookRequestHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Application\\Borrows\\Borrow\\BorrowBookRequestHandler.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAswCsAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T13:29:47.352Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ValidationItems.Borrow.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Borrow.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAAwCoAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T11:22:29.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "StudentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
-              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
-              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAwAgAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T14:05:14.759Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "IStudentRepository.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentRepository.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentRepository.cs",
@@ -465,46 +482,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "IStudentUnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-19T15:36:34.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "StudentUnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
-              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
-              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAkAAAA",
+              "Title": "Result.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T14:15:48.892Z",
+              "WhenOpened": "2025-12-16T18:55:43.775Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
+              "Title": "BookConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
+              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
+              "RelativeToolTip": "CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAAB8AAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T16:25:56.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "IUnitOfWork.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Common\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Common\\IUnitOfWork.cs",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Common\\IUnitOfWork.cs",
               "RelativeToolTip": "CleanCodeLibrary.Domain\\Persistance\\Common\\IUnitOfWork.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAASwAwAAAAiAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T15:47:03.824Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
+              "Title": "BookRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
+              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
+              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAqwCIAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T16:20:10.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "StudentsController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Controllers\\StudentsController.cs",
               "RelativeDocumentMoniker": "CleanCode.Api\\Controllers\\StudentsController.cs",
@@ -517,7 +547,116 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
+              "Title": "Response.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Common\\Response.cs",
+              "RelativeDocumentMoniker": "CleanCode.Api\\Common\\Response.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Common\\Response.cs",
+              "RelativeToolTip": "CleanCode.Api\\Common\\Response.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T14:37:02.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Entities\\Students\\Student.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T18:47:43.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repository.cs",
+              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repository.cs",
+              "RelativeToolTip": "CleanCode.Infrastructure\\Repository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T15:08:45.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ReturnBookRequestHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Borrows\\Borrow\\ReturnBookRequestHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-22T16:31:21.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "SuccessResponse.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Application\\Common\\Model\\SuccessResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T15:55:18.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IBorrowRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Persistance\\Borrows\\IBorrowRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-22T12:01:12.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "StudentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
+              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
+              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\StudentRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAwAgAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T14:05:14.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IStudentUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
+              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
+              "RelativeToolTip": "CleanCodeLibrary.Domain\\Persistance\\Students\\IStudentUnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-19T15:36:34.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "StudentUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
+              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
+              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\StudentUnitOfWork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T14:15:48.892Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\DependencyInjection.cs",
@@ -525,24 +664,11 @@
               "RelativeToolTip": "CleanCode.Infrastructure\\DependencyInjection.cs",
               "ViewState": "AQIAACgAAAAAAAAAAAAkwDEAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T10:55:16.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-15T10:55:16.071Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Response.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Common\\Response.cs",
-              "RelativeDocumentMoniker": "CleanCode.Api\\Common\\Response.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Common\\Response.cs",
-              "RelativeToolTip": "CleanCode.Api\\Common\\Response.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAzwBoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T14:37:02.374Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 31,
               "Title": "ResponseExtension.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Common\\ResponseExtension.cs",
               "RelativeDocumentMoniker": "CleanCode.Api\\Common\\ResponseExtension.cs",
@@ -554,43 +680,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "BookRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
-              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
-              "RelativeToolTip": "CleanCode.Infrastructure\\Repositories\\BookRepository.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAQwCIAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T16:20:10.373Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CreateBookRequestHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\CreateBookRequestHandler.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAuwDEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T17:05:12.38Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\UnitOfWork.cs",
-              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\UnitOfWork.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\UnitOfWork.cs",
-              "RelativeToolTip": "CleanCode.Infrastructure\\UnitOfWork.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAAAB0AAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T14:58:52.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 32,
               "Title": "IBookRepository.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Persistance\\Books\\IBookRepository.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Persistance\\Books\\IBookRepository.cs",
@@ -602,19 +692,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "BookConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
-              "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
-              "RelativeToolTip": "CleanCode.Infrastructure\\Database\\Configurations\\Books\\BookConfiguration.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAqwCMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T16:25:56.023Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 33,
               "Title": "IDapperManager.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\IDapperManager.cs",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\IDapperManager.cs",
@@ -626,7 +704,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 34,
               "Title": "BorrowConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\Configurations\\Borrows\\BorrowConfiguration.cs",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Database\\Configurations\\Borrows\\BorrowConfiguration.cs",
@@ -638,7 +716,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 35,
               "Title": "StudentConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\Configurations\\Students\\StudentConfiguration.cs",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Database\\Configurations\\Students\\StudentConfiguration.cs",
@@ -650,7 +728,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 36,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Database\\ApplicationDbContext.cs",
@@ -662,7 +740,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 37,
               "Title": "ValidationItems.Book.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Book.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Book.cs",
@@ -674,7 +752,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 38,
               "Title": "CreateStudentRequestHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Students\\Student\\CreateStudentRequestHandler.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Students\\Student\\CreateStudentRequestHandler.cs",
@@ -686,7 +764,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 39,
               "Title": "GenresEnum.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Entities\\Books\\GenresEnum.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Entities\\Books\\GenresEnum.cs",
@@ -698,19 +776,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "Result.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Common\\Model\\Result.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T18:55:43.775Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "ValidationResult.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationResult.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationResult.cs",
@@ -722,7 +788,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 41,
               "Title": "GetByIdRequestHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\GetByIdRequestHandler.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\GetByIdRequestHandler.cs",
@@ -734,7 +800,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 42,
               "Title": "GetAllStudentsRequestHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Students\\Student\\GetAllStudentsRequestHandler.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Students\\Student\\GetAllStudentsRequestHandler.cs",
@@ -746,7 +812,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 43,
               "Title": "GetByIdRequestHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Students\\Student\\GetByIdRequestHandler.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Students\\Student\\GetByIdRequestHandler.cs",
@@ -758,19 +824,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "GetAllBooksRequestHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\GetAllBooksRequestHandler.cs",
-              "ViewState": "AQIAADIAAAAAAAAAAAAmwD0AAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T16:35:55.34Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 44,
               "Title": "RequestHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\RequestHandler.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Common\\Model\\RequestHandler.cs",
@@ -782,7 +836,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 45,
               "Title": "GetAllResponse.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Model\\GetAllResponse.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Model\\GetAllResponse.cs",
@@ -794,7 +848,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 46,
               "Title": "Result.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\Result.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Common\\Model\\Result.cs",
@@ -806,31 +860,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "DeleteBookRequestHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\DeleteBookRequestHandler.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAtwBQAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T16:12:18.809Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "UpdateBookRequestHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Application\\Books\\Book\\UpdateBookRequestHandler.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T17:25:23.511Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "DeleteStudentRequestHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Students\\Student\\DeleteStudentRequestHandler.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Students\\Student\\DeleteStudentRequestHandler.cs",
@@ -842,7 +872,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "SuccessDeleteResponse.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\SuccessDeleteResponse.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Common\\Model\\SuccessDeleteResponse.cs",
@@ -854,7 +884,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 49,
               "Title": "UpdateStudentRequestHandler.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Students\\Student\\UpdateStudentRequestHandler.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Students\\Student\\UpdateStudentRequestHandler.cs",
@@ -866,7 +896,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 50,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\Program.cs",
               "RelativeDocumentMoniker": "CleanCode.Api\\Program.cs",
@@ -878,7 +908,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 51,
               "Title": "CleanCode.Api.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\CleanCode.Api.csproj",
               "RelativeDocumentMoniker": "CleanCode.Api\\CleanCode.Api.csproj",
@@ -890,7 +920,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 52,
               "Title": "GetByIdResponse.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Model\\GetByIdResponse.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Model\\GetByIdResponse.cs",
@@ -902,7 +932,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 53,
               "Title": "SuccessPostResponse.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\SuccessPostResponse.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Common\\Model\\SuccessPostResponse.cs",
@@ -914,7 +944,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 54,
               "Title": "Schemas.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\Database\\Schemas.cs",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\Database\\Schemas.cs",
@@ -926,7 +956,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 55,
               "Title": "ValidationItems.Student.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Student.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItems\\ValidationItems.Student.cs",
@@ -938,19 +968,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
-              "Title": "ValidationItem.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
-              "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
-              "RelativeToolTip": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationItem.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T19:07:16.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "ValidationSeverity.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationSeverity.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationSeverity.cs",
@@ -962,7 +980,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "ValidationResultItem.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\Common\\Model\\ValidationResultItem.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\Common\\Model\\ValidationResultItem.cs",
@@ -974,7 +992,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\appsettings.Development.json",
               "RelativeDocumentMoniker": "CleanCode.Api\\appsettings.Development.json",
@@ -986,7 +1004,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "CleanCodeLibrary.Domain.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj",
@@ -998,7 +1016,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "DapperManager.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\DapperManager.cs",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\DapperManager.cs",
@@ -1010,7 +1028,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "CleanCode.Infrastructure.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj",
               "RelativeDocumentMoniker": "CleanCode.Infrastructure\\CleanCode.Infrastructure.csproj",
@@ -1022,7 +1040,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCode.Api\\appsettings.json",
               "RelativeDocumentMoniker": "CleanCode.Api\\appsettings.json",
@@ -1034,7 +1052,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": "CleanCodeLibrary.Application.csproj",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj",
@@ -1046,7 +1064,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "ValidationType.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\Common\\Validation\\ValidationType.cs",
               "RelativeDocumentMoniker": "CleanCodeLibrary.Domain\\Common\\Validation\\ValidationType.cs",

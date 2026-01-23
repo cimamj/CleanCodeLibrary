@@ -10,12 +10,22 @@ namespace CleanCode.Api.Controllers
     public class BorrowsController : ControllerBase
     {
        
-        [HttpPost]
+        //[HttpPost]
+        //public async Task<ActionResult> BorrowBook(
+        //    [FromServices] IUnitOfWork unitOfWork,
+        //    [FromBody] BorrowBookRequest request)
+        //{
+        //    var handler = new BorrowBookRequestHandler(unitOfWork);
+        //    var result = await handler.ProcessAuthorizedRequestAsync(request);
+        //    return result.ToActionResult(this);
+        //}
+
+        [HttpPost] //novi nacin gdje se posudbom smanjuje stanje knjiga
         public async Task<ActionResult> BorrowBook(
-            [FromServices] IUnitOfWork unitOfWork,
-            [FromBody] BorrowBookRequest request)
+        [FromServices] IUnitOfWork unitOfWork,
+        [FromBody] CreateBorrowAndUpdateBookAmountRequest request)
         {
-            var handler = new BorrowBookRequestHandler(unitOfWork);
+            var handler = new CreateBorrowAndUpdateBookAmountRequestHandler(unitOfWork);
             var result = await handler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }

@@ -27,7 +27,10 @@ namespace CleanCode.Infrastructure.Database.Configurations.Books
 
             builder.Property(t => t.Year)
                 .HasColumnName("Year");
-                
+
+            builder.Property(t => t.Amount)
+            .HasColumnName("Amount"); //moras rucno dodati u sql
+
 
 
         }

@@ -15,6 +15,7 @@ namespace CleanCodeLibrary.Application.Books.Book
         public string Isbn { get; set; }
         public int Year { get; set; }
         public GenresEnum Genre { get; set; }
+        public int Amount { get; set; }
     }
     public class UpdateBookRequestHandler : RequestHandler<UpdateBookRequest, SuccessPostResponse>
     {
@@ -39,6 +40,7 @@ namespace CleanCodeLibrary.Application.Books.Book
             existingBook.Isbn = request.Isbn;
             existingBook.Year = request.Year;
             existingBook.Genre = request.Genre;
+            existingBook.Amount = request.Amount;
 
             var validationResult = await existingBook.Update(_bookRepository);
 

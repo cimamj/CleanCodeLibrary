@@ -12,6 +12,8 @@ namespace CleanCodeLibrary.Application.Books.Book
         public string Isbn { get; set;}//ocu sve stavit get set ili private set
         public int Year { get; set; }
         public GenresEnum Genre { get; set; }
+
+        public int Amount { get; set; }
     }
     public class CreateBookRequestHandler : RequestHandler<CreateBookRequest, SuccessPostResponse>
     {
@@ -30,7 +32,8 @@ namespace CleanCodeLibrary.Application.Books.Book
                 Author = request.Author,
                 Isbn = request.Isbn,
                 Year = request.Year,
-                Genre = request.Genre 
+                Genre = request.Genre ,
+                Amount = request.Amount
             };
 
             var validationResult = await book.Create(_bookRepository); //uvik ZABORAVIS await
