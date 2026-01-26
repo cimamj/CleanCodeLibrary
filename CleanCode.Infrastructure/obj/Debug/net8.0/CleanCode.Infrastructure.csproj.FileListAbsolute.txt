@@ -3,3 +3,16 @@ C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.AssemblyInfo.cs
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.sourcelink.json
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\bin\Debug\net8.0\CleanCode.Infrastructure.deps.json
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\bin\Debug\net8.0\CleanCode.Infrastructure.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\bin\Debug\net8.0\CleanCode.Infrastructure.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\bin\Debug\net8.0\CleanCodeLibrary.Application.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\bin\Debug\net8.0\CleanCodeLibrary.Domain.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\bin\Debug\net8.0\CleanCodeLibrary.Application.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\bin\Debug\net8.0\CleanCodeLibrary.Domain.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCod.A12E469F.Up2Date
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\refint\CleanCode.Infrastructure.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\CleanCode.Infrastructure.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Infrastructure\obj\Debug\net8.0\ref\CleanCode.Infrastructure.dll

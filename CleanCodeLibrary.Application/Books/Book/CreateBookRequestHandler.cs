@@ -1,13 +1,12 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
-using System.Runtime.CompilerServices;
 
 namespace CleanCodeLibrary.Application.Books.Book
 {
     public class CreateBookRequest
     {
-        public string Title {  get; set; }
+        public string Title {  get; init; }
         public string Author { get; set; }
         public string Isbn { get; set;}//ocu sve stavit get set ili private set
         public int Year { get; set; }
@@ -26,7 +25,7 @@ namespace CleanCodeLibrary.Application.Books.Book
 
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(CreateBookRequest request, Result<SuccessPostResponse> result)
         {
-            var book = new CleanCodeLibrary.Domain.Entities.Books.Book
+            var book = new Domain.Entities.Books.Book
             {
                 Title = request.Title,
                 Author = request.Author,

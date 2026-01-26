@@ -16,6 +16,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "CleanCode Library API", Version = "v1" });
 });
 
+builder.Services.AddInfrastructure(builder.Configuration);
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -27,6 +29,8 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = "swagger"; // možeš promijeniti u "" ako želiš da bude na rootu
     });
 }
+
+
 
 app.UseHttpsRedirection();
 

@@ -1,4 +1,5 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace CleanCodeLibrary.Application.Books.Book
     }
 
 
-    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, BookResponse>
+    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, BookTitleDto>
     {
         public IBookRepository _bookRepository { get; set; }
         public GetByIdRequestHandler(IBookRepository bookRepository) 
@@ -35,26 +36,32 @@ namespace CleanCodeLibrary.Application.Books.Book
             _bookRepository = bookRepository;
         }
 
-        protected async override Task<Result<BookResponse>> HandleRequest(GetByIdRequest request, Result<BookResponse> result)
+        protected async override Task<Result<BookTitleDto>> HandleRequest(GetByIdRequest request, Result<BookTitleDto> result)
         {
-            var bookFromDomain = await CleanCodeLibrary.Domain.Entities.Books.Book.GetByIdDomainAsync(_bookRepository, request.Id);
-            result.SetValidationResult(bookFromDomain.ValidationResult);
+            //var result = await _bookRepository.GetById(result)
+            //var bookFromDomain = await CleanCodeLibrary.Domain.Entities.Books.Book.GetByIdDomainAsync(_bookRepository, request.Id);
+            //result.SetValidationResult(bookFromDomain.ValidationResult);
 
-            if(result.HasError)
-            {
-                return result;
-            }
+            //if(result.HasError)
+            //{
+            //    return result;
+            //}
 
-            var bookDto = new BookDto
-            {
-                Author = bookFromDomain.Value.Author,
-                Title = bookFromDomain.Value.Title,
-                Isbn = bookFromDomain.Value.Isbn,
-                Year = bookFromDomain.Value.Year,
-                Genre = bookFromDomain.Value.Genre
-            };
+            //var bookDto = new BookDto
+            //{
+            //    Author = bookFromDomain.Value.Author,
+            //    Title = bookFromDomain.Value.Title,
+            //    Isbn = bookFromDomain.Value.Isbn,
+            //    Year = bookFromDomain.Value.Year,
+            //    Genre = bookFromDomain.Value.Genre
+            //};
 
-            result.SetResult(new BookResponse(bookDto));
+            //result.SetResult(new BookResponse(bookDto));
+            //return result;
+
+            var sqlResult = await _bookRepository.GetNameById(request.Id);
+            result.SetResult(sqlResult);
+
             return result;
 
         }

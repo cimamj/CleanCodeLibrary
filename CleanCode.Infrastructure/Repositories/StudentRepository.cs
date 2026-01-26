@@ -9,12 +9,10 @@ namespace CleanCode.Infrastructure.Repositories
     public class StudentRepository : Repository<Student, int>, IStudentRepository
     {
         private readonly ApplicationDbContext _dbContext; //zasto bas application, a ne obicni kao u parentu
-        private readonly IDapperManager _dapperManager; //morao sam ga staviti da je public
 
-        public StudentRepository(DbContext dbContext, IDapperManager dapperManager)
+        public StudentRepository(DbContext dbContext)
             : base(dbContext)
         {
-            _dapperManager = dapperManager ?? throw new ArgumentNullException(nameof(dapperManager));
 
             _dbContext = dbContext as ApplicationDbContext
                 ?? throw new ArgumentException("DbContext must be ApplicationDbContext");

@@ -1,4 +1,5 @@
-﻿using CleanCodeLibrary.Domain.Entities.Books;
+﻿using CleanCodeLibrary.Domain.DTOs.Books;
+using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Common;
 
 
@@ -8,5 +9,6 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
     {
         Task<Book> GetById(int id);
         Task<Book> GetByTitle(string title);
+        Task<BookTitleDto?> GetNameById(int id);
     }
 }

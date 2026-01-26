@@ -29,7 +29,7 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
                 BookId = request.BookId,
                 DueDate = request.DueDate,
             };
-            var domainResult = await borrowDto.BorrowBook(_unitOfWork);
+            var domainResult = await borrowDto.BorrowBook(_unitOfWork, 1);
 
             result.SetValidationResult(domainResult.ValidationResult);
 

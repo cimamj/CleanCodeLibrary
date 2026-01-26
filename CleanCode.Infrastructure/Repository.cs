@@ -28,9 +28,12 @@ namespace CleanCode.Infrastructure
         }
         public async Task InsertAsync(TEntity entity)
         {
-            await _dbSet.AddAsync(entity); 
+            await _dbSet.AddAsync(entity);
+
+            var trackedEntities = _context.ChangeTracker.Entries();
+
             //await _context.SaveChangesAsync();
-        } 
+        }
         //svaki rad iteracija s bazom je asinkron, kako ovo doli nije?
         public void Update(TEntity entity)
         {

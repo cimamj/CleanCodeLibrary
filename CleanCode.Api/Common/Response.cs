@@ -8,6 +8,9 @@ namespace CleanCode.Api.Common
         private IReadOnlyList<ValidationResultItem> _errors { get; init; }
         private IReadOnlyList<ValidationResultItem> _warnings { get; init; }
 
+        public IReadOnlyList<ValidationResultItem> Errors => _errors;
+
+
         public TValue? Value { get; set; } 
         public Guid RequestId { get; set; }
 

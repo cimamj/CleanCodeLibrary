@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
+using Microsoft.Extensions.Logging;
 
 namespace CleanCode.Infrastructure
 {
@@ -22,7 +23,6 @@ namespace CleanCode.Infrastructure
             AddRepositories(services);
 
             //ako dapper
-            AddDapper(services);
 
             return services;
         }
@@ -37,12 +37,16 @@ namespace CleanCode.Infrastructure
                 throw new ArgumentNullException(connectionString);
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(connectionString));
+            {
+                options.UseNpgsql(connectionString)
+                       .EnableSensitiveDataLogging() // Omogućuje logiranje stvarnih vrijednosti parametara
+                       .LogTo(Console.WriteLine, LogLevel.Information); // Logira SQL upite u konzolu
+            });
         }
 
         private static void AddRepositories(IServiceCollection services)
         {
-
+            services.AddScoped<DbContext, ApplicationDbContext>();
             services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>)); //za CRUD metode, fromservices IRepository<Student, int> repo ti daje  Repository<Student, int> koji ima samo osnovne CRUD operacije, ali glupo opet, ugl ovo je da radi s bilo kojim entitetom
             services.AddScoped<IStudentRepository, StudentRepository>(); //za specificne metode, ali i ovo mozes koristiti za CRUD
                                                                          //jel ovo gori za sad dovoljno za moje metode

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "CleanCodeLibrary.Application/1.0.0": {
+        "dependencies": {
+          "CleanCodeLibrary.Domain": "1.0.0"
+        },
+        "runtime": {
+          "CleanCodeLibrary.Application.dll": {}
+        }
+      },
+      "CleanCodeLibrary.Domain/1.0.0": {
+        "runtime": {
+          "CleanCodeLibrary.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CleanCodeLibrary.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CleanCodeLibrary.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -21,7 +21,8 @@ namespace CleanCode.Api.Controllers
         {
             var requestHandler = new CreateBookRequestHandler(studentRepository);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
-            return result.ToActionResult(this);
+            return result.ToActionResult(this); //this je instaca ovog controllera automatski se radi 
+            //urednije nego ResponseExtension.ToActionResult(result, this); 
         }
 
         [HttpPut("{id}")] //ova metoda doli reagira samo na POST

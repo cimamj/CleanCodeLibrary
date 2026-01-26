@@ -65,10 +65,7 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
             var bookExists = await unitOfWork.BookRepository.GetById(BookId);
             if (bookExists == null)
                 vr.AddValidationItem(ValidationItems.Borrow.NoBookFound);
-
-
-
-            if(bookExists.Amount < amount) //doda ovu provjeru za TRANSAKCIJU, ako je na lageru vise ili jednako,mos posudit, inace ne
+            else if(bookExists.Amount < amount) //doda ovu provjeru za TRANSAKCIJU, ako je na lageru vise ili jednako,mos posudit, inace ne
                 vr.AddValidationItem(ValidationItems.Borrow.NotEnoughBooks(bookExists.Amount, amount)); //Brutalnooooooooo
 
 

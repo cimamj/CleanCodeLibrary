@@ -23,7 +23,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         public int Amount { get; set; }
 
         public async Task<Result<int?>> Create(IBookRepository bookRepository)
-        { 
+        {
             var validationResult = await CreateOrUpdateValidation();
             if (validationResult.HasError)
             {
@@ -52,7 +52,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             var validationResult = new ValidationResult();
             if (existingBook == null)
             {
-                validationResult.AddValidationItem(ValidationItems.Book.No_Book);
+                validationResult.AddValidationItem(ValidationItems.Book.No_Book); //kriva konvecija pascal case  ide NoBook
             }
             return new Result<Book?>(existingBook, validationResult);
         }
@@ -104,7 +104,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         {
             var validationResult = new ValidationResult();
 
-            if(string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(Author) || string.IsNullOrEmpty(Isbn))
+            if(string.IsNullOrEmpty(Title) || string.IsNullOrWhiteSpace(Author) || string.IsNullOrEmpty(Isbn))
             {
                 validationResult.AddValidationItem(ValidationItems.Book.NameNull);
             }

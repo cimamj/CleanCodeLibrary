@@ -4,19 +4,17 @@ using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Entities.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using Microsoft.EntityFrameworkCore;
+using static Dapper.SqlMapper;
 
 namespace CleanCode.Infrastructure.Repositories
 {
     public class BorrowRepository : Repository<Borrow, int>, IBorrowRepository
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly IDapperManager _dapperManager;
 
-        public BorrowRepository(DbContext dbContext, IDapperManager dapperManager)
+        public BorrowRepository(DbContext dbContext)
             : base(dbContext)
         {
-            _dapperManager = dapperManager ?? throw new ArgumentNullException(nameof(dapperManager));
-
             _dbContext = dbContext as ApplicationDbContext
                 ?? throw new ArgumentException("DbContext must be ApplicationDbContext");
         }
@@ -24,6 +22,17 @@ namespace CleanCode.Infrastructure.Repositories
         public async Task<Borrow> GetById(int id)
         {
             return await _dbContext.Borrows.FindAsync(id);
+        }
+
+        public async Task<int> InsertBorrow(Borrow borrow)
+        {
+            await _dbContext.Borrows.AddAsync(borrow);
+
+            var book = await _dbContext.Books.FindAsync(borrow.BookId);
+            book!.Amount -= borrow.Amount;
+            _dbContext.Books.Update(book);
+
+
         }
 
         public async Task<bool> IsBookCurrentlyBorrowed(int bookId)

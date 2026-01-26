@@ -4,3 +4,13 @@ C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\De
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.AssemblyInfo.cs
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.csproj.CoreCompileInputs.cache
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.sourcelink.json
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\bin\Debug\net8.0\CleanCodeLibrary.Application.deps.json
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\bin\Debug\net8.0\CleanCodeLibrary.Application.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\bin\Debug\net8.0\CleanCodeLibrary.Application.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\bin\Debug\net8.0\CleanCodeLibrary.Domain.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\bin\Debug\net8.0\CleanCodeLibrary.Domain.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCod.DE538B6D.Up2Date
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\refint\CleanCodeLibrary.Application.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\CleanCodeLibrary.Application.pdb
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCodeLibrary.Application\obj\Debug\net8.0\ref\CleanCodeLibrary.Application.dll

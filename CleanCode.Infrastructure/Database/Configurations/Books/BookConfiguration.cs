@@ -8,30 +8,31 @@ namespace CleanCode.Infrastructure.Database.Configurations.Books
     {
         public void Configure(EntityTypeBuilder<Book> builder)  
         {
-            builder.ToTable("Books"); 
+            builder.ToTable("books"); 
 
             builder.HasKey(t => t.Id); //properti naseg entiteta
             builder.Property(t => t.Id)
-                .HasColumnName("Id") //properti nase tablice
+                .HasColumnName("id") //properti nase tablice
                 .ValueGeneratedOnAdd();  // ← važno za SERIAL
 
             builder.Property(t => t.Title)
-                .HasColumnName("Title")
+                .HasColumnName("title")
                 .HasMaxLength(200) //
                 .IsRequired(); //
 
             builder.Property(t => t.Author)
-                .HasColumnName("Author")
+                .HasColumnName("author")
                 .HasMaxLength(150) //
                 .IsRequired(); //
 
             builder.Property(t => t.Year)
-                .HasColumnName("Year");
+                .HasColumnName("year");
 
             builder.Property(t => t.Amount)
-            .HasColumnName("Amount"); //moras rucno dodati u sql
+            .HasColumnName("amount"); //moras rucno dodati u sql
 
-
+            builder.Property(t => t.Genre)
+      .HasColumnName("genre");
 
         }
     }
