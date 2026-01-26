@@ -3,6 +3,7 @@ using CleanCodeLibrary.Application.Common.Model;
 //using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
+using CleanCodeLibrary.Domain.DTOs.Books;
 
 namespace CleanCodeLibrary.Application.Books.Book
 {
@@ -11,14 +12,6 @@ namespace CleanCodeLibrary.Application.Books.Book
 
     }
 
-    public class BookDto
-    {
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public string Isbn { get; set; }//ocu sve stavit get set ili private set
-        public int Year { get; set; }
-        public GenresEnum Genre { get; set; }
-    }
 
     public class AllBooksResponse
     {

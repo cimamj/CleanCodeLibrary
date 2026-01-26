@@ -7,7 +7,7 @@ using CleanCodeLibrary.Domain.Persistance.Books;
 
 namespace CleanCode.Api.Controllers
 {
-    [Route("api/books")]
+    [Route("api/books")] //kad .net vidi ovo, DI stvara new StudentsController(), .net poziva njegove metode controller.Post(...)
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -70,7 +70,7 @@ namespace CleanCode.Api.Controllers
         [FromServices] IBookRepository bookRepository
     )
         {
-            var request = new GetByIdRequest { Id = id }; //ne triba iz bodya?
+            var request = new GetByIdRequest { Id = id }; //ne iz bodya?
             var handler = new GetByIdRequestHandler(bookRepository);
             var result = await handler.ProcessAuthorizedRequestAsync(request);
 

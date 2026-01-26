@@ -25,5 +25,6 @@ namespace CleanCode.Api.Common
         }
 
         public bool HasError => _errors.Any(); //on ovo nema, kako onda iz ext ocita, svojstvo
+        public bool HasValue => Value == null;
     }
 }

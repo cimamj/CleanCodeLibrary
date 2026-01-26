@@ -7,7 +7,7 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
 {
     public interface IBookRepository : IRepository<Book, int>
     {
-        Task<Book> GetById(int id);
+        Task<BookDto> GetById(int id);
         Task<Book> GetByTitle(string title);
         Task<BookTitleDto?> GetNameById(int id);
     }

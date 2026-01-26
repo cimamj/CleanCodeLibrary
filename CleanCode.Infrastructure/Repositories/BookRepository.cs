@@ -23,10 +23,20 @@ namespace CleanCode.Infrastructure.Repositories
             _dbContext = dbContext as ApplicationDbContext
                 ?? throw new ArgumentException("DbContext must be ApplicationDbContext");
         }
-        public async Task<Book> GetById(int id)
+        public async Task<BookDto> GetById(int id)
         {
-            await _dbContext.Books.AnyAsync(x => x.Id == id);
-           return await _dbContext.Books.FindAsync(id);
+            var book = await _dbContext.Books
+                 .Where(x => x.Id == id)
+                 .Select(x => new BookDto
+                 {
+                     Title = x.Title,
+                     Author = x.Author,
+                     Isbn = x.Isbn,
+                     Genre = x.Genre,
+                     Year = x.Year,
+                 })
+                 .SingleOrDefaultAsync();
+            return book; //u handleru cu provjerti je li null
         }
 
         public async Task<Book> GetByTitle(string title)
@@ -53,19 +63,19 @@ namespace CleanCode.Infrastructure.Repositories
                 })
                 .SingleOrDefaultAsync();
 
-            var bookEntity = await _dbContext.Books
-                .SingleOrDefaultAsync(x => x.Id == id);
+            //var bookEntity = await _dbContext.Books
+            //    .SingleOrDefaultAsync(x => x.Id == id);
 
             if (book == null)
             {
                 return null;
             }
-            var bookTitle = new BookTitleDto
-            {
-                Title = book.Title
-            };
+            //var bookTitle = new BookTitleDto
+            //{
+            //    Title = book.Title
+            //};
 
-            return bookTitle;
+            return book;
         }
     }
 }

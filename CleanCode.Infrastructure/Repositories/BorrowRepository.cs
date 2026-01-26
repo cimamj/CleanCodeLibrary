@@ -24,15 +24,14 @@ namespace CleanCode.Infrastructure.Repositories
             return await _dbContext.Borrows.FindAsync(id);
         }
 
-        public async Task<int> InsertBorrow(Borrow borrow)
+        public async Task<int> InsertBorrow(Borrow borrow, int amount)
         {
             await _dbContext.Borrows.AddAsync(borrow);
 
             var book = await _dbContext.Books.FindAsync(borrow.BookId);
-            book!.Amount -= borrow.Amount;
+            book!.Amount -= amount;
             _dbContext.Books.Update(book);
-
-
+            return borrow.Id;
         }
 
         public async Task<bool> IsBookCurrentlyBorrowed(int bookId)

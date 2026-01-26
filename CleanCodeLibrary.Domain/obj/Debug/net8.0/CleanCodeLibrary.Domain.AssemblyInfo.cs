@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CleanCodeLibrary.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5f88a437b62f974bf334845b94a4ce75214d3c2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+952dd714947db796b8d41a56c649a25812595586")]
 [assembly: System.Reflection.AssemblyProductAttribute("CleanCodeLibrary.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CleanCodeLibrary.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -29,7 +29,7 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
                 return new Result<int?>(null, validationResult);
             }
            
-            await unitOfWork.BorrowRepository.InsertAsync(this);  
+            await unitOfWork.BorrowRepository.InsertBorrow(this, amount);  
             return new Result<int?>(this.Id, validationResult);
         }
 
