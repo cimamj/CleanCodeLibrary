@@ -23,7 +23,7 @@ namespace CleanCodeLibrary.Application.Books.Book
     //}
 
 
-    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, BookDto>
+    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, BookDto> 
     {
         public IBookRepository _bookRepository { get; set; }
         public GetByIdRequestHandler(IBookRepository bookRepository) 
@@ -56,7 +56,7 @@ namespace CleanCodeLibrary.Application.Books.Book
 
             var bookRepoResult = await _bookRepository.GetById(request.Id); //validacija u domainu, a idem direkt na repository, validaciju cu dodat onda ode
             if(bookRepoResult == null)
-            {
+            {//value je null, responseExtention ima if value null
                 result.AddError(new ValidationResultItem { Message = "Knjiga ne postoji" }); //validacija dodana u app sloju
                 return result;
             }

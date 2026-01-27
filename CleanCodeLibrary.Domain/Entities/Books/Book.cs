@@ -46,16 +46,16 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             return new Result<int?>(this.Id, validationResult);
         }
 
-        public static async Task<Result<Book>> GetByIdDomainAsync(IBookRepository bookRepository, int id)
-        {
-            var existingBook = await bookRepository.GetById(id);
-            var validationResult = new ValidationResult();
-            if (existingBook == null)
-            {
-                validationResult.AddValidationItem(ValidationItems.Book.No_Book); //kriva konvecija pascal case  ide NoBook
-            }
-            return new Result<Book?>(existingBook, validationResult);
-        }
+        //public static async Task<Result<Book>> GetByIdDomainAsync(IBookRepository bookRepository, int id)
+        //{
+        //    var existingBook = await bookRepository.GetById(id);
+        //    var validationResult = new ValidationResult();
+        //    if (existingBook == null)
+        //    {
+        //        validationResult.AddValidationItem(ValidationItems.Book.No_Book); //kriva konvecija pascal case  ide NoBook
+        //    }
+        //    return new Result<Book?>(existingBook, validationResult);
+        //}
 
         public static async Task<Result<GetAllResponse<Book>>> GetAllBooksAsync(IBookRepository bookRepository)
         {
@@ -80,8 +80,9 @@ namespace CleanCodeLibrary.Domain.Entities.Books
                 validationResult.AddValidationItem(ValidationItems.Book.No_Book); 
                 return new Result<int?>(null, validationResult);
             }
-            return new Result<int?>(id, validationResult);
+            //provjeri je li posudena mozda sutra
 
+            return new Result<int?>(id, validationResult);
         }
 
         public static async Task<Result<Book>> GetByTitle(IBookRepository bookRepository, string title)

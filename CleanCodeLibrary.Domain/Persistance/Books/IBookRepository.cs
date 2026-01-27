@@ -1,4 +1,5 @@
-﻿using CleanCodeLibrary.Domain.DTOs.Books;
+﻿using CleanCodeLibrary.Domain.Common.Model;
+using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Common;
 
@@ -10,5 +11,7 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
         Task<BookDto> GetById(int id);
         Task<Book> GetByTitle(string title);
         Task<BookTitleDto?> GetNameById(int id);
+
+        Task<GetAllResponse<BookDto>> GetAllBookDtos();
     }
 }

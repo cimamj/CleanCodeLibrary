@@ -9,10 +9,11 @@ using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
 using CleanCode.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using CleanCodeLibrary.Domain.Common.Model;
 
 namespace CleanCode.Infrastructure.Repositories
 {
-    public class BookRepository : Repository<Book, int>, IBookRepository
+    public class BookRepository : Repository<Book, int>, IBookRepository //zali se a ima tu funkciju koji kurac
     {
         private readonly ApplicationDbContext _dbContext; 
 
@@ -76,6 +77,22 @@ namespace CleanCode.Infrastructure.Repositories
             //};
 
             return book;
+        }
+
+        async Task<GetAllResponse<BookDto>> GetAllBookDtos()
+        {
+            var bookDtos = await _dbContext.Books
+                .Select(b => new BookDto
+                {
+                    Title = b.Title,
+                    Author = b.Author,
+                    Isbn = b.Isbn,
+                    Year = b.Year,
+                    Genre = b.Genre,
+                })
+                .ToListAsync(); //jel ok ovo 
+
+            return new GetAllResponse<BookDto> { Values = bookDtos }; //ako ne triba samo list salji i izbrisi ovo new
         }
     }
 }

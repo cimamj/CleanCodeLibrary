@@ -23,8 +23,12 @@ namespace CleanCode.Infrastructure
         public async Task<GetAllResponse<TEntity>> Get() //dohvati sve iz tablice
             //task async, await se koristi, bez toga bi se threadovi potrosili nebi mogli posluzivati druge zahtjeve
         {
-            var entites = await _dbSet.ToListAsync(); //u pozadini generira sql query, salje na bazu, baza vraca podatke, ako imamo whereisprid?? pamti to 
-            return new GetAllResponse<TEntity> { Values = entites };
+            //var entites = await _dbSet.ToListAsync(); //u pozadini generira sql query, salje na bazu, baza vraca podatke, ako imamo whereisprid?? pamti to 
+            
+            //return new GetAllResponse<TEntity> { Values = entites }; //OVO NIJE DTO IDIOTE
+            var entities = await _dbSet.ToListAsync(); 
+            return new GetAllResponse<TEntity> { Values = entities };
+         
         }
         public async Task InsertAsync(TEntity entity)
         {
@@ -50,14 +54,13 @@ namespace CleanCode.Infrastructure
         public async Task<bool> DeleteAsync(TId id) 
         {
             var entity = await _dbSet.FindAsync(id); //onda je i ovo moglo biti sinkrono, oznaci entitet ako ga nade, dolje istog oznaci obrisanog i tek na save changes se sve odradi
-            if (entity != null)
+            if (entity != null) //iil singleordfault
             {
                 _dbSet.Remove(entity); //samo oznaci entitet kao obrisan u memoriji aplikacije
                 return true;
             }
             else return false;
             
-
         }
 
         public void Delete(TEntity? entity) //iako ne treba pretrazivat u bazi, opet triba projverit je li null ?????  upitnici su bitni kod argumenata
