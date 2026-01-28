@@ -79,7 +79,7 @@ namespace CleanCode.Infrastructure.Repositories
             return book;
         }
 
-        async Task<GetAllResponse<BookDto>> GetAllBookDtos()
+        public async Task<GetAllResponse<BookDto>> GetAllBookDtos()
         {
             var bookDtos = await _dbContext.Books
                 .Select(b => new BookDto

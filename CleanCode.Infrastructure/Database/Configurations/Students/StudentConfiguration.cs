@@ -19,25 +19,25 @@ namespace CleanCode.Infrastructure.Database.Configurations.Users
             //ja odabirem stupce koje zelim koristiti u svom domain modelu !!!!!
             //
         {
-            builder.ToTable("Students"); //kako se zove u bazi ""? Students
+            builder.ToTable("students"); //kako se zove u bazi ""? Students
 
             builder.HasKey(t => t.Id); //properti naseg entiteta
             builder.Property(t => t.Id)
-                .HasColumnName("Id") //properti nase tablice
+                .HasColumnName("id") //properti nase tablice
                 .ValueGeneratedOnAdd();  // ← važno za SERIAL
 
             builder.Property(t => t.FirstName)
-                .HasColumnName("FirstName")
+                .HasColumnName("firstname")
                 .HasMaxLength(100) //
                 .IsRequired(); //
 
             builder.Property(t => t.LastName)
-                .HasColumnName("LastName")
+                .HasColumnName("lastname")
                 .HasMaxLength(100) //
                 .IsRequired(); //
 
             builder.Property(t => t.DateOfBirth)
-                .HasColumnName("DateOfBirth");
+                .HasColumnName("dateofbirth");
             
         }
     }

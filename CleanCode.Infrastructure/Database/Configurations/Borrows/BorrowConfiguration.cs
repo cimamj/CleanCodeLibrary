@@ -10,19 +10,19 @@ namespace CleanCode.Infrastructure.Database.Configurations.Borrows
     {
         public void Configure(EntityTypeBuilder<Borrow> builder)
         {
-            builder.ToTable("Borrows");
+            builder.ToTable("borrows");
 
             // Primarni ključ
             builder.HasKey(b => b.Id);
 
             // Id je SERIAL (auto-increment)
             builder.Property(b => b.Id)
-                .HasColumnName("Id")
+                .HasColumnName("id")
                 .ValueGeneratedOnAdd();
 
             // StudentId - NOT NULL, FK na Students
             builder.Property(b => b.StudentId)
-                .HasColumnName("StudentId")
+                .HasColumnName("studentid")
                 .IsRequired();
 
             builder.HasOne<Student>()                     // relacija prema Student
@@ -32,7 +32,7 @@ namespace CleanCode.Infrastructure.Database.Configurations.Borrows
 
             // BookId - NOT NULL, FK na Books
             builder.Property(b => b.BookId)
-                .HasColumnName("BookId")
+                .HasColumnName("bookid")
                 .IsRequired();
 
             builder.HasOne<Book>()                        // relacija prema Book
@@ -42,21 +42,25 @@ namespace CleanCode.Infrastructure.Database.Configurations.Borrows
 
             // BorrowDate - DEFAULT CURRENT_TIMESTAMP
             builder.Property(b => b.BorrowDate)
-                .HasColumnName("BorrowDate")
+                .HasColumnName("borrowdate")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired();
 
             // DueDate - NOT NULL
             builder.Property(b => b.DueDate)
-                .HasColumnName("DueDate")
+                .HasColumnName("duedate")
                 .IsRequired();
 
             // ReturnDate - NULLABLE (može biti NULL dok nije vraćeno)
             builder.Property(b => b.ReturnDate)
-                .HasColumnName("ReturnDate")
+                .HasColumnName("returndate")
                 .IsRequired(false);
 
-          
+            builder.Property(t => t.AmountBorrowed)
+           .HasColumnName("amountborrowed")
+           .IsRequired();
+
+
         }
     }
 }

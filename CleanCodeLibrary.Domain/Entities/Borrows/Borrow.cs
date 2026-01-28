@@ -17,7 +17,9 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
         public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 
-        public async Task<Result<int?>> BorrowBook(IUnitOfWork unitOfWork, int amount) 
+        public int AmountBorrowed { get; set; }
+
+        public async Task<Result<int?>> BorrowBook(IUnitOfWork unitOfWork, int amount)  
         {
             //dakle sad kad imam amount , ode moram ocito transkaciju radit, jer createm redak u Borrow i updateam redak u Books pod amount 
             //takoder dodajem dodatne provjere, pod amount > 0?

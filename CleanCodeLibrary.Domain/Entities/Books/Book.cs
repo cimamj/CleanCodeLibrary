@@ -17,7 +17,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         public string Author = string.Empty;
         public string Isbn = string.Empty;
         public int Year { get; set; }
-        public GenresEnum Genre { get; set; } //ovo je enum
+        public GenresEnum Genre { get; set; } //ovo je enum ef core automatski mapira genresenum u int, enum i je int ispod haube
         //polje za kolicinu ovakvih
         //STO ako ovog polja uopce nema u bazu a vec sam spojio bazu sa ovim backendom, jel se da to azurirat ili moram tamo rucno takoder ALTER TABLE ...add column...?
         public int Amount { get; set; }

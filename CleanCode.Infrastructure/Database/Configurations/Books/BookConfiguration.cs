@@ -32,7 +32,7 @@ namespace CleanCode.Infrastructure.Database.Configurations.Books
             .HasColumnName("amount"); //moras rucno dodati u sql
 
             builder.Property(t => t.Genre)
-      .HasColumnName("genre");
+            .HasColumnName("genre");
 
         }
     }
