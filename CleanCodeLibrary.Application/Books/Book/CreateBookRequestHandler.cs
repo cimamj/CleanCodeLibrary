@@ -10,9 +10,9 @@ namespace CleanCodeLibrary.Application.Books.Book
         public string Author { get; set; }
         public string Isbn { get; set;}//ocu sve stavit get set ili private set
         public int Year { get; set; }
-        public GenresEnum Genre { get; set; }
+        public GenresEnum Genre { get; init; }
 
-        public int Amount { get; set; }
+        public int Amount { get; init; }
     }
     public class CreateBookRequestHandler : RequestHandler<CreateBookRequest, SuccessPostResponse>
     {

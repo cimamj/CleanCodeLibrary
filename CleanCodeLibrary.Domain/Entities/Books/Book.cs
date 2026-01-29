@@ -77,7 +77,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
 
             if (!deleteResult)
             {
-                validationResult.AddValidationItem(ValidationItems.Book.No_Book); 
+                validationResult.AddValidationItem(ValidationItems.Book.NotFound); 
                 return new Result<int?>(null, validationResult);
             }
             //provjeri je li posudena mozda sutra
@@ -91,7 +91,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             var existingBookTitle = await bookRepository.GetByTitle(title);//gotova metoda kako se zove
             if (existingBookTitle == null)
             {
-                validationResult.AddValidationItem(ValidationItems.Book.No_Book);
+                validationResult.AddValidationItem(ValidationItems.Book.NotFound);
                 return new Result<Book>(null, validationResult);
             }
             return new Result<Book>(existingBookTitle, validationResult);

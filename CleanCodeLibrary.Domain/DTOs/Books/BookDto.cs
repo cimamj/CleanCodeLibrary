@@ -14,5 +14,8 @@ namespace CleanCodeLibrary.Domain.DTOs.Books
         public string Isbn { get; init; }
         public int Year { get; init; }
         public GenresEnum Genre { get; init; }
+
+        //idiote poremeceni zaboravia si amonut polje dodat
+        public int Amount { get; init; }
     }
 }

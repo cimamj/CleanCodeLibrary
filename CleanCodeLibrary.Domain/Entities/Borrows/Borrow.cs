@@ -16,15 +16,14 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
         public DateTime BorrowDate { get; set; } = DateTime.UtcNow;
         public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
-
-        public int AmountBorrowed { get; set; }
+        public int AmountBorrowed { get; set; } //Makli smo kao argument odvojeni int amount
 
         public async Task<Result<int?>> BorrowBook(IUnitOfWork unitOfWork, int amount)  
         {
             //dakle sad kad imam amount , ode moram ocito transkaciju radit, jer createm redak u Borrow i updateam redak u Books pod amount 
             //takoder dodajem dodatne provjere, pod amount > 0?
 
-            var validationResult = await BorrowValidation(unitOfWork, amount);
+            var validationResult = await BorrowValidation(unitOfWork);
 
             if (validationResult.HasError)
             {
@@ -59,18 +58,17 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
         }
 
 
-        public async Task<ValidationResult> BorrowValidation(IUnitOfWork unitOfWork, int amount)
+        public async Task<ValidationResult> BorrowValidation(IUnitOfWork unitOfWork)
         {
             var vr = new ValidationResult();
 
             //provjere preko repozitorija iz UnitOfWork
             var bookExists = await unitOfWork.BookRepository.GetById(BookId);
+            
             if (bookExists == null)
-                vr.AddValidationItem(ValidationItems.Borrow.NoBookFound);
-            else if(bookExists.Amount < amount) //doda ovu provjeru za TRANSAKCIJU, ako je na lageru vise ili jednako,mos posudit, inace ne
-                vr.AddValidationItem(ValidationItems.Borrow.NotEnoughBooks(bookExists.Amount, amount)); //Brutalnooooooooo
-
-
+                vr.AddValidationItem(ValidationItems.Book.NotFound);
+            else if(bookExists.Amount < AmountBorrowed) //doda ovu provjeru za TRANSAKCIJU, ako je na lageru vise ili jednako,mos posudit, inace ne
+                vr.AddValidationItem(ValidationItems.Borrow.NotEnoughBooks(bookExists.Amount, AmountBorrowed)); //Brutalnooooooooo
 
             var studentExists = await unitOfWork.StudentRepository.GetById(StudentId) != null;
             if (!studentExists)

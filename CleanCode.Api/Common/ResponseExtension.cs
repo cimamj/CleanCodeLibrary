@@ -9,17 +9,27 @@ namespace CleanCode.Api.Common
         {
             var response = new Response<TValue>(result);
 
+            if(!response.isAuthorized)
+            {
+                return controller.Unauthorized(new
+                {
+                    message = "Nemate dozvolu za ovu akciju",
+                    requestId = result.RequestId
+                }); // jer response nisam napunio validacijom za unatuhorized
+            }// 401 Unauthorized
 
-            if (response.HasError)
+            if (response.HasError) 
             {
                 if(!response.HasValue)
-                    return controller.NotFound();
-                else return controller.BadRequest(response);
+                    return controller.NotFound(response); //404
+
+                return controller.BadRequest(response); //400
             }
-      //400 los input dakle validacijska greska, 401 unauthorized npr 
-          //ne ide argument
+         
 
             return controller.Ok(response); //ovo je za get npr, .Created je 201, .NoContent je 204 kad delete samo udres 
         }
+
+
     }
 }

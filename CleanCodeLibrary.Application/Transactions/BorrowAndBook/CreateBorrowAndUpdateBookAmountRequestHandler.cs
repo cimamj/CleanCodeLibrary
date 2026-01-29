@@ -37,6 +37,7 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
                     StudentId = request.StudentId,
                     BookId = request.BookId,
                     DueDate = request.DueDate,
+                    AmountBorrowed = request.Amount, //dodano
                 };
                 var domainResult = await borrowDto.BorrowBook(_unitOfWork, request.Amount);
                 result.SetValidationResult(domainResult.ValidationResult);

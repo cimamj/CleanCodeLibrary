@@ -52,7 +52,7 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationSeverity = ValidationSeverity.Warning, //ili error
                 ValidationType = ValidationType.FormalValidation
             };
-            public static readonly ValidationItem No_Book = new ValidationItem
+            public static readonly ValidationItem NotFound = new ValidationItem
             {
                 Code = $"NO_WANTED_BOOK",
                 Message = $"Nema trazene knjige u bazi",

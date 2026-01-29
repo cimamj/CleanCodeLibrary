@@ -24,7 +24,7 @@ namespace CleanCode.Infrastructure.Repositories
             _dbContext = dbContext as ApplicationDbContext
                 ?? throw new ArgumentException("DbContext must be ApplicationDbContext");
         }
-        public async Task<BookDto> GetById(int id)
+        public async Task<BookDto?> GetById(int id)
         {
             var book = await _dbContext.Books
                  .Where(x => x.Id == id)

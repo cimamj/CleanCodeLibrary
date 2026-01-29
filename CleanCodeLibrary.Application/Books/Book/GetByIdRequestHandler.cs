@@ -23,7 +23,7 @@ namespace CleanCodeLibrary.Application.Books.Book
     //}
 
 
-    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, BookDto> 
+    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, BookDto?> 
     {
         public IBookRepository _bookRepository { get; set; }
         public GetByIdRequestHandler(IBookRepository bookRepository) 
@@ -31,7 +31,7 @@ namespace CleanCodeLibrary.Application.Books.Book
             _bookRepository = bookRepository;
         }
 
-        protected async override Task<Result<BookDto>> HandleRequest(GetByIdRequest request, Result<BookDto> result)
+        protected async override Task<Result<BookDto?>> HandleRequest(GetByIdRequest request, Result<BookDto?> result)
         {
             //var result = await _bookRepository.GetById(result)
             //var bookFromDomain = await CleanCodeLibrary.Domain.Entities.Books.Book.GetByIdDomainAsync(_bookRepository, request.Id);
@@ -57,7 +57,7 @@ namespace CleanCodeLibrary.Application.Books.Book
             var bookRepoResult = await _bookRepository.GetById(request.Id); //validacija u domainu, a idem direkt na repository, validaciju cu dodat onda ode
             if(bookRepoResult == null)
             {//value je null, responseExtention ima if value null
-                result.AddError(new ValidationResultItem { Message = "Knjiga ne postoji" }); //validacija dodana u app sloju
+                result.AddError(new ValidationResultItem { Message = "Knjiga ne postoji" }); //validacija dodana u app sloju? mozda da je maknem jer svakako ce se pojaviti ekstenzija 404 radi hasValue
                 return result;
             }
             result.SetResult(bookRepoResult);
