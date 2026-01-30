@@ -79,20 +79,6 @@ namespace CleanCode.Infrastructure.Repositories
             return book;
         }
 
-        public async Task<GetAllResponse<BookDto>> GetAllBookDtos()
-        {
-            var bookDtos = await _dbContext.Books
-                .Select(b => new BookDto
-                {
-                    Title = b.Title,
-                    Author = b.Author,
-                    Isbn = b.Isbn,
-                    Year = b.Year,
-                    Genre = b.Genre,
-                })
-                .ToListAsync(); //jel ok ovo 
-
-            return new GetAllResponse<BookDto> { Values = bookDtos }; //ako ne triba samo list salji i izbrisi ovo new
-        }
+      
     }
 }

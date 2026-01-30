@@ -42,7 +42,7 @@ namespace CleanCodeLibrary.Application.Books.Book
             {
                 return result;
             }
-            await book.SaveChanges(_bookRepository);
+            await book.SaveChanges(_bookRepository); //kroz domain ili repo?
 
             result.SetResult(new SuccessPostResponse(book.Id));
             return result;

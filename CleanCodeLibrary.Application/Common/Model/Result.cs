@@ -4,7 +4,7 @@ using CleanCodeLibrary.Domain.Common.Validation;
 
 namespace CleanCodeLibrary.Application.Common.Model
 {
-    public class Result<TValue> where TValue : class //isto kao ValidationResult iz domaina
+    public class Result<TValue> where TValue : class //isto kao ValidationResult iz domaina, STO KAD JE ID U PITANJU
     {
         private List<ValidationResultItem> _info = new List<ValidationResultItem>();
         private List<ValidationResultItem> _errors = new List<ValidationResultItem>();

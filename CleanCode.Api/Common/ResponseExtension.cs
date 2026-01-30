@@ -25,11 +25,26 @@ namespace CleanCode.Api.Common
 
                 return controller.BadRequest(response); //400
             }
-         
 
-            return controller.Ok(response); //ovo je za get npr, .Created je 201, .NoContent je 204 kad delete samo udres 
+
+            //ako je sve ok 200 201 204 ovisi sto je u bodyu je li put post delete
+            var method = controller.HttpContext.Request.Method; //metoda van bodya
+
+            return method switch
+            {
+                "POST" => controller.CreatedAtAction( // 201 create
+                    null,                     
+                    new { id = response.Value },    //id di je ruta                         
+                    response
+                ),
+                "DELETE" => controller.NoContent(), //204
+                "PUT" or "PATCH" => controller.Ok(response), 
+                _ => controller.Ok(response)           //default
+            };
+            //klasicni switch case sce sprema u reustl neki pas e iza svega returna
+
         }
 
-
+        //sad je to to???
     }
 }
