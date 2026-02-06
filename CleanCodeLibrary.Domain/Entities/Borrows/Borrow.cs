@@ -18,7 +18,7 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
         public DateTime? ReturnDate { get; set; }
         public int AmountBorrowed { get; set; } //Makli smo kao argument odvojeni int amount
 
-        public async Task<Result<int?>> BorrowBook(IUnitOfWork unitOfWork, int amount)  
+        public async Task<ResultDomain<int?>> BorrowBook(IUnitOfWork unitOfWork, int amount)  
         {
             //dakle sad kad imam amount , ode moram ocito transkaciju radit, jer createm redak u Borrow i updateam redak u Books pod amount 
             //takoder dodajem dodatne provjere, pod amount > 0?
@@ -27,15 +27,15 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
 
             if (validationResult.HasError)
             {
-                return new Result<int?>(null, validationResult);
+                return new ResultDomain<int?>(null, validationResult);
             }
            
             await unitOfWork.BorrowRepository.InsertBorrow(this, amount);  
-            return new Result<int?>(this.Id, validationResult);
+            return new ResultDomain<int?>(this.Id, validationResult);
         }
 
         //metoda za vratit knjigu, u request dto ide borrow id jer mozes istu knjigu vise puta posudit
-        public static async Task<Result<int?>> Return(IUnitOfWork unitOfWork, int borrowId)
+        public static async Task<ResultDomain<int?>> Return(IUnitOfWork unitOfWork, int borrowId)
         {
             var validationResult = new ValidationResult();
 
@@ -43,18 +43,18 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
             if (borrow == null)
             {
                 validationResult.AddValidationItem(ValidationItems.Borrow.BorrowNotFound);
-                return new Result<int?>(null, validationResult);
+                return new ResultDomain<int?>(null, validationResult);
             }
             if (borrow.ReturnDate != null)
             {
                 validationResult.AddValidationItem(ValidationItems.Borrow.AlreadyReturned);
-                return new Result<int?>(null, validationResult);
+                return new ResultDomain<int?>(null, validationResult);
             }
 
             borrow.ReturnDate = DateTime.UtcNow;
             unitOfWork.BorrowRepository.Update(borrow); //lakse ovako nego slat u fju za validaciju 
 
-            return new Result<int?>(borrow.Id, validationResult);
+            return new ResultDomain<int?>(borrow.Id, validationResult);
         }
 
 

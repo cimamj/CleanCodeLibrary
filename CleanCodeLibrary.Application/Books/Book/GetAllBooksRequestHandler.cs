@@ -1,83 +1,35 @@
-﻿
-using CleanCodeLibrary.Application.Common.Model;
-//using CleanCodeLibrary.Domain.Common.Model;
-using CleanCodeLibrary.Domain.Entities.Books;
-using CleanCodeLibrary.Domain.Persistance.Books;
+﻿using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Model; //problem sto sad nezna koji result koristiti, prominit cu ime u domainu resultDomain
 using CleanCodeLibrary.Domain.DTOs.Books;
-using System.Xml.XPath;
+using CleanCodeLibrary.Domain.Persistance.Books;
 
 namespace CleanCodeLibrary.Application.Books.Book
 {
-    public class GetAllBooksRequest
+    public class GetAllBooksRequest { }
+
+
+    public class GetAllBooksRequestHandler //pitaj ivu koji kurac
+        : RequestHandler<GetAllBooksRequest, GetAllResponse<BookDto>>
     {
+        private readonly IBookRepository _bookRepository;
 
-    }
-
-
-    public class AllBooksResponse
-    {
-        public IEnumerable<BookDto> _books { get; set; }
-        public AllBooksResponse(IEnumerable<BookDto> Books) { _books = Books; }
-    }
-
-        public class GetAllBooksRequestHandler : RequestHandler<GetAllBooksRequest, AllBooksResponse>
-    {
-        public IBookRepository _bookRepository { get; set; }
-        public GetAllBooksRequestHandler(IBookRepository bookRepository) //ono sto vracamo obavezno u value u result
+        public GetAllBooksRequestHandler(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository;
         }
+        //a npr kad mapiran u novu klasu radi
 
-        protected override async Task<Result<AllBooksResponse>> HandleRequest(GetAllBooksRequest request, Result<AllBooksResponse> result)
+        protected override async Task<Result<GetAllResponse<BookDto>>> HandleRequest(
+            GetAllBooksRequest request,
+            Result<GetAllResponse<BookDto>> result)
         {
-            //var domainResult = await CleanCodeLibrary.Domain.Entities.Books.Book.GetAllBooksAsync(_bookRepository); //kad stavim samo static tu metodu nemogu , mora cila klasa za metodu korsitit?
-            //result.SetValidationResult(domainResult.ValidationResult);
+            var books = await _bookRepository.GetAllBookDtos();
 
-            //if (result.HasError)
-            //{
-            //    return result;
-            //}
-            ////inace je puna lista
-            //var booksDto = domainResult.Value.Values.Select(b => new BookDto
-            //{
-            //    Author = b.Author,
-            //    Title = b.Title,
-            //    Isbn = b.Isbn,
-            //    Year = b.Year,
-            //    Genre = b.Genre
-            //});
-
-            ////ne triba savechangess
-
-            //result.SetResult(new AllBooksResponse(booksDto));
-            //return result;
-
-            //direktno priko repoziotija 
-            //var books = await _bookRepository.Get();
-            ////ide li neka provjera je li pranzo prazna lista je validan rezultat?
-
-            //var dtos = books.Values.Select(b => new BookDto
-            //{
-            //    Title = b.Title,
-            //    Author = b.Author,
-            //    Isbn = b.Isbn,
-            //    Year = b.Year,
-            //    Genre = b.Genre,
-            //});
-
-            //result.SetResult(new AllBooksResponse(dtos));
-            //return result;
-
-            //zasto ne omgu korisitti getallresposne iz domaina kojeg svakako dobijan
-
-            //ili ako cu koristiti GetAllBookDtos 
-            var books = await _bookRepository.GetAllBookDtos(); //books je objekt sa values
-            result.SetResult(new AllBooksResponse(books.Values)); //jel potriba opet nova klasa
+            result.SetResult(books);
             return result;
         }
 
         protected override Task<bool> IsAuthorized() => Task.FromResult(true);
-
     }
 }
 //GLUPO OPET MAPIRATI NEMA SMISLA NOVI DTO ISPADA, ali konflikt radi result odavde  i iz domaina,

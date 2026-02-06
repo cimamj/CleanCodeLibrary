@@ -14,19 +14,19 @@ namespace CleanCodeLibrary.Domain.Entities.Students
         public string LastName { get; set; }
         public DateOnly? DateOfBirth { get; set; } 
 
-        public async Task<Result<int?>> Create(IStudentRepository studentRepository) //tip argumenta interface je iz domaina, a studentRepository iz infrastrucutra, dakle ODVOJENO JE, DOMAIN NE OVISI O NIKOME, ova se metoda poziva iz app, app salje taj infra
+        public async Task<ResultDomain<int?>> Create(IStudentRepository studentRepository) //tip argumenta interface je iz domaina, a studentRepository iz infrastrucutra, dakle ODVOJENO JE, DOMAIN NE OVISI O NIKOME, ova se metoda poziva iz app, app salje taj infra
         {
             var validationResult = await CreateOrUpdateValidation(); //AWAIT DODAJ JER JE ASYNC
             if (validationResult.HasError)
             {
-                return new Result<int?>(this.Id, validationResult); //this  iz app u kojem se mapira dto iznad handlera u ovog studenta, .create od ive ivica
+                return new ResultDomain<int?>(this.Id, validationResult); //this  iz app u kojem se mapira dto iznad handlera u ovog studenta, .create od ive ivica
             }
             //ako nema errora, insertaj u bazu this (instanca ovog studenta) i returnaj success 
             await studentRepository.InsertAsync(this); 
-            return new Result<int?>(this.Id, validationResult); //ako prode insertAsync, salji visem sloju appu true
+            return new ResultDomain<int?>(this.Id, validationResult); //ako prode insertAsync, salji visem sloju appu true
         }
 
-        public static async Task<Result<Student>> GetByIdDomainAsync(IStudentRepository studentRepository, int id)
+        public static async Task<ResultDomain<Student>> GetByIdDomainAsync(IStudentRepository studentRepository, int id)
         {
             var existingStudent = await studentRepository.GetById(id);
             var validationResult = new ValidationResult();
@@ -34,21 +34,21 @@ namespace CleanCodeLibrary.Domain.Entities.Students
             {
                 validationResult.AddValidationItem(ValidationItems.Student.No_Student);
             }
-            return new Result<Student?>(existingStudent, validationResult);
+            return new ResultDomain<Student?>(existingStudent, validationResult);
         }
-        public async Task<Result<int?>> Update(IStudentRepository studentRepository)
+        public async Task<ResultDomain<int?>> Update(IStudentRepository studentRepository)
         {
             var validationResult = await CreateOrUpdateValidation(); //zasto ode triba kad nema i/o operacija u ovoj metodi
             if (validationResult.HasError) 
             {
-                return new Result<int?>(null, validationResult);
+                return new ResultDomain<int?>(null, validationResult);
                 
             }
             studentRepository.Update(this); //Ne triba await u ovom slucaju jer nije asinkrona ali za savechanges zovemo iz aplicationsloja tj handlera nakon ovog poziva  jel to ok?
-            return new Result<int?>(this.Id, validationResult);
+            return new ResultDomain<int?>(this.Id, validationResult);
         }
 
-        public static async Task<Result<GetAllResponse<Student>>> GetAllStudentsAsync(IStudentRepository studentRepository)
+        public static async Task<ResultDomain<GetAllResponse<Student>>> GetAllStudentsAsync(IStudentRepository studentRepository)
         {
             var allStudents = await studentRepository.Get();
 
@@ -58,11 +58,11 @@ namespace CleanCodeLibrary.Domain.Entities.Students
                 validationResult.AddValidationItem(ValidationItems.Student.No_Students); //ili da dodam return null umjesto allstudents
                 //jel triban return (null, validationResult) ili ce svakako bit null
             }
-            return new Result<GetAllResponse<Student>>(allStudents, validationResult);
+            return new ResultDomain<GetAllResponse<Student>>(allStudents, validationResult);
 
         }
         
-        public static async Task<Result<int?>> Delete(IStudentRepository studentRepository, int id) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
+        public static async Task<ResultDomain<int?>> Delete(IStudentRepository studentRepository, int id) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
         {
 
             var deleteResult = await studentRepository.DeleteAsync(id);
@@ -71,23 +71,23 @@ namespace CleanCodeLibrary.Domain.Entities.Students
             if (!deleteResult)
             {
                 validationResult.AddValidationItem(ValidationItems.Student.No_Student); //Nije pronaden
-                return new Result<int?>(null, validationResult); //Jel triban return null ili ce se svakako return null
+                return new ResultDomain<int?>(null, validationResult); //Jel triban return null ili ce se svakako return null
             }
-            return new Result<int?>(id, validationResult);
+            return new ResultDomain<int?>(id, validationResult);
 
         }
 
-        public static async Task<Result<Student>> GetByIdDomain(IStudentRepository studentRepository, int id)
+        public static async Task<ResultDomain<Student>> GetByIdDomain(IStudentRepository studentRepository, int id)
         {
             var studentById = await studentRepository.GetById(id);
             var validationResult = new ValidationResult();
             if(studentById == null)
             {
                 validationResult.AddValidationItem(ValidationItems.Student.No_Student);
-                return new Result<Student?>(null, validationResult);
+                return new ResultDomain<Student?>(null, validationResult);
             }
 
-            return new Result<Student>(studentById, validationResult);
+            return new ResultDomain<Student>(studentById, validationResult);
         }
         public async Task SaveChanges(IStudentRepository studentRepository)
         {

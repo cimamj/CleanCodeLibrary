@@ -42,9 +42,10 @@ namespace CleanCode.Infrastructure.Repositories
 
         public async Task<Book> GetByTitle(string title)
         {
-           //return await _dbContext.Books.FindAsync(title); jel moze primati ovo
-           return await _dbContext.Books.FirstOrDefaultAsync(b=>b.Title == title); 
+            //return await _dbContext.Books.FindAsync(title); jel moze primati ovo
+            return await _dbContext.Books.FirstOrDefaultAsync(b => b.Title == title);
         }
+
 
         public async Task<BookTitleDto?> GetNameById(int id)
         {
@@ -79,6 +80,34 @@ namespace CleanCode.Infrastructure.Repositories
             return book;
         }
 
-      
+        public async Task<Book?> GetByIdEntity(int id)
+        {
+            return await _dbContext.Books
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+            //ili FindAsync(id)
+        }
+
+     
+
+   
+        async Task<GetAllResponse<BookDto>> GetAllBookDtos()
+        {
+            var bookDtos = await _dbContext.Books
+                .Select(b => new BookDto
+                {
+                    Title = b.Title,
+                    Author = b.Author,
+                    Isbn = b.Isbn,
+                    Year = b.Year,
+                    Genre = b.Genre
+                })
+                .ToListAsync();
+
+            return new GetAllResponse<BookDto> { Values = bookDtos };
+
+        }
+
+
     }
 }

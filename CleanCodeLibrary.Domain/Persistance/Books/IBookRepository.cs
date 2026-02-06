@@ -12,6 +12,9 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
         Task<Book> GetByTitle(string title);
         Task<BookTitleDto?> GetNameById(int id);
 
+        Task<Book?> GetByIdEntity(int id);
+
         Task<GetAllResponse<BookDto>> GetAllBookDtos(); //DOMAIN NEZNA ZA NIKOGA 
+       
     }
 }

@@ -22,28 +22,28 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         //STO ako ovog polja uopce nema u bazu a vec sam spojio bazu sa ovim backendom, jel se da to azurirat ili moram tamo rucno takoder ALTER TABLE ...add column...?
         public int Amount { get; set; }
 
-        public async Task<Result<int?>> Create(IBookRepository bookRepository)
+        public async Task<ResultDomain<int?>> Create(IBookRepository bookRepository)
         {
             var validationResult = await CreateOrUpdateValidation();
             if (validationResult.HasError)
             {
                 //Necemo zvat insert uopce
-                return new Result<int?>(this.Id, validationResult);
+                return new ResultDomain<int?>(this.Id, validationResult);
             }
             await bookRepository.InsertAsync(this);
-            return new Result<int?>(this.Id, validationResult);
+            return new ResultDomain<int?>(this.Id, validationResult);
         }
 
-        public async Task<Result<int?>> Update(IBookRepository bookRepository)
+        public async Task<ResultDomain<int?>> Update(IBookRepository bookRepository)
         {
             var validationResult = await CreateOrUpdateValidation(); 
             if (validationResult.HasError)
             {
-                return new Result<int?>(null, validationResult);
+                return new ResultDomain<int?>(null, validationResult);
 
             }
             bookRepository.Update(this); 
-            return new Result<int?>(this.Id, validationResult);
+            return new ResultDomain<int?>(this.Id, validationResult);
         }
 
         //public static async Task<Result<Book>> GetByIdDomainAsync(IBookRepository bookRepository, int id)
@@ -57,7 +57,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         //    return new Result<Book?>(existingBook, validationResult);
         //}
 
-        public static async Task<Result<GetAllResponse<Book>>> GetAllBooksAsync(IBookRepository bookRepository)
+        public static async Task<ResultDomain<GetAllResponse<Book>>> GetAllBooksAsync(IBookRepository bookRepository)
         {
             var allBooks = await bookRepository.Get();
 
@@ -65,11 +65,11 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             if (allBooks == null || allBooks.Values == null || !allBooks.Values.Any())             {
                 validationResult.AddValidationItem(ValidationItems.Book.No_Books);
             }
-            return new Result<GetAllResponse<Book>>(allBooks, validationResult);
+            return new ResultDomain<GetAllResponse<Book>>(allBooks, validationResult);
 
         }
 
-        public static async Task<Result<int?>> Delete(IBookRepository bookRepository, int id) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
+        public static async Task<ResultDomain<int?>> Delete(IBookRepository bookRepository, int id) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
         {
             //jel uredu ovakva static fja, ne moram uvijek samo repository slat u domain?!
             var deleteResult = await bookRepository.DeleteAsync(id);
@@ -78,23 +78,23 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             if (!deleteResult)
             {
                 validationResult.AddValidationItem(ValidationItems.Book.NotFound); 
-                return new Result<int?>(null, validationResult);
+                return new ResultDomain<int?>(null, validationResult);
             }
             //provjeri je li posudena mozda sutra
 
-            return new Result<int?>(id, validationResult);
+            return new ResultDomain<int?>(id, validationResult);
         }
 
-        public static async Task<Result<Book>> GetByTitle(IBookRepository bookRepository, string title)
+        public static async Task<ResultDomain<Book>> GetByTitle(IBookRepository bookRepository, string title)
         {
             var validationResult = new ValidationResult();
             var existingBookTitle = await bookRepository.GetByTitle(title);//gotova metoda kako se zove
             if (existingBookTitle == null)
             {
                 validationResult.AddValidationItem(ValidationItems.Book.NotFound);
-                return new Result<Book>(null, validationResult);
+                return new ResultDomain<Book>(null, validationResult);
             }
-            return new Result<Book>(existingBookTitle, validationResult);
+            return new ResultDomain<Book>(existingBookTitle, validationResult);
         }
 
         public async Task SaveChanges(IBookRepository bookRepository)
