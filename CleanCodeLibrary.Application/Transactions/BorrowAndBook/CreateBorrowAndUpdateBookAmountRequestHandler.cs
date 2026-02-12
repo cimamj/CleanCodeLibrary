@@ -52,16 +52,17 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
                 //prvo ce je tribat dohvatiti tu istu, 
 
                 //ako uspije posudba, knjiga na lageru ima idemo oduzet stanje knjizi !!!!!
-                var bookResult = await CleanCodeLibrary.Domain.Entities.Books.Book.GetByIdDomainAsync(_unitOfWork.BookRepository, request.BookId);
-                result.SetValidationResult(bookResult.ValidationResult);
-                if (result.HasError)
+                var book = await _unitOfWork.BookRepository.GetByIdEntity(request.BookId);
+                //result.SetValidationResult(bookResult.ValidationResult);
+                if (book == null)
                 {
+                    result.AddError(new ValidationResultItem { Message = "Knjiga ne postoji" });
                     await _unitOfWork.Rollback();
                     return result;
                 }
-                var book = bookResult.Value;
-                book.Amount -= request.Amount;
 
+                book.Amount -= request.Amount;
+                //iako dohvacen direktno iz repozitorija, to je domain entitet ima sve metode kao update, ne treba ponovno instacirati
                 var domainBookResult = await book.Update(_unitOfWork.BookRepository);
                 result.SetValidationResult(domainBookResult.ValidationResult);
                 if (result.HasError)

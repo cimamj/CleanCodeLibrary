@@ -777,6 +777,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "CleanCodeLibrary.Application >= 1.0.0",
+      "CleanCodeLibrary.Domain >= 1.0.0",
       "Dapper >= 2.1.66",
       "Microsoft.EntityFrameworkCore >= 8.0.22",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.11"
@@ -812,6 +813,9 @@
           "projectReferences": {
             "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj": {
               "projectPath": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj"
+            },
+            "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj"
             }
           }
         }

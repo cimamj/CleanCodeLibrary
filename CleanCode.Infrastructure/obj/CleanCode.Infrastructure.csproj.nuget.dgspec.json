@@ -31,6 +31,9 @@
             "projectReferences": {
               "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj": {
                 "projectPath": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Application\\CleanCodeLibrary.Application.csproj"
+              },
+              "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\CleanCodeLibrary\\CleanCodeLibrary.Domain\\CleanCodeLibrary.Domain.csproj"
               }
             }
           }

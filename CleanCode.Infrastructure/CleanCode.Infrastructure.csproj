@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CleanCodeLibrary.Application\CleanCodeLibrary.Application.csproj" />
+    <ProjectReference Include="..\CleanCodeLibrary.Domain\CleanCodeLibrary.Domain.csproj" />
   </ItemGroup>
 
 </Project>

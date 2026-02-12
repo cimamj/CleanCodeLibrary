@@ -49,3 +49,4 @@ C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\refi
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\CleanCode.Api.pdb
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\CleanCode.Api.genruntimeconfig.cache
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\ref\CleanCode.Api.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\CleanCode.Api.MvcApplicationPartsAssemblyInfo.cs

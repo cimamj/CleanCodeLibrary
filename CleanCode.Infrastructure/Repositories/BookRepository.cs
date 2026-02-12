@@ -1,9 +1,5 @@
 ﻿using CleanCodeLibrary.Application.Students.Student;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
@@ -88,10 +84,27 @@ namespace CleanCode.Infrastructure.Repositories
             //ili FindAsync(id)
         }
 
-     
 
-   
-        async Task<GetAllResponse<BookDto>> GetAllBookDtos()
+
+
+        //async Task<GetAllResponse<BookDto>> GetAllBookDtos()
+        //{
+        //    var bookDtos = await _dbContext.Books
+        //        .Select(b => new BookDto
+        //        {
+        //            Title = b.Title,
+        //            Author = b.Author,
+        //            Isbn = b.Isbn,
+        //            Year = b.Year,
+        //            Genre = b.Genre
+        //        })
+        //        .ToListAsync();
+
+        //    return new GetAllResponse<BookDto> { Values = bookDtos };
+
+        //}
+
+        public async Task<GetAllResponse<BookDto>> GetAllBookDtos()
         {
             var bookDtos = await _dbContext.Books
                 .Select(b => new BookDto
@@ -105,7 +118,6 @@ namespace CleanCode.Infrastructure.Repositories
                 .ToListAsync();
 
             return new GetAllResponse<BookDto> { Values = bookDtos };
-
         }
 
 

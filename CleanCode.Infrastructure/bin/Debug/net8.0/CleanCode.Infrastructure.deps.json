@@ -9,6 +9,7 @@
       "CleanCode.Infrastructure/1.0.0": {
         "dependencies": {
           "CleanCodeLibrary.Application": "1.0.0",
+          "CleanCodeLibrary.Domain": "1.0.0",
           "Dapper": "2.1.66",
           "Microsoft.EntityFrameworkCore": "8.0.22",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.11"
