@@ -20,10 +20,14 @@ namespace CleanCode.Api.Common
 
             if (response.HasError) 
             {
-                if(!response.HasValue)
-                    return controller.NotFound(response); //404
 
                 return controller.BadRequest(response); //400
+            }
+
+            if (!response.HasValue)
+            {
+                return controller.NotFound(response); //404 ja dosad vraca ovo 
+
             }
 
 

@@ -10,14 +10,46 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
             public static string CodePrefix = nameof(Book);
 
 
-            public static readonly ValidationItem NameNull = new ValidationItem
+            public static readonly ValidationItem TitleNull = new ValidationItem
             {
                 Code = $"{CodePrefix}1",
-                Message = $"Naziv ne smije biti prazan",
+                Message = $"Naslov ne smije biti prazan",
                 ValidationSeverity = ValidationSeverity.Error,
                 ValidationType = ValidationType.FormalValidation
             };
 
+            public static readonly ValidationItem AuthorNull = new ValidationItem
+            {
+                Code = $"{CodePrefix}1",
+                Message = $"Autor ne smije biti prazan",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.FormalValidation
+            };
+
+            public static readonly ValidationItem IsbnNull = new ValidationItem
+            {
+                Code = $"{CodePrefix}1",
+                Message = $"Isbn ne smije biti prazan",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.FormalValidation
+            };
+
+            public static readonly ValidationItem AmountNullNegative = new ValidationItem
+            {
+                Code = $"{CodePrefix}1",
+                Message = $"Kolicina knjiga mora biti veća od 0",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.FormalValidation
+            };
+
+            public static readonly ValidationItem UnknownGenre = new ValidationItem
+            {
+                Code = $"{CodePrefix}1",
+                Message = $"Nepoznati zanr",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.FormalValidation
+            };
+            
 
             public static readonly ValidationItem TitleMaxLength = new ValidationItem
             {
@@ -59,6 +91,8 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationSeverity = ValidationSeverity.Warning, //ili error
                 ValidationType = ValidationType.FormalValidation
             };
+
+
         }
     }
 }

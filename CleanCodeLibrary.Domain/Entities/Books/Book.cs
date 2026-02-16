@@ -105,14 +105,18 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         {
             var validationResult = new ValidationResult();
 
-            if(string.IsNullOrEmpty(Title) || string.IsNullOrWhiteSpace(Author) || string.IsNullOrEmpty(Isbn))
+            if(string.IsNullOrWhiteSpace(Title))
             {
-                validationResult.AddValidationItem(ValidationItems.Book.NameNull);
+                validationResult.AddValidationItem(ValidationItems.Book.TitleNull);
             }
-
-            else if(Title.Length > TitleNameMaxLength)
+            else if (Title.Length > TitleNameMaxLength)
             {
                 validationResult.AddValidationItem(ValidationItems.Book.TitleMaxLength);
+            }
+
+            if (string.IsNullOrWhiteSpace(Author))
+            {
+                validationResult.AddValidationItem(ValidationItems.Book.AuthorNull);
             }
 
             else if (Author.Length > AuthorNameMaxLength)
@@ -120,9 +124,24 @@ namespace CleanCodeLibrary.Domain.Entities.Books
                 validationResult.AddValidationItem(ValidationItems.Book.AuthorMaxLength);
             }
 
+            if (string.IsNullOrWhiteSpace(Isbn))
+            {
+                validationResult.AddValidationItem(ValidationItems.Book.IsbnNull);
+            }
+
             else if (Isbn.Length > IsbnMaxLength)
             {
                 validationResult.AddValidationItem(ValidationItems.Book.IsbnMaxLength);
+            }
+
+            if (Amount <= 0)
+            {
+                validationResult.AddValidationItem(ValidationItems.Book.AmountNullNegative);
+            }
+
+            if (!Enum.IsDefined(typeof(GenresEnum), Genre))
+            {
+                validationResult.AddValidationItem(ValidationItems.Book.UnknownGenre);
             }
 
             return validationResult;

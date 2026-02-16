@@ -20,9 +20,13 @@ namespace CleanCode.Infrastructure.Database.Configurations.Books
                 .HasMaxLength(200) //
                 .IsRequired(); //
 
+            builder.Property(b => b.Isbn)
+              .HasColumnName("isbn")
+              .HasMaxLength(20);
+
             builder.Property(t => t.Author)
                 .HasColumnName("author")
-                .HasMaxLength(150) //
+                .HasMaxLength(150) //   
                 .IsRequired(); //
 
             builder.Property(t => t.Year)
