@@ -15,7 +15,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
 
         public string Title = string.Empty;
         public string Author = string.Empty;
-        public string Isbn = string.Empty;
+        public string? Isbn = string.Empty;
         public int Year { get; set; }
         public GenresEnum Genre { get; set; } //ovo je enum ef core automatski mapira genresenum u int, enum i je int ispod haube
         //polje za kolicinu ovakvih
