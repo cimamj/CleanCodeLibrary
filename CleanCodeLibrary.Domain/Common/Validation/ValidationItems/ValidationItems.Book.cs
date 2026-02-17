@@ -92,7 +92,23 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationType = ValidationType.FormalValidation
             };
 
+            
+                 public static readonly ValidationItem DeleteWentWrong = new ValidationItem
+                 {
+                     Code = $"BOOK_NOT_DELETED",
+                     Message = $"Knjiga se nije uspjela obrisati",
+                     ValidationSeverity = ValidationSeverity.Error, //ili error
+                     ValidationType = ValidationType.SystemError
+                 };
 
+        
+             public static readonly ValidationItem IsbnAlreadyExists = new ValidationItem
+             {
+                 Code = $"{CodePrefix}.IsbnAlreadyExists",
+                 Message = "Knjiga sa ovim ISBN brojem već postoji",
+                 ValidationSeverity = ValidationSeverity.Error,
+                 ValidationType = ValidationType.BussinessRule
+             };
         }
     }
 }

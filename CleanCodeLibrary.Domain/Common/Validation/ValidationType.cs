@@ -9,6 +9,7 @@ namespace CleanCodeLibrary.Domain.Common.Validation
     {
         FormalValidation,
         BussinessRule,
-        SystemError
+        SystemError,
+        NotFound
     }
 }

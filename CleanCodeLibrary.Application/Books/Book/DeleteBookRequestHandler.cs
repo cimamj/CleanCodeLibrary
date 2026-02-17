@@ -1,5 +1,6 @@
 ﻿
 using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
 using CleanCodeLibrary.Domain.Persistance.Students;
@@ -22,7 +23,20 @@ namespace CleanCodeLibrary.Application.Books.Book
 
         protected async override Task<Result<SuccessDeleteResponse>> HandleRequest(DeleteBookRequest request, Result<SuccessDeleteResponse> result)
         {
-            var domainResult = await CleanCodeLibrary.Domain.Entities.Books.Book.Delete(_bookRepository, request.Id); //jel uredu ovakva static fja, ne moram uvijek samo repository slat u domain?!
+            var bookRepoResult = await _bookRepository.GetByIdEntity(request.Id); //ocu entitet ne dto
+            if (bookRepoResult == null)
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "Book.NotFound",
+                    Message = "Knjiga ne postoji",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound
+                });
+                return result;
+            }
+            
+            var domainResult = await bookRepoResult.Delete(_bookRepository); 
             result.SetValidationResult(domainResult.ValidationResult);
             if (result.HasError)
             {

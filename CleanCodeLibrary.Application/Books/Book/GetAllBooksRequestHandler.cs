@@ -1,5 +1,6 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
 using CleanCodeLibrary.Domain.Common.Model; //problem sto sad nezna koji result koristiti, prominit cu ime u domainu resultDomain
+using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
 
@@ -24,6 +25,15 @@ namespace CleanCodeLibrary.Application.Books.Book
             Result<GetAllResponse<BookDto>> result)
         {
             var books = await _bookRepository.GetAllBookDtos();
+            if(books.Values.Count() == 0) //validan rezultat, samo warning, ili !Values.Any()
+            {
+                result.AddWarning(new ValidationResultItem
+                {
+                    Message = "Nema knjiga u bazi",
+                    ValidationSeverity = ValidationSeverity.Warning,
+                });
+                //return result; OVAKO RESULT NECE IMATI VALUE, UC CE U RESPONSEEXT I VRATIT CE 404, TO NE ZELIMO
+            }
 
             result.SetResult(books);
             return result;

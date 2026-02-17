@@ -10,6 +10,9 @@ namespace CleanCode.Api.Common
 
         public IReadOnlyList<ValidationResultItem> Errors => _errors;
 
+        public IReadOnlyList<ValidationResultItem> Warnings => _warnings;
+        public IReadOnlyList<ValidationResultItem> Info => _info;
+
         public bool isAuthorized { get; set; }
         public TValue? Value { get; set; } 
         public Guid RequestId { get; set; }
@@ -27,5 +30,6 @@ namespace CleanCode.Api.Common
 
         public bool HasError => _errors.Any(); //on ovo nema, kako onda iz ext ocita, svojstvo
         public bool HasValue => Value != null;
+
     }
 }

@@ -56,7 +56,7 @@
                 [FromServices] IBookRepository bookRepository
                 )
             {
-                var request = new GetAllBooksRequest();
+                var request = new GetAllBooksRequest(); //
                 var requestHandler = new GetAllBooksRequestHandler(bookRepository);
                 var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
                 return result.ToActionResult(this);

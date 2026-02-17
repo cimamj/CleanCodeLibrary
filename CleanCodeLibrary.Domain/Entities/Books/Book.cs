@@ -24,7 +24,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
 
         public async Task<ResultDomain<int?>> Create(IBookRepository bookRepository)
         {
-            var validationResult = await CreateOrUpdateValidation();
+            var validationResult = await CreateOrUpdateValidation(bookRepository);
             if (validationResult.HasError)
             {
                 //Necemo zvat insert uopce
@@ -36,7 +36,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
 
         public async Task<ResultDomain<int?>> Update(IBookRepository bookRepository)
         {
-            var validationResult = await CreateOrUpdateValidation(); 
+            var validationResult = await CreateOrUpdateValidation(bookRepository); 
             if (validationResult.HasError)
             {
                 return new ResultDomain<int?>(null, validationResult);
@@ -69,20 +69,18 @@ namespace CleanCodeLibrary.Domain.Entities.Books
 
         }
 
-        public static async Task<ResultDomain<int?>> Delete(IBookRepository bookRepository, int id) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
+        public async Task<ResultDomain<int?>> Delete(IBookRepository bookRepository) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
         {
-            //jel uredu ovakva static fja, ne moram uvijek samo repository slat u domain?!
-            var deleteResult = await bookRepository.DeleteAsync(id);
+            var deleteResult = await bookRepository.DeleteAsync(Id);
             var validationResult = new ValidationResult();
 
             if (!deleteResult)
             {
-                validationResult.AddValidationItem(ValidationItems.Book.NotFound); 
+                validationResult.AddValidationItem(ValidationItems.Book.DeleteWentWrong);
                 return new ResultDomain<int?>(null, validationResult);
             }
-            //provjeri je li posudena mozda sutra
-
-            return new ResultDomain<int?>(id, validationResult);
+ 
+            return new ResultDomain<int?>(Id, validationResult);
         }
 
         public static async Task<ResultDomain<Book>> GetByTitle(IBookRepository bookRepository, string title)
@@ -101,7 +99,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         {
             await bookRepository.SaveAsync();
         }
-        public async Task<ValidationResult> CreateOrUpdateValidation()
+        public async Task<ValidationResult> CreateOrUpdateValidation(IBookRepository bookRepository)
         {
             var validationResult = new ValidationResult();
 
@@ -133,6 +131,16 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             {
                 validationResult.AddValidationItem(ValidationItems.Book.IsbnMaxLength);
             }
+            
+            else
+            {
+                    var isbnTaken = await bookRepository.IsbnExistsForOtherBook(Isbn, Id);
+                    if (isbnTaken)
+                    {
+                        validationResult.AddValidationItem(ValidationItems.Book.IsbnAlreadyExists);
+                    }
+            }
+            
 
             if (Amount <= 0)
             {
@@ -143,6 +151,10 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             {
                 validationResult.AddValidationItem(ValidationItems.Book.UnknownGenre);
             }
+
+            //kako da dodam provejru postoji li vec book sa ovim isbn? jer je ono unique pa baca 500, trebam li uopce to dodavati?
+            //E SAD JE POSLOVNA LOGIKA DETALJNIJA SVE STA TI TREBA IMPLEMENTRIAS U INTERFACE , konkretno provjera postoji li isbn vec
+           
 
             return validationResult;
         }

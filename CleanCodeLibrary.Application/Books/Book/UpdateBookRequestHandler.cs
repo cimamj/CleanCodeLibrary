@@ -45,7 +45,8 @@ namespace CleanCodeLibrary.Application.Books.Book
                     {
                         Code = "Book.NotFound",
                         Message = "Knjiga ne postoji",
-                        ValidationSeverity = ValidationSeverity.Error
+                        ValidationSeverity = ValidationSeverity.Error,
+                        ValidationType = ValidationType.NotFound //novo dodano, rjesi za create
                     });
                     return result;
                 }

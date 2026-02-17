@@ -1,6 +1,7 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
 using CleanCodeLibrary.Domain.Persistance.Books;
 using CleanCodeLibrary.Domain.DTOs.Books;
+using CleanCodeLibrary.Domain.Common.Validation;
 
 
 namespace CleanCodeLibrary.Application.Books.Book
@@ -57,11 +58,16 @@ namespace CleanCodeLibrary.Application.Books.Book
             var bookRepoResult = await _bookRepository.GetById(request.Id); //validacija u domainu, a idem direkt na repository, validaciju cu dodat onda ode
             if(bookRepoResult == null)
             {//value je null, responseExtention ima if value null
-                result.AddError(new ValidationResultItem { Message = "Knjiga ne postoji" }); //validacija dodana u app sloju? mozda da je maknem jer svakako ce se pojaviti ekstenzija 404 radi hasValue
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "Book.NotFound",
+                    Message = "Knjiga ne postoji",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound 
+                });
                 return result;
             }
             result.SetResult(bookRepoResult);
-
             return result;
 
         }

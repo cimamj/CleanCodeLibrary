@@ -20,10 +20,13 @@ namespace CleanCode.Api.Common
 
             if (response.HasError) 
             {
+                if (response.Errors.Any(e => e.ValidationType == CleanCodeLibrary.Domain.Common.Validation.ValidationType.NotFound))
+                    return controller.NotFound(response); //404
 
                 return controller.BadRequest(response); //400
             }
 
+            //skoro se nikad ne koristi vjv
             if (!response.HasValue)
             {
                 return controller.NotFound(response); //404 ja dosad vraca ovo 
@@ -43,7 +46,7 @@ namespace CleanCode.Api.Common
                 ),
                 "DELETE" => controller.NoContent(), //204
                 "PUT" or "PATCH" => controller.Ok(response), 
-                _ => controller.Ok(response)           //default
+                _ => controller.Ok(response)           //default npr GET, GETBYID
             };
             //klasicni switch case sce sprema u reustl neki pas e iza svega returna
 

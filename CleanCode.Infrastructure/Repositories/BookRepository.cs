@@ -120,6 +120,17 @@ namespace CleanCode.Infrastructure.Repositories
             return new GetAllResponse<BookDto> { Values = bookDtos };
         }
 
+        public async Task<bool> IsbnExists(string isbn)
+        {
+            return await _dbContext.Books
+                .AnyAsync(b=>b.Isbn == isbn);
+        }//ne triba mi zapravo, uvik cu eleminirati trenutnu knjigu radi UPDATE metode, promini title, isbn ostane isti, puca ovo
+
+        public async Task<bool> IsbnExistsForOtherBook(string isbn, int currentBookId)
+        {
+            return await _dbContext.Books
+                .AnyAsync(b => b.Isbn == isbn && b.Id != currentBookId); //ne gleda knjigu koju mijenjas, jer ako joj minjas title, isbn ce bit isti, puknit ce za update
+        }
 
     }
 }

@@ -15,6 +15,10 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
         Task<Book?> GetByIdEntity(int id);
 
         Task<GetAllResponse<BookDto>> GetAllBookDtos(); //DOMAIN NEZNA ZA NIKOGA 
+
+        Task<bool> IsbnExists(string isbn); //za create metodu
+
+        Task<bool> IsbnExistsForOtherBook(string isbn, int currentBookId);
        
     }
 }
