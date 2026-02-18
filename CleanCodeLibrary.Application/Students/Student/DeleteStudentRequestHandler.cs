@@ -1,4 +1,6 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Domain.Persistance.Books;
 using CleanCodeLibrary.Domain.Persistance.Students;
 
 
@@ -21,7 +23,7 @@ namespace CleanCodeLibrary.Application.Students.Student
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(DeleteStudentRequest request, Result<SuccessPostResponse> result) 
         {
             //JE LI BOLJE FIND ODE ILI DIREKTNO U REPOZITORIJU
-           
+
             //    var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student
             //        .GetByIdDomainAsync(_studentRepository, request.Id);
             //    result.SetValidationResult(domainResult.ValidationResult);
@@ -29,7 +31,19 @@ namespace CleanCodeLibrary.Application.Students.Student
             //    if (result.HasWarning) //nemas sta brisat ako nema nicega
             //        return result; Nema potrebe trazit kad se trazi u repozitoriju u delete metodi
 
-            var domainDeleteResult = await CleanCodeLibrary.Domain.Entities.Students.Student.Delete(_studentRepository, request.Id);
+            var studentRepoResult = await _studentRepository.GetById(request.Id); //ocu entitet ne dto
+            if (studentRepoResult == null)
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "Student.NotFound",
+                    Message = "Student ne postoji u ovoj ludoj bazi",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound
+                });
+                return result;
+            }
+            var domainDeleteResult = await studentRepoResult.Delete(_studentRepository);
             result.SetValidationResult(domainDeleteResult.ValidationResult);  // staje 
 
             if (result.HasError) 

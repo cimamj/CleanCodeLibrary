@@ -12,14 +12,14 @@ namespace CleanCodeLibrary.Domain.Entities.Students
         public int Id { get; set; }
         public string FirstName { get; set; } //ne more bit null kako to ? =string.Empty;
         public string LastName { get; set; }
-        public DateOnly? DateOfBirth { get; set; } 
+        public DateOnly? DateOfBirth { get; set; }  //mozda warning ako saljes bez date, prolazi i roden u buducnosti format falidacija
 
         public async Task<ResultDomain<int?>> Create(IStudentRepository studentRepository) //tip argumenta interface je iz domaina, a studentRepository iz infrastrucutra, dakle ODVOJENO JE, DOMAIN NE OVISI O NIKOME, ova se metoda poziva iz app, app salje taj infra
         {
             var validationResult = await CreateOrUpdateValidation(); //AWAIT DODAJ JER JE ASYNC
             if (validationResult.HasError)
             {
-                return new ResultDomain<int?>(this.Id, validationResult); //this  iz app u kojem se mapira dto iznad handlera u ovog studenta, .create od ive ivica
+                return new ResultDomain<int?>(null, validationResult); //this  iz app u kojem se mapira dto iznad handlera u ovog studenta, .create od ive ivica
             }
             //ako nema errora, insertaj u bazu this (instanca ovog studenta) i returnaj success 
             await studentRepository.InsertAsync(this); 
@@ -62,18 +62,18 @@ namespace CleanCodeLibrary.Domain.Entities.Students
 
         }
         
-        public static async Task<ResultDomain<int?>> Delete(IStudentRepository studentRepository, int id) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
+        public async Task<ResultDomain<int?>> Delete(IStudentRepository studentRepository) //NULLABLE REFERENCE JESE STA TRIBA DIRAT U RESULT KLASI
         {
 
-            var deleteResult = await studentRepository.DeleteAsync(id);
-            var validationResult = new ValidationResult();
+            var deleteResult = await studentRepository.DeleteAsync(Id);
+            var validationResult = new ValidationResult(); //neki livi razlog
 
-            if (!deleteResult)
+            if (!deleteResult) //iz xy razloga nez kojeg mozda novu validaciju dodati za brisanje ode
             {
-                validationResult.AddValidationItem(ValidationItems.Student.No_Student); //Nije pronaden
+                validationResult.AddValidationItem(ValidationItems.Student.DeleteWentWrong); //Nije pronaden
                 return new ResultDomain<int?>(null, validationResult); //Jel triban return null ili ce se svakako return null
             }
-            return new ResultDomain<int?>(id, validationResult);
+            return new ResultDomain<int?>(Id, validationResult);
 
         }
 
@@ -115,7 +115,24 @@ namespace CleanCodeLibrary.Domain.Entities.Students
             { 
                 validationResult.AddValidationItem(ValidationItems.Student.LastNameMaxLength);
             }
-            return validationResult; //ako ne prode if, sto ovo vraca? nema nista unutra, U CREATE CES PROVJERITI ELSE KOJI NISI VAMO!!
+            //ako ne prode if, sto ovo vraca? nema nista unutra, U CREATE CES PROVJERITI ELSE KOJI NISI VAMO!!
+            if(!DateOfBirth.HasValue)
+            {
+                validationResult.AddValidationItem(ValidationItems.Student.DateOfBirthNull);
+            }
+            else
+            {
+                var today = DateOnly.FromDateTime(DateTime.UtcNow);
+                var birthDate = DateOfBirth.Value;
+
+                if (birthDate > today)
+                {
+                    validationResult.AddValidationItem(ValidationItems.Student.Future);
+                }
+            }
+
+
+            return validationResult;
         }
     }
 }

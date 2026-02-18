@@ -56,7 +56,7 @@ namespace CleanCode.Infrastructure
             var entity = await _dbSet.FindAsync(id); //onda je i ovo moglo biti sinkrono, oznaci entitet ako ga nade, dolje istog oznaci obrisanog i tek na save changes se sve odradi
             if (entity != null) //iil singleordfault
             {
-                _dbSet.Remove(entity); //samo oznaci entitet kao obrisan u memoriji aplikacije
+                _dbSet.Remove(entity); //samo oznaci entitet kao obrisan u memoriji aplikacije !!!mozda odmahmogu remove jer sam vec geldao je li postoji!
                 return true;
             }
             else return false;

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static CleanCodeLibrary.Domain.Common.Validation.ValidationItems.ValidationItems;
+using CleanCodeLibrary.Domain.Common.Model;
+using CleanCodeLibrary.Domain.DTOs.Students;
+using CleanCodeLibrary.Domain.Common.Validation;
 
 namespace CleanCodeLibrary.Application.Students.Student
 {
@@ -15,27 +18,27 @@ namespace CleanCodeLibrary.Application.Students.Student
         //ne triba jer nema parametara
     }
 
-    public class StudentDto
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public DateOnly? DateOfBirth { get; set; }
-    }
+    //public class StudentDto //ovo koristim u repozitoriju studentovome
+    //{
+    //    public int Id { get; set; }
+    //    public string FirstName { get; set; } = string.Empty;
+    //    public string LastName { get; set; } = string.Empty;
+    //    public DateOnly? DateOfBirth { get; set; }
+    //}
 
-    public class GetAllStudentsResponse //zasto kad stavim static se Students crveni? nemos imat instace npr students
-    {
-        public IEnumerable<StudentDto> Students { get; set; } //pod ienumerable spremam listu ocito jbt
-        public GetAllStudentsResponse(IEnumerable<StudentDto> students)
-        {
-            Students = students ?? Enumerable.Empty<StudentDto>(); //jel bolje ovo jer moze null poslat nekom greskom
-        }
+    //public class GetAllStudentsResponse //zasto kad stavim static se Students crveni? nemos imat instace npr students
+    //{
+    //    public IEnumerable<StudentDto> Students { get; set; } //pod ienumerable spremam listu ocito jbt
+    //    public GetAllStudentsResponse(IEnumerable<StudentDto> students)
+    //    {
+    //        Students = students ?? Enumerable.Empty<StudentDto>(); //jel bolje ovo jer moze null poslat nekom greskom
+    //    }
 
-        public GetAllStudentsResponse() { }
+    //    public GetAllStudentsResponse() { }
 
-    }
+    //}
     
-    public class GetAllStudentsRequestHandler : RequestHandler<GetAllStudentsRequest, GetAllStudentsResponse>
+    public class GetAllStudentsRequestHandler : RequestHandler<GetAllStudentsRequest, GetAllResponse<StudentDto>>
     {
         private readonly IStudentRepository _studentRepository;
 
@@ -44,28 +47,39 @@ namespace CleanCodeLibrary.Application.Students.Student
             _studentRepository = studentRepository;
         }
 
-        protected async override Task<Result<GetAllStudentsResponse>> HandleRequest(
+        protected async override Task<Result<GetAllResponse<StudentDto>>> HandleRequest(
             GetAllStudentsRequest request,
-            Result<GetAllStudentsResponse> result
+            Result<GetAllResponse<StudentDto>> result
             )
         {
          
-            var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student.GetAllStudentsAsync(_studentRepository); //kad stavim samo static tu metodu nemogu , mora cila klasa za metodu korsitit?
-            result.SetValidationResult(domainResult.ValidationResult);
-            if (result.HasWarning) //nemoze imat erroor nego warning
-            {
-                return result;
-            }
+            //var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student.GetAllStudentsAsync(_studentRepository); //kad stavim samo static tu metodu nemogu , mora cila klasa za metodu korsitit?
+            //result.SetValidationResult(domainResult.ValidationResult);
+            //if (result.HasWarning) //nemoze imat erroor nego warning
+            //{
+            //    return result;
+            //}
             //ode nema potrebe SAVE CHANGES ZVAT, jer se nista nije promoinilo
-            var studentDtos = domainResult.Value.Values.Select(s => new StudentDto //value iz result i values iz getallresponse, moze i foreach pa add u listu
-            {
-                Id = s.Id,
-                FirstName = s.FirstName,
-                LastName = s.LastName,
-                DateOfBirth = s.DateOfBirth
-            }); //.ToList(); jel vracam listu ili ienumerable
+            //var studentDtos = domainResult.Value.Values.Select(s => new StudentDto //value iz result i values iz getallresponse, moze i foreach pa add u listu
+            //{
+            //    Id = s.Id,
+            //    FirstName = s.FirstName,
+            //    LastName = s.LastName,
+            //    DateOfBirth = s.DateOfBirth
+            //}); //.ToList(); jel vracam listu ili ienumerable
 
-            result.SetResult(new GetAllStudentsResponse(studentDtos));
+            var students = await _studentRepository.GetAllStudentDtos();
+
+            if(students.Values.Count() == 0)
+            {
+                result.AddWarning(new ValidationResultItem
+                {
+                    Message = "Nema nijednog studenta u bazi",
+                    ValidationSeverity = ValidationSeverity.Warning,
+                });
+            }
+
+            result.SetResult(students);
 
             return result; //jeben ti zivot
 

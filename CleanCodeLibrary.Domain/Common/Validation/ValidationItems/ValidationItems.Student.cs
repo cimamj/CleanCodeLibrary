@@ -62,7 +62,29 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
             //    ValidationSeverity = ValidationSeverity.Warning, //ili error
             //    ValidationType = ValidationType.FormalValidation
             //};
+            public static readonly ValidationItem DateOfBirthNull = new ValidationItem
+            {
+                Code = $"{CodePrefix}DateOfBirthNull",
+                Message = $"Niste unijeli datum rodenja",
+                ValidationSeverity = ValidationSeverity.Warning, //ili error
+                ValidationType = ValidationType.FormalValidation
+            };
 
+            public static readonly ValidationItem Future = new ValidationItem
+            {
+                Code = $"{CodePrefix}DateOfBirthInFuture",
+                Message = $"Datum rodenja ne može biti u buducnosti",
+                ValidationSeverity = ValidationSeverity.Error, //ili error
+                ValidationType = ValidationType.FormalValidation
+            };
+
+            public static readonly ValidationItem DeleteWentWrong = new ValidationItem
+            {
+                Code = $"STUDENT_NOT_DELETED",
+                Message = $"Student se nije uspio obrisati",
+                ValidationSeverity = ValidationSeverity.Error, //ili error
+                ValidationType = ValidationType.SystemError
+            };
 
 
         }

@@ -2,7 +2,8 @@
 using CleanCodeLibrary.Domain.Entities.Students;
 using CleanCodeLibrary.Domain.Persistance.Students;
 using Microsoft.EntityFrameworkCore;
-using CleanCodeLibrary.Domain.Common.Model; // za GetByIdRequest ako želiš koristiti
+using CleanCodeLibrary.Domain.Common.Model;
+using CleanCodeLibrary.Domain.DTOs.Students;
 
 namespace CleanCode.Infrastructure.Repositories
 {
@@ -22,7 +23,7 @@ namespace CleanCode.Infrastructure.Repositories
         {
             //EF nacin
             //return await _dbSet.FindAsync(id); //_dbSet je privatno polje
-            return await _dbContext.Students.FindAsync(id);
+            return await _dbContext.Students.FindAsync(id); //vraca pravi entitet ne dto!!!!
 
             //ili .FirstOrDefaultAsync(s => s.Id == id);
 
@@ -63,5 +64,43 @@ namespace CleanCode.Infrastructure.Repositories
              */
 
         }
+
+
+
+        public async Task<GetAllResponse<StudentDto>> GetAllStudentDtos()
+        {
+            var studentDtos = await _dbContext.Students
+                .Select(s => new StudentDto
+                {
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    DateOfBirth = s.DateOfBirth,
+                })
+                .ToListAsync();
+
+            return new GetAllResponse<StudentDto> { Values = studentDtos };
+        }
+
+
+
+        public async Task<StudentDto> GetDtoById(int id)
+        {
+            //var student = await _dbContext.Students
+            //    .FindAsync(id);
+            //return new StudentDto { FirstName = student.FirstName, LastName = student.LastName, DateOfBirth = student.DateOfBirth, };
+            //nemozes ovako, puca ako ne nade s tim id, vraca null i onda u novoj liniji mapiras novi objekt sa null objektom, triba bi projverit je li null
+            var student = await _dbContext.Students
+                    .Where(s => s.Id == id)
+                    .Select(s => new StudentDto
+                    {
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    DateOfBirth = s.DateOfBirth
+                    })
+                    .SingleOrDefaultAsync();
+            return student;
+        }
+
+       
     }
 }

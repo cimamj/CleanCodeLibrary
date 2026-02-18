@@ -1,4 +1,5 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Persistance.Students;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
@@ -30,28 +31,39 @@ namespace CleanCodeLibrary.Application.Students.Student
             //prvo vidi ima li error u smislu  da uopce nije dohvatio studenta vidis to iz validacije
             //var existingStudent = new CleanCodeLibrary.Domain.Entities.Students.Student();
             //CleanCodeLibrary.Domain.Entities.Students.Student.GetByIdDomainAsync(_studentRepository, request.Id);
-            var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student
-                .GetByIdDomainAsync(_studentRepository, request.Id);
-            result.SetValidationResult(domainResult.ValidationResult); 
-
-            if (result.HasWarning) //HasError nema smisla gledat kad more bacit samo warning?
+            //var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student
+            //    .GetByIdDomainAsync(_studentRepository, request.Id);
+            var studentRepoResult = await _studentRepository.GetById(request.Id);
+            if (studentRepoResult == null)
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "Student.NotFound",
+                    Message = "Student ne postoji u bazi",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound //novo dodano, rjesi za create
+                });
                 return result;
 
-            //ako je dohvatio onda promijeni,ali prvojeri validationResult da nije ime predugo itd...
-            var existingStudent = domainResult.Value; //Jel ovo dobro ili tribalo instacirati??
-            existingStudent.FirstName = request.FirstName;
-            existingStudent.LastName = request.LastName;
-            existingStudent.DateOfBirth = request.DateOfBirth; //i ode se sve crveni
+            }
 
-            var validationResult = await existingStudent.Update(_studentRepository);
-            //predugo ime?
+
+
+            //ako je dohvatio onda promijeni,ali prvojeri validationResult da nije ime predugo itd...
+            //Jel ovo dobro ili tribalo instacirati??
+            studentRepoResult.FirstName = request.FirstName;
+            studentRepoResult.LastName = request.LastName;
+            studentRepoResult.DateOfBirth = request.DateOfBirth; 
+
+            var validationResult = await studentRepoResult.Update(_studentRepository);
+           
             result.SetValidationResult(validationResult.ValidationResult); //jel se sad isti Result promjenio svoj ValidationResult?
             if (result.HasError) //dugo ime je error
                 return result;
 
-            await existingStudent.SaveChanges(_studentRepository); //komuniciramo s domain ne infra
+            await studentRepoResult.SaveChanges(_studentRepository); //komuniciramo s domain ne infra
 
-            result.SetResult(new SuccessPostResponse(existingStudent.Id)); //koji id jel ovi ili novi od req
+            result.SetResult(new SuccessPostResponse(studentRepoResult.Id)); //koji id jel ovi ili novi od req
             return result;
 
         }

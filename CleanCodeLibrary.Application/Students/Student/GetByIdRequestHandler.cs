@@ -1,6 +1,8 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;  // ← OVO JE KLJUČNO – koristi tvoju Result iz Application sloja!
 using CleanCodeLibrary.Domain.Persistance.Students;
 using CleanCodeLibrary.Domain.Entities.Students;
+using CleanCodeLibrary.Domain.DTOs.Students;
+using CleanCodeLibrary.Domain.Common.Validation;
 
 namespace CleanCodeLibrary.Application.Students.Student
 {
@@ -9,19 +11,19 @@ namespace CleanCodeLibrary.Application.Students.Student
         public int Id { get; set; }
     }
 
-    public class GetByIdResponse
-    {
-        public StudentDto Student { get; set; }
+    //public class GetByIdResponse
+    //{
+    //    public StudentDto Student { get; set; }
 
-        public GetByIdResponse(StudentDto student)  // ← mali 's' u parametru
-        {
-            Student = student;  // ← koristi parametar
-        }
+    //    public GetByIdResponse(StudentDto student)  // ← mali 's' u parametru
+    //    {
+    //        Student = student;  // ← koristi parametar
+    //    }
 
-        public GetByIdResponse() { }
-    }
+    //    public GetByIdResponse() { }
+    //}
 
-    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, GetByIdResponse>
+    public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, StudentDto>
     {
         private readonly IStudentRepository _studentRepository;
 
@@ -30,28 +32,29 @@ namespace CleanCodeLibrary.Application.Students.Student
             _studentRepository = studentRepository;
         }
 
-        protected async override Task<Result<GetByIdResponse>> HandleRequest(
+        protected async override Task<Result<StudentDto>> HandleRequest( //jel triba StudentDto? dodavati svugdje?
             GetByIdRequest request,
-            Result<GetByIdResponse> result)
-        {
-            var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student.GetByIdDomain(_studentRepository, request.Id);
+            Result<StudentDto> result)
+        { 
+        //{
+        //    var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student.GetByIdDomain(_studentRepository, request.Id);
+        //necemo priko domaina nego direktno
 
-            result.SetValidationResult(domainResult.ValidationResult);
-
-            if (result.HasError || domainResult.Value == null)
+            var studentDto = await _studentRepository.GetDtoById(request.Id);
+            
+            if(studentDto == null)
             {
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "Student.NotFound",
+                    Message = "Student ne postoji",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound
+                });
                 return result;
             }
 
-            var studentDto = new StudentDto
-            {
-                Id = domainResult.Value.Id,
-                FirstName = domainResult.Value.FirstName,
-                LastName = domainResult.Value.LastName,
-                DateOfBirth = domainResult.Value.DateOfBirth
-            };
-
-            result.SetResult(new GetByIdResponse(studentDto));
+            result.SetResult(studentDto);
             return result;
         }
 

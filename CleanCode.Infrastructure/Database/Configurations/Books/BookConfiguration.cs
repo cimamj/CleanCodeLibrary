@@ -23,6 +23,8 @@ namespace CleanCode.Infrastructure.Database.Configurations.Books
             builder.Property(b => b.Isbn)
               .HasColumnName("isbn")
               .HasMaxLength(20);
+            //is unique? 
+            
 
             builder.Property(t => t.Author)
                 .HasColumnName("author")
@@ -31,12 +33,16 @@ namespace CleanCode.Infrastructure.Database.Configurations.Books
 
             builder.Property(t => t.Year)
                 .HasColumnName("year");
+           
 
             builder.Property(t => t.Amount)
-            .HasColumnName("amount"); //moras rucno dodati u sql
+            .HasColumnName("amount") //moras rucno dodati u sql
+               .IsRequired();
 
             builder.Property(t => t.Genre)
-            .HasColumnName("genre");
+            .HasColumnName("genre")
+               .IsRequired();
+            //npr ovo nisam imao isreq
 
         }
     }
