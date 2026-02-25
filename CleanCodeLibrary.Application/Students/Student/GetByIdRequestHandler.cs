@@ -32,13 +32,10 @@ namespace CleanCodeLibrary.Application.Students.Student
             _studentRepository = studentRepository;
         }
 
-        protected async override Task<Result<StudentDto>> HandleRequest( //jel triba StudentDto? dodavati svugdje?
+        protected async override Task<Result<StudentDto>> HandleRequest( 
             GetByIdRequest request,
             Result<StudentDto> result)
-        { 
-        //{
-        //    var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student.GetByIdDomain(_studentRepository, request.Id);
-        //necemo priko domaina nego direktno
+        {
 
             var studentDto = await _studentRepository.GetDtoById(request.Id);
             

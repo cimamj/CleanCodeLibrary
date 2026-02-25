@@ -9,38 +9,31 @@ using Microsoft.EntityFrameworkCore.Storage; //storage radi _transaction
 
 namespace CleanCode.Infrastructure
 {
-    public sealed class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     { //ukoliko imamo transakcije
-        private readonly ApplicationDbContext _dbContext;
-        private IDbContextTransaction _transaction;
+        public readonly ApplicationDbContext _dbContext;
+        public IDbContextTransaction _transaction;
 
-        public IStudentRepository StudentRepository { get; }
-        public IBookRepository BookRepository { get; }
-        public IBorrowRepository BorrowRepository { get; }
 
         public UnitOfWork(
-            ApplicationDbContext dbContext,
-            IStudentRepository studentRepository,
-            IBookRepository bookRepository,
-            IBorrowRepository borrowRepository)
+            ApplicationDbContext dbContext
+            )
         {
             _dbContext = dbContext;
-            StudentRepository = studentRepository;
-            BookRepository = bookRepository;
-            BorrowRepository = borrowRepository;
+            //_transaction = transaction;
         }
 
         public async Task CreateTransaction()
-        { 
-            _transaction = await _dbContext.Database.BeginTransactionAsync();   
+        {
+            _transaction = await _dbContext.Database.BeginTransactionAsync();
         }
         public async Task Commit()
         {
             if (_transaction != null)
-            { 
-            await _transaction.CommitAsync();
-            await _transaction.DisposeAsync();
-            } 
+            {
+                await _transaction.CommitAsync();
+                await _transaction.DisposeAsync();
+            }
         }
 
         public async Task Rollback()
@@ -56,6 +49,8 @@ namespace CleanCode.Infrastructure
         public async Task SaveAsync()
         {
             //da spremamo u bazu ako nemamo errora
+            Console.WriteLine("SaveAsync called – saving changes...");
+            var entries = _dbContext.ChangeTracker.Entries();
             await _dbContext.SaveChangesAsync();
         }
     }

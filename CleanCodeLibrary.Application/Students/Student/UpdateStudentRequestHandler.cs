@@ -13,6 +13,8 @@ namespace CleanCodeLibrary.Application.Students.Student
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateOnly? DateOfBirth { get; set; }
+
+        public string? NewPassword { get; set; }
     }
     public class UpdateStudentRequestHandler : RequestHandler<UpdateStudentRequest, SuccessPostResponse>
     {

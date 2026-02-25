@@ -12,11 +12,10 @@ namespace CleanCode.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public BorrowRepository(DbContext dbContext)
+        public BorrowRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
-            _dbContext = dbContext as ApplicationDbContext
-                ?? throw new ArgumentException("DbContext must be ApplicationDbContext");
+            _dbContext = dbContext;
         }
 
         public async Task<Borrow> GetById(int id)
@@ -28,9 +27,9 @@ namespace CleanCode.Infrastructure.Repositories
         {
             await _dbContext.Borrows.AddAsync(borrow);
 
-            var book = await _dbContext.Books.FindAsync(borrow.BookId);
-            book!.Amount -= amount;
-            _dbContext.Books.Update(book);
+           
+
+            DebugChangeTracker(_dbContext);
             return borrow.Id;
         }
 
@@ -39,5 +38,45 @@ namespace CleanCode.Infrastructure.Repositories
             return await _dbContext.Borrows.AnyAsync(b => b.BookId == bookId && b.ReturnDate == null); //any ili firstordefault koja je razlika
            //any vraca bool
         }
+
+        public async Task UpdateBorrow(Borrow item)
+        {
+            var entity = await _dbContext
+                .Borrows
+                .Include(x => x.Book)
+                .SingleOrDefaultAsync(x => x.Id == item.Id);
+
+            if (entity == null)
+                return;
+
+
+            entity.ReturnDate = DateOnly.FromDateTime(DateTime.UtcNow);
+            entity.Book.Amount += entity.AmountBorrowed;
+        }
+            
+        private void DebugChangeTracker(ApplicationDbContext context)
+        {
+            Console.WriteLine("===== CHANGE TRACKER =====");
+            foreach (var entry in context.ChangeTracker.Entries())
+            {
+                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}");
+                Console.WriteLine($"State: {entry.State}");
+                if (entry.Entity is Borrow borrow)
+                {
+                    Console.WriteLine($" Borrow Id: {borrow.Id}");
+                    Console.WriteLine($" StudentId: {borrow.StudentId}");
+                    Console.WriteLine($" BookId: {borrow.BookId}");
+                }
+                if (entry.Entity is Book book)
+                {
+                    Console.WriteLine($" Book Id: {book.Id}");
+                    Console.WriteLine($" Amount: {book.Amount}");
+                }
+                Console.WriteLine("---");
+            }
+            Console.WriteLine("==========================");
+        }
     }
+    
+    
 }

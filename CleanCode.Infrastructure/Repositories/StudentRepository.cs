@@ -11,12 +11,11 @@ namespace CleanCode.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _dbContext; //zasto bas application, a ne obicni kao u parentu
 
-        public StudentRepository(DbContext dbContext)
+        public StudentRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
 
-            _dbContext = dbContext as ApplicationDbContext
-                ?? throw new ArgumentException("DbContext must be ApplicationDbContext");
+            _dbContext = dbContext;
         }
 
         public async Task<Student?> GetById(int id) //mozda ovi argument cisci GetByIdRequest<int> request
@@ -93,14 +92,46 @@ namespace CleanCode.Infrastructure.Repositories
                     .Where(s => s.Id == id)
                     .Select(s => new StudentDto
                     {
-                    FirstName = s.FirstName,
-                    LastName = s.LastName,
-                    DateOfBirth = s.DateOfBirth
+                        FirstName = s.FirstName,
+                        LastName = s.LastName,
+                        DateOfBirth = s.DateOfBirth
                     })
                     .SingleOrDefaultAsync();
             return student;
         }
 
-       
+        public async Task<GetAllResponse<ActiveBorrowsDto>> GetActiveBorrowsDtos(int id)
+        {
+            var activeBorrows = await _dbContext.Borrows 
+                .Include(x => x.Book)
+                .Include(x => x.Student)
+                .Where(x => x.StudentId == id && x.ReturnDate == null) 
+                .Select(x => new ActiveBorrowsDto
+                {
+                    BorrowDate = x.BorrowDate,
+                    DueDate = x.DueDate,
+                    ReturnDate = x.ReturnDate,
+                    AmountBorrowed = x.AmountBorrowed,
+                    FirstName = x.Student.FirstName,
+                    LastName = x.Student.LastName,
+                    DateOfBirth = x.Student.DateOfBirth,
+                    Title = x.Book.Title,
+                    Author = x.Book.Author,
+                    Year = x.Book.Year,
+                    Genre = x.Book.Genre
+                })
+                .ToListAsync();
+                
+                
+                return new GetAllResponse<ActiveBorrowsDto> { Values = activeBorrows }; 
+        }
+
+        public async Task<bool> IsEmailUnique(string email, int currentId)
+        {
+            return await _dbContext.Students
+                .AnyAsync(x => x.Email == email && x.Id != currentId);
+            //AnyAsync
+        }
+
     }
 }

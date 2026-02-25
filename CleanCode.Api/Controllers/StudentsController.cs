@@ -4,6 +4,7 @@ using CleanCodeLibrary.Application.Common.Model;
 using CleanCode.Api.Common;
 using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Persistance.Students;
+using CleanCodeLibrary.Domain.Persistance.Borrows;
 
 namespace CleanCode.Api.Controllers
 {
@@ -104,6 +105,17 @@ namespace CleanCode.Api.Controllers
         }
 
 
+
+        [HttpGet("{id}/active")]
+        public async Task<ActionResult> GetActiveBorrowsForStudent(
+            [FromRoute] int id,
+            [FromServices] IBorrowUnitOfWork unitOfWork
+        )
+        {
+            var handler = new GetActiveBorrowsForStudentRequestHandler(unitOfWork);
+            var result = await handler.ProcessAuthorizedRequestAsync(new GetActiveBorrowsRequest { Id = id });
+            return result.ToActionResult(this);
+        }
 
     }
 }

@@ -86,7 +86,31 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationType = ValidationType.SystemError
             };
 
+            public static readonly ValidationItem EmailTaken = new ValidationItem
+            {
+                Code = $"EMAIL_TAKEN",
+                Message = $"Student s ovim emailom vec postoji",
+                ValidationSeverity = ValidationSeverity.Error, //ili error
+                ValidationType = ValidationType.SystemError
+            };
 
+
+            public static readonly ValidationItem EmailNull = new ValidationItem
+            {
+                Code = $"EMAIL_NULL",
+                Message = $"Email ne smije biti prazan",
+                ValidationSeverity = ValidationSeverity.Error, //ili error
+                ValidationType = ValidationType.SystemError
+            };
+
+            public static readonly ValidationItem EmailWrongFormat
+                                 = new ValidationItem
+                                 {
+                                     Code = $"EMAIL_FORMAT",
+                                     Message = $"Email krivi format, treba koristiti @ ",
+                                     ValidationSeverity = ValidationSeverity.Error, //ili error
+                                     ValidationType = ValidationType.SystemError
+                                 };
         }
     }
 }

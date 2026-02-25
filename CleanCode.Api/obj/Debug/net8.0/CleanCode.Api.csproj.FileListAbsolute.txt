@@ -50,3 +50,4 @@ C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\Clea
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\CleanCode.Api.genruntimeconfig.cache
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\ref\CleanCode.Api.dll
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\CleanCode.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\bin\Debug\net8.0\BCrypt.Net-Next.dll

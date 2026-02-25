@@ -46,13 +46,15 @@ namespace CleanCode.Infrastructure
 
         private static void AddRepositories(IServiceCollection services)
         {
-            services.AddScoped<DbContext, ApplicationDbContext>();
+     /// kaze nije potrebno nije mi jasno jebote kako pa kad netko trati dbcontext daj applicationdbcontst
             services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>)); //za CRUD metode, fromservices IRepository<Student, int> repo ti daje  Repository<Student, int> koji ima samo osnovne CRUD operacije, ali glupo opet, ugl ovo je da radi s bilo kojim entitetom
             services.AddScoped<IStudentRepository, StudentRepository>(); //za specificne metode, ali i ovo mozes koristiti za CRUD
                                                                          //jel ovo gori za sad dovoljno za moje metode
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBorrowRepository, BorrowRepository>(); 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IBorrowUnitOfWork, BorrowUnitOfWork>();
+
         }
 
         private static void AddDapper(IServiceCollection services)

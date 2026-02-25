@@ -19,6 +19,9 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
         Task<bool> IsbnExists(string isbn); //za create metodu
 
         Task<bool> IsbnExistsForOtherBook(string isbn, int currentBookId);
-       
+
+        Task DecrementAmount(int bookId, int amount);
+        Task IncrementAmount(int bookId, int amount);
+
     }
 }

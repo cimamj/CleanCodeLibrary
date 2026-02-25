@@ -25,8 +25,8 @@ namespace CleanCode.Infrastructure.Database.Configurations.Borrows
                 .HasColumnName("studentid")
                 .IsRequired();
 
-            builder.HasOne<Student>()                     // relacija prema Student
-                .WithMany()                               // Student može imati više posudbi
+            builder.HasOne<Student>(b => b.Student)                     // relacija prema Student
+                .WithMany(s => s.Borrows)                               // Student može imati više posudbi
                 .HasForeignKey(b => b.StudentId)
                 .OnDelete(DeleteBehavior.Cascade);        // ako se obriše student → brišu se i posudbe
 
@@ -35,11 +35,11 @@ namespace CleanCode.Infrastructure.Database.Configurations.Borrows
                 .HasColumnName("bookid")
                 .IsRequired();
 
-            builder.HasOne<Book>()                        // relacija prema Book
-                .WithMany()                               // Knjiga može biti posuđena više puta (ali ne istovremeno)
+            builder.HasOne<Book>(b=>b.Book)                        // relacija prema Book
+                .WithMany(b=>b.Borrows)                               // Knjiga može biti posuđena više puta (ali ne istovremeno)
                 .HasForeignKey(b => b.BookId)
                 .OnDelete(DeleteBehavior.Cascade);        // ako se obriše knjiga → brišu se i posudbe
-
+            //sad ne moram to u book dodavati
             // BorrowDate - DEFAULT CURRENT_TIMESTAMP
             builder.Property(b => b.BorrowDate)
                 .HasColumnName("borrowdate")

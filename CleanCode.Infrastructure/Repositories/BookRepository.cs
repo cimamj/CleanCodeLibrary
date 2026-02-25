@@ -13,12 +13,11 @@ namespace CleanCode.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _dbContext; 
 
-        public BookRepository(DbContext dbContext)
+        public BookRepository(ApplicationDbContext dbContext)
             : base(dbContext)
         {
 
-            _dbContext = dbContext as ApplicationDbContext
-                ?? throw new ArgumentException("DbContext must be ApplicationDbContext");
+            _dbContext = dbContext;
         }
         public async Task<BookDto?> GetById(int id)
         {
@@ -31,6 +30,7 @@ namespace CleanCode.Infrastructure.Repositories
                      Isbn = x.Isbn,
                      Genre = x.Genre,
                      Year = x.Year,
+                     Amount = x.Amount, //novo dodano nije ga bilo nije radilo 
                  })
                  .SingleOrDefaultAsync();
             return book; //u handleru cu provjerti je li null
@@ -132,5 +132,20 @@ namespace CleanCode.Infrastructure.Repositories
                 .AnyAsync(b => b.Isbn == isbn && b.Id != currentBookId); //ne gleda knjigu koju mijenjas, jer ako joj minjas title, isbn ce bit isti, puknit ce za update
         }
 
+        public async Task DecrementAmount(int bookId, int amount)
+        {
+            var book = await _dbContext.Books.FindAsync(bookId);
+            book.Amount -= amount;
+            _dbContext.Books.Update(book);
+        }
+
+        public async Task IncrementAmount(int bookId, int amount)
+        {
+            var book = await _dbContext.Books.FindAsync(bookId);
+            book.Amount += amount;
+            _dbContext.Books.Update(book);
+
+            var entries = _dbContext.ChangeTracker.Entries();
+        }
     }
 }

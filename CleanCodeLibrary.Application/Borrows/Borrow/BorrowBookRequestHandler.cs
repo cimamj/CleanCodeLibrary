@@ -1,4 +1,5 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Entities.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
@@ -12,42 +13,48 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
         public int StudentId { get; set; }
         public int BookId { get; set; }
         public DateTime DueDate { get; set; }
+
+        public int Amount { get; set; }
     }
     public class BorrowBookRequestHandler : RequestHandler<BorrowBookRequest, SuccessPostResponse>
     {
-        public IUnitOfWork _unitOfWork;
-        public BorrowBookRequestHandler(IUnitOfWork unitOfWork) 
+        public IBorrowUnitOfWork _unitOfWork;
+        public BorrowBookRequestHandler(IBorrowUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        protected override async Task<Result<SuccessPostResponse>> HandleRequest(BorrowBookRequest request, Result<SuccessPostResponse> result)
+
+        protected override async Task<Result<SuccessPostResponse>> HandleRequest(
+    BorrowBookRequest request,
+    Result<SuccessPostResponse> result)
         {
-            var borrowDto = new CleanCodeLibrary.Domain.Entities.Borrows.Borrow
-            {
-                StudentId = request.StudentId,
-                BookId = request.BookId,
-                DueDate = request.DueDate,
-            };
-            var domainResult = await borrowDto.BorrowBook(_unitOfWork, 1);
+         
 
-            result.SetValidationResult(domainResult.ValidationResult);
+                var borrow = new CleanCodeLibrary.Domain.Entities.Borrows.Borrow
+                {
+                    StudentId = request.StudentId,
+                    BookId = request.BookId,
+                    DueDate = DateOnly.FromDateTime(request.DueDate),
+                    AmountBorrowed = request.Amount
+                };
 
-            if (result.HasError)
-            {
-                //mozda rollback?
-                //await _unitOfWork.Rollback();
+                var domainResult = await borrow.BorrowBook(_unitOfWork);
+
+                result.SetValidationResult(domainResult.ValidationResult);
+
+                if (result.HasError)
+                    return result;
+
+                await _unitOfWork.SaveAsync();
+
+
+                result.SetResult(new SuccessPostResponse(borrow.Id));
                 return result;
-            }
-
-            await _unitOfWork.SaveAsync();
-            //await _unitOfWork.Commit(); //jel triba ovo 
-
-            result.SetResult(new SuccessPostResponse(domainResult.Value)); 
-
-            return result;
-
+            
+           
         }
+
 
         protected override Task<bool> IsAuthorized() => Task.FromResult(true);
     }

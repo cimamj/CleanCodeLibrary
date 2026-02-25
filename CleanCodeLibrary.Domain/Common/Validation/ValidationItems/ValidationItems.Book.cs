@@ -49,7 +49,7 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationSeverity = ValidationSeverity.Error,
                 ValidationType = ValidationType.FormalValidation
             };
-            
+
 
             public static readonly ValidationItem TitleMaxLength = new ValidationItem
             {
@@ -92,23 +92,31 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationType = ValidationType.FormalValidation
             };
 
-            
-                 public static readonly ValidationItem DeleteWentWrong = new ValidationItem
-                 {
-                     Code = $"BOOK_NOT_DELETED",
-                     Message = $"Knjiga se nije uspjela obrisati",
-                     ValidationSeverity = ValidationSeverity.Error, //ili error
-                     ValidationType = ValidationType.SystemError
-                 };
 
-        
-             public static readonly ValidationItem IsbnAlreadyExists = new ValidationItem
-             {
-                 Code = $"{CodePrefix}.IsbnAlreadyExists",
-                 Message = "Knjiga sa ovim ISBN brojem već postoji",
-                 ValidationSeverity = ValidationSeverity.Error,
-                 ValidationType = ValidationType.BussinessRule
-             };
+            public static readonly ValidationItem DeleteWentWrong = new ValidationItem
+            {
+                Code = $"BOOK_NOT_DELETED",
+                Message = $"Knjiga se nije uspjela obrisati",
+                ValidationSeverity = ValidationSeverity.Error, //ili error
+                ValidationType = ValidationType.SystemError
+            };
+
+
+            public static readonly ValidationItem IsbnAlreadyExists = new ValidationItem
+            {
+                Code = $"{CodePrefix}.IsbnAlreadyExists",
+                Message = "Knjiga sa ovim ISBN brojem već postoji",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.BussinessRule
+            };
+
+            public static readonly ValidationItem NegativeYear = new ValidationItem
+            {
+                Code = $"{CodePrefix}.NegativeYear",
+                Message = "Godine ne mogu biti negativne",
+                ValidationSeverity = ValidationSeverity.Error,
+                ValidationType = ValidationType.BussinessRule
+            };
         }
     }
 }

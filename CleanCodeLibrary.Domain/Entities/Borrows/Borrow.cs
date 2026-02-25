@@ -1,10 +1,9 @@
 ﻿using CleanCodeLibrary.Domain.Common.Model;
-using CleanCodeLibrary.Domain.Persistance.Students;
 using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Common.Validation.ValidationItems;
-using Microsoft.VisualBasic;
-using CleanCodeLibrary.Domain.Persistance.Common;
-using static CleanCodeLibrary.Domain.Common.Validation.ValidationItems.ValidationItems;
+using CleanCodeLibrary.Domain.Entities.Books;
+using CleanCodeLibrary.Domain.Entities.Students;
+using CleanCodeLibrary.Domain.Persistance.Borrows;
 
 namespace CleanCodeLibrary.Domain.Entities.Borrows
 {
@@ -12,17 +11,18 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
     {
         public int Id { get; set; }
         public int StudentId { get; set; }
+        public Student Student { get; set; }
         public int BookId { get; set; }
-        public DateTime BorrowDate { get; set; } = DateTime.UtcNow;
-        public DateTime DueDate { get; set; }
-        public DateTime? ReturnDate { get; set; }
+
+        public Book Book { get; set; }
+        public DateOnly BorrowDate { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
+        public DateOnly DueDate { get; set; } //ne provjeravam je li kasni
+        public DateOnly? ReturnDate { get; set; }
         public int AmountBorrowed { get; set; } //Makli smo kao argument odvojeni int amount
 
-        public async Task<ResultDomain<int?>> BorrowBook(IUnitOfWork unitOfWork, int amount)  
+        public async Task<ResultDomain<int?>> BorrowBook(IBorrowUnitOfWork unitOfWork)  
         {
-            //dakle sad kad imam amount , ode moram ocito transkaciju radit, jer createm redak u Borrow i updateam redak u Books pod amount 
-            //takoder dodajem dodatne provjere, pod amount > 0?
-
+          
             var validationResult = await BorrowValidation(unitOfWork);
 
             if (validationResult.HasError)
@@ -30,35 +30,52 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
                 return new ResultDomain<int?>(null, validationResult);
             }
            
-            await unitOfWork.BorrowRepository.InsertBorrow(this, amount);  
-            return new ResultDomain<int?>(this.Id, validationResult);
+            await unitOfWork.BorrowRepository.InsertBorrow(this, AmountBorrowed);
+            await unitOfWork.BookRepository.DecrementAmount(BookId, AmountBorrowed);
+            return new ResultDomain<int?>(Id, validationResult);
         }
 
         //metoda za vratit knjigu, u request dto ide borrow id jer mozes istu knjigu vise puta posudit
-        public static async Task<ResultDomain<int?>> Return(IUnitOfWork unitOfWork, int borrowId)
+        public async Task<ResultDomain<int?>> Return(IBorrowUnitOfWork unitOfWork)
         {
             var validationResult = new ValidationResult();
 
-            var borrow = await unitOfWork.BorrowRepository.GetById(borrowId);
-            if (borrow == null)
-            {
+            var repository = unitOfWork.BorrowRepository;
+
+            var existingBorrow = await repository.GetById(Id);
+            if (existingBorrow == null)
                 validationResult.AddValidationItem(ValidationItems.Borrow.BorrowNotFound);
+
+            if (validationResult.HasError)
                 return new ResultDomain<int?>(null, validationResult);
-            }
-            if (borrow.ReturnDate != null)
+
+
+            if (existingBorrow.ReturnDate != null)
             {
                 validationResult.AddValidationItem(ValidationItems.Borrow.AlreadyReturned);
-                return new ResultDomain<int?>(null, validationResult);
             }
 
-            borrow.ReturnDate = DateTime.UtcNow;
-            unitOfWork.BorrowRepository.Update(borrow); //lakse ovako nego slat u fju za validaciju 
+            if (existingBorrow.AmountBorrowed <= 0)
+            {
+                validationResult.AddValidationItem(new ValidationItem
+                {
+                    Message = "Posuđena količina mora biti veća od 0",
+                    ValidationSeverity = ValidationSeverity.Error
+                });
+            }
 
-            return new ResultDomain<int?>(borrow.Id, validationResult);
+            //ReturnDate = DateOnly.FromDateTime(DateTime.UtcNow);
+            //AmountBorrowed = 0; glup si ko kurac ostavi kolko je bilo
+            if (validationResult.HasError)
+                return new ResultDomain<int?>(null, validationResult);
+
+            await unitOfWork.BorrowRepository.UpdateBorrow(this);
+
+            return new ResultDomain<int?>(Id, validationResult);
         }
 
 
-        public async Task<ValidationResult> BorrowValidation(IUnitOfWork unitOfWork)
+        public async Task<ValidationResult> BorrowValidation(IBorrowUnitOfWork unitOfWork)
         {
             var vr = new ValidationResult();
 

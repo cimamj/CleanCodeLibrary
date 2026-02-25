@@ -1,6 +1,7 @@
 ﻿using CleanCodeLibrary.Application.Common.Model;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
+using BookEntity = CleanCodeLibrary.Domain.Entities.Books.Book;
 
 namespace CleanCodeLibrary.Application.Books.Book
 {
@@ -25,7 +26,7 @@ namespace CleanCodeLibrary.Application.Books.Book
 
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(CreateBookRequest request, Result<SuccessPostResponse> result)
         {
-            var book = new Domain.Entities.Books.Book
+            var book = new BookEntity
             {
                 Title = request.Title,
                 Author = request.Author,
@@ -39,14 +40,12 @@ namespace CleanCodeLibrary.Application.Books.Book
          
             result.SetValidationResult(validationResult.ValidationResult); 
             if(result.HasError)
-            {
                 return result;
-            }
+
             await book.SaveChanges(_bookRepository); //kroz domain ili repo?
 
             result.SetResult(new SuccessPostResponse(book.Id));
             return result;
-          
         }
 
         protected override Task<bool> IsAuthorized() => Task.FromResult(true);

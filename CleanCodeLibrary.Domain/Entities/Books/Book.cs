@@ -1,8 +1,8 @@
-﻿
-using CleanCodeLibrary.Domain.Common.Model;
+﻿using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Common.Validation.ValidationItems;
 using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Persistance.Books;
+using CleanCodeLibrary.Domain.Entities.Borrows;
 
 namespace CleanCodeLibrary.Domain.Entities.Books
 {
@@ -22,6 +22,8 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         //STO ako ovog polja uopce nema u bazu a vec sam spojio bazu sa ovim backendom, jel se da to azurirat ili moram tamo rucno takoder ALTER TABLE ...add column...?
         public int Amount { get; set; }
 
+        public ICollection<Borrow> Borrows { get; set; }
+
         public async Task<ResultDomain<int?>> Create(IBookRepository bookRepository)
         {
             var validationResult = await CreateOrUpdateValidation(bookRepository);
@@ -36,13 +38,13 @@ namespace CleanCodeLibrary.Domain.Entities.Books
 
         public async Task<ResultDomain<int?>> Update(IBookRepository bookRepository)
         {
-            var validationResult = await CreateOrUpdateValidation(bookRepository); 
+            var validationResult = await CreateOrUpdateValidation(bookRepository);
             if (validationResult.HasError)
             {
                 return new ResultDomain<int?>(null, validationResult);
 
             }
-            bookRepository.Update(this); 
+            bookRepository.Update(this);
             return new ResultDomain<int?>(this.Id, validationResult);
         }
 
@@ -61,8 +63,9 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         {
             var allBooks = await bookRepository.Get();
 
-            var validationResult = new ValidationResult(); 
-            if (allBooks == null || allBooks.Values == null || !allBooks.Values.Any())             {
+            var validationResult = new ValidationResult();
+            if (allBooks == null || allBooks.Values == null || !allBooks.Values.Any())
+            {
                 validationResult.AddValidationItem(ValidationItems.Book.No_Books);
             }
             return new ResultDomain<GetAllResponse<Book>>(allBooks, validationResult);
@@ -79,7 +82,7 @@ namespace CleanCodeLibrary.Domain.Entities.Books
                 validationResult.AddValidationItem(ValidationItems.Book.DeleteWentWrong);
                 return new ResultDomain<int?>(null, validationResult);
             }
- 
+
             return new ResultDomain<int?>(Id, validationResult);
         }
 
@@ -103,14 +106,10 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         {
             var validationResult = new ValidationResult();
 
-            if(string.IsNullOrWhiteSpace(Title))
-            {
+            if (string.IsNullOrWhiteSpace(Title))
                 validationResult.AddValidationItem(ValidationItems.Book.TitleNull);
-            }
             else if (Title.Length > TitleNameMaxLength)
-            {
                 validationResult.AddValidationItem(ValidationItems.Book.TitleMaxLength);
-            }
 
             if (string.IsNullOrWhiteSpace(Author))
             {
@@ -131,16 +130,16 @@ namespace CleanCodeLibrary.Domain.Entities.Books
             {
                 validationResult.AddValidationItem(ValidationItems.Book.IsbnMaxLength);
             }
-            
+
             else
             {
-                    var isbnTaken = await bookRepository.IsbnExistsForOtherBook(Isbn, Id);
-                    if (isbnTaken)
-                    {
-                        validationResult.AddValidationItem(ValidationItems.Book.IsbnAlreadyExists);
-                    }
+                var isbnTaken = await bookRepository.IsbnExistsForOtherBook(Isbn, Id);
+                if (isbnTaken)
+                {
+                    validationResult.AddValidationItem(ValidationItems.Book.IsbnAlreadyExists);
+                }
             }
-            
+
 
             if (Amount <= 0)
             {
@@ -152,9 +151,15 @@ namespace CleanCodeLibrary.Domain.Entities.Books
                 validationResult.AddValidationItem(ValidationItems.Book.UnknownGenre);
             }
 
+            if (Year <= 0)
+            {
+                validationResult.AddValidationItem(ValidationItems.Book.NegativeYear);
+
+            }
+
             //kako da dodam provejru postoji li vec book sa ovim isbn? jer je ono unique pa baca 500, trebam li uopce to dodavati?
             //E SAD JE POSLOVNA LOGIKA DETALJNIJA SVE STA TI TREBA IMPLEMENTRIAS U INTERFACE , konkretno provjera postoji li isbn vec
-           
+
 
             return validationResult;
         }

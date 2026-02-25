@@ -1,5 +1,6 @@
 ﻿
 using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Persistance.Students;
 
 namespace CleanCodeLibrary.Application.Students.Student
@@ -10,6 +11,8 @@ namespace CleanCodeLibrary.Application.Students.Student
         public string LastName { get; set; }
         public DateOnly? DateOfbirth { get; set; }
         //dto, npr nema pristup oibu
+        public string Email { get; set; }
+        public string Password { get; set; } //Hashira se u handleru
     }
     public class CreateStudentRequestHandler : RequestHandler<CreateStudentRequest, SuccessPostResponse>
     {
@@ -22,24 +25,48 @@ namespace CleanCodeLibrary.Application.Students.Student
         }
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(CreateStudentRequest request, Result<SuccessPostResponse> result) //protected vidljivo samo ode i child, zasto?????
         {
+            if (string.IsNullOrWhiteSpace(request.Password) || request.Password.Length < 8)
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Message = "Lozinka mora imati barem 8 znakova",
+                    ValidationSeverity = ValidationSeverity.Error,
+                });
+                return result;
+            }
+
+            else if (!request.Password.Any(char.IsDigit) || !request.Password.Any(char.IsUpper))
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Message = "Lozinka mora sadržavati barem jedan broj i veliko slovo",
+                    ValidationSeverity = ValidationSeverity.Error,
+                });
+                return result;
+            }
+
+
+
             var student = new CleanCodeLibrary.Domain.Entities.Students.Student //ode je mapiranje, ne u app
             {
-                FirstName = request.FirstName, 
+                FirstName = request.FirstName,
                 LastName = request.LastName,
-                DateOfBirth = request.DateOfbirth
+                DateOfBirth = request.DateOfbirth,
+                Email = request.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
+                //Role = "Student" ovo je default
             };
 
             var validationResult = await student.Create(_studentRepository); //create izvrsava validaciju (posl log) i dodavanje u ef memoriju (insert)
             result.SetValidationResult(validationResult.ValidationResult); //jer mi dobijemo klasu result koja ima polje value (this id) i validationresult, ode se odmah razvrstava u errore info warning liste
 
-            if(result.HasError) //ne validationResult sta je u ive 
+            if (result.HasError) //ne validationResult sta je u ive 
             {
                 return result; //success... ima i prazni konstruktor mozda onda moze value bit prazan? value iz resulta je klasa i moze bit null, DA VALUE CE OAVKO OSTAT PRAZAN, NISI GA POPUNIA BIT CE NULL, API će dobiti: { "value": null, "errors": [...] }
             }
 
-            await student.SaveChanges(_studentRepository); //vec je pozvano u insertu // u domainu je InsertAsync time se dodaje u ef memoriju, ode je Save salje se sql insert u bazu
-            //mozda i nije potrebno jer vec insert ima u sebi saveasync 
-            //ili da maknem iz repozitorija svake metode save i zovem samo iz unitofwork
+            await student.SaveChanges(_studentRepository); 
+ 
 
             result.SetResult(new SuccessPostResponse(student.Id)); //tek sad onaj value iz Result postaje taj id
             return result;

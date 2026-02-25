@@ -8,5 +8,6 @@ namespace CleanCodeLibrary.Domain.Persistance.Borrows
         Task<Borrow> GetById(int id);
         Task<bool> IsBookCurrentlyBorrowed(int bookId);
         Task<int> InsertBorrow(Borrow borrow, int amount);
+        Task UpdateBorrow(Borrow item);
     }
 }

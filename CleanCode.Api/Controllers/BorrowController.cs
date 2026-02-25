@@ -1,5 +1,6 @@
 ﻿using CleanCode.Api.Common;
 using CleanCodeLibrary.Application.Borrows.Borrow;
+using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,9 +21,9 @@ namespace CleanCode.Api.Controllers
         //    return result.ToActionResult(this);
         //}
 
-        [HttpPost] //novi nacin gdje se posudbom smanjuje stanje knjiga
+        [HttpPost] 
         public async Task<ActionResult> BorrowBook(
-        [FromServices] IUnitOfWork unitOfWork,
+        [FromServices] IBorrowUnitOfWork unitOfWork,
         [FromBody] CreateBorrowAndUpdateBookAmountRequest request)
         {
             var handler = new CreateBorrowAndUpdateBookAmountRequestHandler(unitOfWork);
@@ -33,12 +34,11 @@ namespace CleanCode.Api.Controllers
         [HttpPut("{id}")] 
         public async Task<ActionResult> ReturnBook(
             [FromRoute] int id,
-            [FromServices] IUnitOfWork unitOfWork,
-            [FromBody] ReturnBookRequest request)
+            [FromServices] IBorrowUnitOfWork unitOfWork
+           )
         {
-            request.BorrowId = id;
             var handler = new ReturnBookRequestHandler(unitOfWork);
-            var result = await handler.ProcessAuthorizedRequestAsync(request);
+            var result = await handler.ProcessAuthorizedRequestAsync(new ReturnBookRequest { BorrowId = id });
             return result.ToActionResult(this);
         }
     }

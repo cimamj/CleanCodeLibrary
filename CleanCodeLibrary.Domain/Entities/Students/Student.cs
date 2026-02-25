@@ -2,7 +2,10 @@
 using CleanCodeLibrary.Domain.Common.Validation.ValidationItems;
 using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Persistance.Students;
-using System.Reflection.Metadata.Ecma335; //nije dovoljno samo ovo gori da ukljuci nesto iz foldera ranije
+using System.Reflection.Metadata.Ecma335;
+using CleanCodeLibrary.Domain.Entities.Borrows;
+using CleanCodeLibrary.Domain.DTOs.Students;
+using CleanCodeLibrary.Domain.Persistance.Borrows; //nije dovoljno samo ovo gori da ukljuci nesto iz foldera ranije
 
 namespace CleanCodeLibrary.Domain.Entities.Students
 {
@@ -14,9 +17,18 @@ namespace CleanCodeLibrary.Domain.Entities.Students
         public string LastName { get; set; }
         public DateOnly? DateOfBirth { get; set; }  //mozda warning ako saljes bez date, prolazi i roden u buducnosti format falidacija
 
+        public ICollection<Borrow> Borrows { get; set; }
+
+        //za autorizaciju
+        public string Email { get; set; }
+        public string PasswordHash { get; set; }
+        public string Role { get; set; } = "Student"; //Default
+
+
+   
         public async Task<ResultDomain<int?>> Create(IStudentRepository studentRepository) //tip argumenta interface je iz domaina, a studentRepository iz infrastrucutra, dakle ODVOJENO JE, DOMAIN NE OVISI O NIKOME, ova se metoda poziva iz app, app salje taj infra
         {
-            var validationResult = await CreateOrUpdateValidation(); //AWAIT DODAJ JER JE ASYNC
+            var validationResult = await CreateOrUpdateValidation(studentRepository); //AWAIT DODAJ JER JE ASYNC
             if (validationResult.HasError)
             {
                 return new ResultDomain<int?>(null, validationResult); //this  iz app u kojem se mapira dto iznad handlera u ovog studenta, .create od ive ivica
@@ -38,7 +50,7 @@ namespace CleanCodeLibrary.Domain.Entities.Students
         }
         public async Task<ResultDomain<int?>> Update(IStudentRepository studentRepository)
         {
-            var validationResult = await CreateOrUpdateValidation(); //zasto ode triba kad nema i/o operacija u ovoj metodi
+            var validationResult = await CreateOrUpdateValidation(studentRepository); //zasto ode triba kad nema i/o operacija u ovoj metodi
             if (validationResult.HasError) 
             {
                 return new ResultDomain<int?>(null, validationResult);
@@ -77,6 +89,21 @@ namespace CleanCodeLibrary.Domain.Entities.Students
 
         }
 
+        public async Task<ResultDomain<GetAllResponse<ActiveBorrowsDto>>> ActiveBorrows(IBorrowUnitOfWork unitOfWork)
+        {
+            var student = await unitOfWork.StudentRepository.GetById(Id);
+            var validationResult = new ValidationResult();
+
+            if (student == null)
+            {
+                validationResult.AddValidationItem(ValidationItems.Student.No_Student);
+                return new ResultDomain<GetAllResponse<ActiveBorrowsDto>>(null, validationResult);
+            }
+
+            var activeBorrows = await unitOfWork.StudentRepository.GetActiveBorrowsDtos(Id);
+            return new ResultDomain<GetAllResponse<ActiveBorrowsDto>>(activeBorrows, validationResult);
+        }
+
         public static async Task<ResultDomain<Student>> GetByIdDomain(IStudentRepository studentRepository, int id)
         {
             var studentById = await studentRepository.GetById(id);
@@ -94,7 +121,7 @@ namespace CleanCodeLibrary.Domain.Entities.Students
             await studentRepository.SaveAsync();
         }
 
-        public async Task<ValidationResult> CreateOrUpdateValidation() //Z A S T O je ovo async?! zasto kad puknem static se crvene neki parametri?
+        public async Task<ValidationResult> CreateOrUpdateValidation(IStudentRepository studentRepository) //Z A S T O je ovo async?! zasto kad puknem static se crvene neki parametri?
         {
             var validationResult = new ValidationResult();
             if (string.IsNullOrWhiteSpace(FirstName)) //da nema praznih znakova, i nije null, 
@@ -116,7 +143,25 @@ namespace CleanCodeLibrary.Domain.Entities.Students
                 validationResult.AddValidationItem(ValidationItems.Student.LastNameMaxLength);
             }
             //ako ne prode if, sto ovo vraca? nema nista unutra, U CREATE CES PROVJERITI ELSE KOJI NISI VAMO!!
-            if(!DateOfBirth.HasValue)
+
+            if (string.IsNullOrWhiteSpace(Email))
+                validationResult.AddValidationItem(ValidationItems.Student.EmailNull);
+
+            else if(!Email.Contains("@"))
+                validationResult.AddValidationItem(ValidationItems.Student.EmailWrongFormat);
+
+            else
+            {
+                var isEmailTaken = await studentRepository.IsEmailUnique(Email, Id);
+
+                if(isEmailTaken)
+                    validationResult.AddValidationItem(ValidationItems.Student.EmailTaken);
+            }
+
+    //validacija lozinke u handleru
+
+
+            if (!DateOfBirth.HasValue)
             {
                 validationResult.AddValidationItem(ValidationItems.Student.DateOfBirthNull);
             }
@@ -130,7 +175,6 @@ namespace CleanCodeLibrary.Domain.Entities.Students
                     validationResult.AddValidationItem(ValidationItems.Student.Future);
                 }
             }
-
 
             return validationResult;
         }

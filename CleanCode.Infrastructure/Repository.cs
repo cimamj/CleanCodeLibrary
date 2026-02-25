@@ -59,8 +59,8 @@ namespace CleanCode.Infrastructure
                 _dbSet.Remove(entity); //samo oznaci entitet kao obrisan u memoriji aplikacije !!!mozda odmahmogu remove jer sam vec geldao je li postoji!
                 return true;
             }
-            else return false;
-            
+            else 
+                return false;
         }
 
         public void Delete(TEntity? entity) //iako ne treba pretrazivat u bazi, opet triba projverit je li null ?????  upitnici su bitni kod argumenata

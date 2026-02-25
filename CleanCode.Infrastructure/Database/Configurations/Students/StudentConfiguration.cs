@@ -12,12 +12,12 @@ namespace CleanCode.Infrastructure.Database.Configurations.Users
     internal sealed class StudentConfiguration : IEntityTypeConfiguration<Student> //genericki tip, unutar EF , Student iz domain sloja, s builderom manipuliramo propertijima od studenta
     {
         public void Configure(EntityTypeBuilder<Student> builder)  //ugradena metoda
-            //ovo je konfiguracija, ne mapiranje, kako mapirati domain klasu Student na tablicu u bazi
-            //ovo je POVEZIVANJE propertija iz klase sa stupcima u bazi 
-            //nije klasicno mapiranje
-            //npr mos zanemariti ovime neki stupac iz baze, ef ce ga ignorirati kod inserta,updatea
-            //ja odabirem stupce koje zelim koristiti u svom domain modelu !!!!!
-            //
+                                                                   //ovo je konfiguracija, ne mapiranje, kako mapirati domain klasu Student na tablicu u bazi
+                                                                   //ovo je POVEZIVANJE propertija iz klase sa stupcima u bazi 
+                                                                   //nije klasicno mapiranje
+                                                                   //npr mos zanemariti ovime neki stupac iz baze, ef ce ga ignorirati kod inserta,updatea
+                                                                   //ja odabirem stupce koje zelim koristiti u svom domain modelu !!!!!
+                                                                   //
         {
             builder.ToTable("students"); //kako se zove u bazi ""? Students
 
@@ -38,7 +38,26 @@ namespace CleanCode.Infrastructure.Database.Configurations.Users
 
             builder.Property(t => t.DateOfBirth)
                 .HasColumnName("dateofbirth");
-            
+
+            builder.Property(t => t.Email)
+                .HasColumnName("email")
+                .HasMaxLength(255)
+                .IsRequired();
+
+            builder.HasIndex(s => s.Email)
+                .IsUnique();
+
+            builder.Property(s => s.PasswordHash)
+                .HasColumnName("password_hash")
+                .HasMaxLength(255)
+                .IsRequired();
+
+            builder.Property(s => s.Role)
+                .HasColumnName("role")
+                .HasMaxLength(50)
+                .IsRequired()
+                .HasDefaultValue("Student");
+
         }
     }
 }
