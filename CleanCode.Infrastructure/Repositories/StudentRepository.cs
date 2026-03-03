@@ -71,6 +71,7 @@ namespace CleanCode.Infrastructure.Repositories
             var studentDtos = await _dbContext.Students
                 .Select(s => new StudentDto
                 {
+                    Id = s.Id,
                     FirstName = s.FirstName,
                     LastName = s.LastName,
                     DateOfBirth = s.DateOfBirth,
@@ -102,10 +103,8 @@ namespace CleanCode.Infrastructure.Repositories
 
         public async Task<GetAllResponse<ActiveBorrowsDto>> GetActiveBorrowsDtos(int id)
         {
-            var activeBorrows = await _dbContext.Borrows 
-                .Include(x => x.Book)
-                .Include(x => x.Student)
-                .Where(x => x.StudentId == id && x.ReturnDate == null) 
+            var activeBorrows = await _dbContext.Borrows
+                .Where(x => x.StudentId == id && x.ReturnDate == null)
                 .Select(x => new ActiveBorrowsDto
                 {
                     BorrowDate = x.BorrowDate,
@@ -121,9 +120,11 @@ namespace CleanCode.Infrastructure.Repositories
                     Genre = x.Book.Genre
                 })
                 .ToListAsync();
-                
-                
-                return new GetAllResponse<ActiveBorrowsDto> { Values = activeBorrows }; 
+            //na get i sa ovim selectom , ne triba include
+            //bez select nebi moga pristupit first
+            //da ga zelim edit update triban ga include
+
+            return new GetAllResponse<ActiveBorrowsDto> { Values = activeBorrows };
         }
 
         public async Task<bool> IsEmailUnique(string email, int currentId)
@@ -131,6 +132,15 @@ namespace CleanCode.Infrastructure.Repositories
             return await _dbContext.Students
                 .AnyAsync(x => x.Email == email && x.Id != currentId);
             //AnyAsync
+        }
+
+        public async Task<Student> GetByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return null;
+
+            return await _dbContext.Students
+                  .SingleOrDefaultAsync(x => x.Email == email);
         }
 
     }

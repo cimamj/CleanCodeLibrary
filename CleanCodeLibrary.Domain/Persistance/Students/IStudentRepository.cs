@@ -17,6 +17,8 @@ namespace CleanCodeLibrary.Domain.Persistance.Students
 
         Task<GetAllResponse<ActiveBorrowsDto>> GetActiveBorrowsDtos(int id);
         Task<bool> IsEmailUnique(string email, int currentId);
+
+        Task<Student> GetByEmail(string email);
         //// Dodaj specifične metode, npr:
         //Task<Student> GetByLastName(string lastName);
     }

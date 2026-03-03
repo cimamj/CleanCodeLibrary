@@ -58,9 +58,24 @@ namespace CleanCodeLibrary.Application.Students.Student
             return result;
         
         }
+
         protected override Task<bool> IsAuthorized()
         {
             return Task.FromResult(true);
         }
+        //protected override Task<bool> IsAuthorized()
+        //protected override async Task<bool> IsAuthorized(DeleteStudentRequest request, int studentId)
+
+        //{//reqeust da mos vidit sta zeli vidit, int od usera 
+        //    var student = await _studentRepository.GetById(studentId);
+        //    if(student == null)
+        //    {
+        //        return false;
+        //    }
+
+        //    if (student.ustanovaId != request.ustanovaId)
+        //        return false;
+        //    return Task.FromResult(true);
+        //}
     }
 }

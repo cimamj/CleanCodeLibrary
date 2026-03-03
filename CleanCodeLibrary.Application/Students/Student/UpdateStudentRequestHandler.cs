@@ -1,4 +1,5 @@
-﻿using CleanCodeLibrary.Application.Common.Model;
+﻿using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.Model;
 using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Persistance.Students;
 using System.ComponentModel.DataAnnotations;
@@ -10,8 +11,8 @@ namespace CleanCodeLibrary.Application.Students.Student
     public class UpdateStudentRequest
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
         public DateOnly? DateOfBirth { get; set; }
 
         public string? NewPassword { get; set; }
@@ -19,10 +20,11 @@ namespace CleanCodeLibrary.Application.Students.Student
     public class UpdateStudentRequestHandler : RequestHandler<UpdateStudentRequest, SuccessPostResponse>
     {
         private readonly IStudentRepository _studentRepository;
-
-        public UpdateStudentRequestHandler(IStudentRepository studentRepository)
+        private readonly ICurrentUserService _currentUser;
+        public UpdateStudentRequestHandler(IStudentRepository studentRepository, ICurrentUserService currentUser)
         {
             _studentRepository = studentRepository;
+            _currentUser = currentUser;
         }
 
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(UpdateStudentRequest request, Result<SuccessPostResponse> result) //ne  zaboravi dodat Result<> jer nemos pritupit validaiciji, btw kad se ovo instacira pa da ga korsiitm
@@ -35,7 +37,18 @@ namespace CleanCodeLibrary.Application.Students.Student
             //CleanCodeLibrary.Domain.Entities.Students.Student.GetByIdDomainAsync(_studentRepository, request.Id);
             //var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student
             //    .GetByIdDomainAsync(_studentRepository, request.Id);
-            var studentRepoResult = await _studentRepository.GetById(request.Id);
+
+            var role = _currentUser.GetRole();
+
+            int currId;
+            if (role == "Student")
+                currId = _currentUser.GetStudentId().Value; // iz tokena
+            else
+                currId = request.Id; //iz bodya/req
+
+
+
+            var studentRepoResult = await _studentRepository.GetById(currId);
             if (studentRepoResult == null)
             {
                 result.AddError(new ValidationResultItem
@@ -53,9 +66,17 @@ namespace CleanCodeLibrary.Application.Students.Student
 
             //ako je dohvatio onda promijeni,ali prvojeri validationResult da nije ime predugo itd...
             //Jel ovo dobro ili tribalo instacirati??
-            studentRepoResult.FirstName = request.FirstName;
-            studentRepoResult.LastName = request.LastName;
-            studentRepoResult.DateOfBirth = request.DateOfBirth; 
+            if (!string.IsNullOrWhiteSpace(request.FirstName))
+                studentRepoResult.FirstName = request.FirstName;
+
+            if (!string.IsNullOrWhiteSpace(request.LastName))
+                studentRepoResult.LastName = request.LastName;
+
+            if (request.DateOfBirth.HasValue)
+                studentRepoResult.DateOfBirth = request.DateOfBirth;
+
+            if (!string.IsNullOrWhiteSpace(request.NewPassword))
+                studentRepoResult.SetPassword(request.NewPassword);
 
             var validationResult = await studentRepoResult.Update(_studentRepository);
            
@@ -71,8 +92,13 @@ namespace CleanCodeLibrary.Application.Students.Student
         }
 
         protected override Task<bool> IsAuthorized() 
-        {
-            return Task.FromResult(true);   
-        } 
+        { //admin sve, user samo sebe moze update
+            //var currentId = _currentUser.GetStudentId();
+            //if (currentId == null)
+            //    return Task.FromResult(false);
+
+            var role = _currentUser.GetRole();
+            return Task.FromResult(role == "Admin" || role == "Student");
+        } //Middleware već garantira da je token valjan pa null provjera nije potrebna.
     }
 }

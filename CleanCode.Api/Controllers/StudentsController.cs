@@ -5,6 +5,11 @@ using CleanCode.Api.Common;
 using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Persistance.Students;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
+using Microsoft.AspNetCore.Authorization;
+using System.Text.Json.Serialization;
+using System.IdentityModel.Tokens.Jwt;
+using CleanCode.Api.Services;
+using CleanCodeLibrary.Application.Common.Interfaces;
 
 namespace CleanCode.Api.Controllers
 {
@@ -12,6 +17,24 @@ namespace CleanCode.Api.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
+        //private static string GetTokenFromRequest(HttpRequest request)
+        //{
+        //    return request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+        //}
+        //private int GetIdFromIvo(string ivo)
+        //{
+        //    var handler = new JwtSecurityTokenHandler();
+        //    var jwtToken = handler.ReadJwtToken(ivo);
+
+        //    var claims = jwtToken.Claims;
+        //    var id = claims.FirstOrDefault(x => x.Type == "studentId").Value;
+
+
+        //    int.TryParse(id, out int returnId);
+        //    return returnId;
+        //}
+        //private UserAuthData UserAuthData => GetUserData()
+
         //private readonly CreateStudentRequestHandler _createHandler;
 
         //public StudentsController(CreateStudentRequestHandler createHandler)
@@ -39,21 +62,23 @@ namespace CleanCode.Api.Controllers
         //    return result.ToActionResult(this);
         //} OVO JOS NEMAMO IMAMO HANDLER SAMO ZA DODATI
 
-
-        [HttpGet("{id}")]
+        [Authorize]
+        [HttpGet("me")] //maknuo sam rutu id, izvalci se iz headera
         public async Task<ActionResult> GetById(
-                [FromRoute] int id,
-                [FromServices] IStudentRepository studentRepository
+                [FromServices] IStudentRepository studentRepository,
+                [FromServices] ICurrentUserService currentUser
             )
         {
-            var request = new GetByIdRequest { Id = id }; //ne triba iz bodya?
-            var handler = new GetByIdRequestHandler(studentRepository);
+
+            var request = new GetByIdRequest(); //iz headera tokena
+            var handler = new GetByIdRequestHandler(studentRepository, currentUser);
             var result = await handler.ProcessAuthorizedRequestAsync(request);
 
             return result.ToActionResult(this);
         }
 
         // POST IMAMO
+        [Authorize(Roles = "Admin")]
         [HttpPost] //ova metoda doli reagira samo na POST
         public async Task<ActionResult> Post( //actionresult je tip povratne vrijednosti, ok, bad, vidis u ext
             [FromServices] IStudentRepository studentRepository, //.net ubacuje instacu iz addscoped, iz DI kontejnera
@@ -65,25 +90,26 @@ namespace CleanCode.Api.Controllers
             return result.ToActionResult(this);
         }
 
-        [HttpPut("{id}")] //ova metoda doli reagira samo na POST
+        [Authorize]
+        [HttpPut("update")] //ova metoda doli reagira samo na POST
         public async Task<ActionResult> Update(
-            [FromRoute] int id,
-            [FromServices] IStudentRepository studentRepository, 
-            [FromBody] UpdateStudentRequest request 
-        ) 
+            [FromServices] IStudentRepository studentRepository,
+            [FromBody] UpdateStudentRequest request,
+            [FromServices] ICurrentUserService currentUser
+        )
         {
-            // Ako trebaš ID iz rute provjeriti s requestom – možeš dodati validaciju ???? ne kuzim
-            request.Id = id; //dolazi iz routt ne body
-            var requestHandler = new UpdateStudentRequestHandler(studentRepository);
+
+            var requestHandler = new UpdateStudentRequestHandler(studentRepository, currentUser);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")] //ova metoda doli reagira samo na POST
         public async Task<ActionResult> Delete(
-           [FromRoute] int id,
-           [FromServices] IStudentRepository studentRepository
-       )
+          [FromRoute] int id,
+          [FromServices] IStudentRepository studentRepository
+      )
         {
             var request = new DeleteStudentRequest { Id = id };
             var requestHandler = new DeleteStudentRequestHandler(studentRepository);
@@ -91,15 +117,16 @@ namespace CleanCode.Api.Controllers
             return result.ToActionResult(this);
         }
 
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Get(
-              [FromServices] IStudentRepository studentRepository
-            //  [FromBody] GetAllStudentsRequestHandler request  //u bodyu nemam nista, ali handle prima ovaj request, moram ga imati
+              [FromServices] IStudentRepository studentRepository,
+             //  [FromBody] GetAllStudentsRequestHandler request  //u bodyu nemam nista, ali handle prima ovaj request, moram ga imati
+             [FromServices] ICurrentUserService currentUser
             )
         {
             var request = new GetAllStudentsRequest(); //instaciramo nista praznu klasu
-            var requestHandler = new GetAllStudentsRequestHandler(studentRepository);
+            var requestHandler = new GetAllStudentsRequestHandler(studentRepository, currentUser);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }

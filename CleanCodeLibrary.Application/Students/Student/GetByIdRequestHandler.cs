@@ -3,6 +3,7 @@ using CleanCodeLibrary.Domain.Persistance.Students;
 using CleanCodeLibrary.Domain.Entities.Students;
 using CleanCodeLibrary.Domain.DTOs.Students;
 using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Application.Common.Interfaces;
 
 namespace CleanCodeLibrary.Application.Students.Student
 {
@@ -26,18 +27,32 @@ namespace CleanCodeLibrary.Application.Students.Student
     public class GetByIdRequestHandler : RequestHandler<GetByIdRequest, StudentDto>
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly ICurrentUserService _currentUser;
 
-        public GetByIdRequestHandler(IStudentRepository studentRepository)
+        public GetByIdRequestHandler(IStudentRepository studentRepository, ICurrentUserService currentUser)
         {
             _studentRepository = studentRepository;
+            _currentUser = currentUser;
         }
 
         protected async override Task<Result<StudentDto>> HandleRequest( 
             GetByIdRequest request,
             Result<StudentDto> result)
         {
-
-            var studentDto = await _studentRepository.GetDtoById(request.Id);
+            var id = _currentUser.GetStudentId();
+            if (id == null)
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "Student.WrongId",
+                    Message = "Krivi Id",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound
+                });
+                return result;
+            }
+                
+            var studentDto = await _studentRepository.GetDtoById(id.Value);
             
             if(studentDto == null)
             {
@@ -55,6 +70,14 @@ namespace CleanCodeLibrary.Application.Students.Student
             return result;
         }
 
-        protected override Task<bool> IsAuthorized() => Task.FromResult(true);
+        protected override Task<bool> IsAuthorized()
+        {
+            if (!_currentUser.IsAuthenticated())
+                return Task.FromResult(false); //middleware odradi, ali edge case eto 
+
+            var role = _currentUser.GetRole();
+            return Task.FromResult(role == "Admin" || role == "Student");
+            //return Task.FromResult(_currentUser.IsAdmin());
+        }
     }
 }

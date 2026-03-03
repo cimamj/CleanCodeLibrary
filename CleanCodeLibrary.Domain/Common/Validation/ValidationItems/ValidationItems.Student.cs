@@ -111,6 +111,20 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                                      ValidationSeverity = ValidationSeverity.Error, //ili error
                                      ValidationType = ValidationType.SystemError
                                  };
+                 public static readonly ValidationItem PasswordFormat = new ValidationItem
+                 {
+                     Code = $"PASSWORD_FORMAT",
+                     Message = $"Lozinka mora sadržavati barem jedan broj i veliko slovo",
+                     ValidationSeverity = ValidationSeverity.Error, //ili error
+                     ValidationType = ValidationType.SystemError
+                 };
+            public static readonly ValidationItem PasswordMinimum = new ValidationItem
+            {
+                Code = $"PASSWORD_FORMAT",
+                Message = $"Lozinka mora imati barem 8 znakova",
+                ValidationSeverity = ValidationSeverity.Error, //ili error
+                ValidationType = ValidationType.SystemError
+            };
         }
     }
 }

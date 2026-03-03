@@ -25,25 +25,25 @@ namespace CleanCodeLibrary.Application.Students.Student
         }
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(CreateStudentRequest request, Result<SuccessPostResponse> result) //protected vidljivo samo ode i child, zasto?????
         {
-            if (string.IsNullOrWhiteSpace(request.Password) || request.Password.Length < 8)
-            {
-                result.AddError(new ValidationResultItem
-                {
-                    Message = "Lozinka mora imati barem 8 znakova",
-                    ValidationSeverity = ValidationSeverity.Error,
-                });
-                return result;
-            }
+            //if (string.IsNullOrWhiteSpace(request.Password) || request.Password.Length < 8)
+            //{
+            //    result.AddError(new ValidationResultItem
+            //    {
+            //        Message = "Lozinka mora imati barem 8 znakova",
+            //        ValidationSeverity = ValidationSeverity.Error,
+            //    });
+            //    return result;
+            //}
 
-            else if (!request.Password.Any(char.IsDigit) || !request.Password.Any(char.IsUpper))
-            {
-                result.AddError(new ValidationResultItem
-                {
-                    Message = "Lozinka mora sadržavati barem jedan broj i veliko slovo",
-                    ValidationSeverity = ValidationSeverity.Error,
-                });
-                return result;
-            }
+            //else if (!request.Password.Any(char.IsDigit) || !request.Password.Any(char.IsUpper))
+            //{
+            //    result.AddError(new ValidationResultItem
+            //    {
+            //        Message = "Lozinka mora sadržavati barem jedan broj i veliko slovo",
+            //        ValidationSeverity = ValidationSeverity.Error,
+            //    });
+            //    return result;
+            //}
 
 
 
@@ -54,6 +54,7 @@ namespace CleanCodeLibrary.Application.Students.Student
                 DateOfBirth = request.DateOfbirth,
                 Email = request.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
+                Password = request.Password
                 //Role = "Student" ovo je default
             };
 

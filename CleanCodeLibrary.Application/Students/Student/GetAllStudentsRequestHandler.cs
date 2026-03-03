@@ -10,6 +10,7 @@ using static CleanCodeLibrary.Domain.Common.Validation.ValidationItems.Validatio
 using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.DTOs.Students;
 using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Application.Common.Interfaces;
 
 namespace CleanCodeLibrary.Application.Students.Student
 {
@@ -37,14 +38,16 @@ namespace CleanCodeLibrary.Application.Students.Student
     //    public GetAllStudentsResponse() { }
 
     //}
-    
+
     public class GetAllStudentsRequestHandler : RequestHandler<GetAllStudentsRequest, GetAllResponse<StudentDto>>
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly ICurrentUserService _currentUser;
 
-        public GetAllStudentsRequestHandler(IStudentRepository studentRepository)
+        public GetAllStudentsRequestHandler(IStudentRepository studentRepository, ICurrentUserService currentUser)
         {
             _studentRepository = studentRepository;
+            _currentUser = currentUser;
         }
 
         protected async override Task<Result<GetAllResponse<StudentDto>>> HandleRequest(
@@ -52,7 +55,7 @@ namespace CleanCodeLibrary.Application.Students.Student
             Result<GetAllResponse<StudentDto>> result
             )
         {
-         
+
             //var domainResult = await CleanCodeLibrary.Domain.Entities.Students.Student.GetAllStudentsAsync(_studentRepository); //kad stavim samo static tu metodu nemogu , mora cila klasa za metodu korsitit?
             //result.SetValidationResult(domainResult.ValidationResult);
             //if (result.HasWarning) //nemoze imat erroor nego warning
@@ -68,9 +71,11 @@ namespace CleanCodeLibrary.Application.Students.Student
             //    DateOfBirth = s.DateOfBirth
             //}); //.ToList(); jel vracam listu ili ienumerable
 
+
+
             var students = await _studentRepository.GetAllStudentDtos();
 
-            if(students.Values.Count() == 0)
+            if (students.Values.Count() == 0)
             {
                 result.AddWarning(new ValidationResultItem
                 {
@@ -87,7 +92,12 @@ namespace CleanCodeLibrary.Application.Students.Student
 
         protected override Task<bool> IsAuthorized() //sve abstraktne impementiraj prvo
         {
-            return Task.FromResult(true);   //valjda ovak
-        } 
+            if (!_currentUser.IsAuthenticated())
+                return Task.FromResult(false); //middleware odradi, ali edge case eto 
+
+            //var role = _currentUser.GetRole();
+            //    return Task.FromResult(role != null && role == "Admin");
+            return Task.FromResult(_currentUser.IsAdmin());
+        }
     }
 }

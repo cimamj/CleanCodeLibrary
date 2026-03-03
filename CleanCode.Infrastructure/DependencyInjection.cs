@@ -54,6 +54,8 @@ namespace CleanCode.Infrastructure
             services.AddScoped<IBorrowRepository, BorrowRepository>(); 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBorrowUnitOfWork, BorrowUnitOfWork>();
+                           
+            
 
         }
 
