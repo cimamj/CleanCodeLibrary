@@ -1,4 +1,6 @@
-﻿using CleanCodeLibrary.Application.Common.Model;
+﻿using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
 using BookEntity = CleanCodeLibrary.Domain.Entities.Books.Book;
@@ -18,14 +20,30 @@ namespace CleanCodeLibrary.Application.Books.Book
     public class CreateBookRequestHandler : RequestHandler<CreateBookRequest, SuccessPostResponse>
     {
         private readonly IBookRepository _bookRepository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public CreateBookRequestHandler(IBookRepository bookRepository)
+        public CreateBookRequestHandler(IBookRepository bookRepository, ICurrentUserService currentUserService)
         {
             _bookRepository = bookRepository;
+            _currentUserService = currentUserService;
         }
 
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(CreateBookRequest request, Result<SuccessPostResponse> result)
         {
+            var role = _currentUserService.GetRole();
+
+            if (role != "Admin")
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "AccessDenied",
+                    Message = "Nemate administratorska prava za ovu akciju.",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.FormalValidation,
+                });
+                return result; 
+            }
+
             var book = new BookEntity
             {
                 Title = request.Title,
@@ -48,7 +66,13 @@ namespace CleanCodeLibrary.Application.Books.Book
             return result;
         }
 
-        protected override Task<bool> IsAuthorized() => Task.FromResult(true);
+        protected override Task<bool> IsAuthorized()
+        {
+            //var user = _currentUserService.GetRole();
+            //if(user != "Admin")
+            //    return Task.FromResult(false);
+            return Task.FromResult(true);
+        }
     }
 }
 

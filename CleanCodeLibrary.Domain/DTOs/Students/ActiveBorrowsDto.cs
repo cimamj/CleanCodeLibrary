@@ -5,6 +5,7 @@ namespace CleanCodeLibrary.Domain.DTOs.Students
 {
     public class ActiveBorrowsDto
     {
+        public int Id { get; set; } 
         public DateOnly BorrowDate { get; set; } 
         public DateOnly DueDate { get; set; } 
         public DateOnly? ReturnDate { get; set; }

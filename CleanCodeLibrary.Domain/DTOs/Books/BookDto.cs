@@ -9,6 +9,7 @@ namespace CleanCodeLibrary.Domain.DTOs.Books
 {
     public class BookDto
     {
+        public int Id { get; set; } 
         public string Title {  get; init; }
         public string Author { get; init; }
         public string Isbn { get; init; }

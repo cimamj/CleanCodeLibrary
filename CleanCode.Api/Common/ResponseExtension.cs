@@ -9,14 +9,14 @@ namespace CleanCode.Api.Common
         {
             var response = new Response<TValue>(result);
 
-            if(!response.isAuthorized)
-            {
-                return controller.Unauthorized(new
-                {
-                    message = "Nemate dozvolu za ovu akciju",
-                    requestId = result.RequestId
-                }); // jer response nisam napunio validacijom za unatuhorized
-            }// 401 Unauthorized
+            //if(!response.isAuthorized)
+            //{
+            //    return controller.Unauthorized(new
+            //    {
+            //        message = "Nemate dozvolu za ovu akciju",
+            //        requestId = result.RequestId
+            //    }); // jer response nisam napunio validacijom za unatuhorized
+            //}// 401 Unauthorized   ocu da mi ise ispise iz handlera poruka specififcnaaa
 
             if (response.HasError) 
             {

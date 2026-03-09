@@ -93,6 +93,7 @@ namespace CleanCode.Infrastructure.Repositories
                     .Where(s => s.Id == id)
                     .Select(s => new StudentDto
                     {
+                        Id = s.Id,
                         FirstName = s.FirstName,
                         LastName = s.LastName,
                         DateOfBirth = s.DateOfBirth
@@ -107,6 +108,7 @@ namespace CleanCode.Infrastructure.Repositories
                 .Where(x => x.StudentId == id && x.ReturnDate == null)
                 .Select(x => new ActiveBorrowsDto
                 {
+                    Id = x.Id,
                     BorrowDate = x.BorrowDate,
                     DueDate = x.DueDate,
                     ReturnDate = x.ReturnDate,

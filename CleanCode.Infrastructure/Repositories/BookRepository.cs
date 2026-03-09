@@ -25,6 +25,7 @@ namespace CleanCode.Infrastructure.Repositories
                  .Where(x => x.Id == id)
                  .Select(x => new BookDto
                  {
+                     Id = x.Id,
                      Title = x.Title,
                      Author = x.Author,
                      Isbn = x.Isbn,
@@ -109,11 +110,13 @@ namespace CleanCode.Infrastructure.Repositories
             var bookDtos = await _dbContext.Books
                 .Select(b => new BookDto
                 {
+                    Id = b.Id,
                     Title = b.Title,
                     Author = b.Author,
                     Isbn = b.Isbn,
                     Year = b.Year,
-                    Genre = b.Genre
+                    Genre = b.Genre,
+                    Amount = b.Amount
                 })
                 .ToListAsync();
 

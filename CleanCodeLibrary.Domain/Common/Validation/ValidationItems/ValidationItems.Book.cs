@@ -81,14 +81,14 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
             {
                 Code = $"NO_BOOKS",
                 Message = $"Nema nijedne knjige u bazi",
-                ValidationSeverity = ValidationSeverity.Warning, //ili error
+                ValidationSeverity = ValidationSeverity.Error, //ili error
                 ValidationType = ValidationType.FormalValidation
             };
             public static readonly ValidationItem NotFound = new ValidationItem
             {
                 Code = $"NO_WANTED_BOOK",
                 Message = $"Nema trazene knjige u bazi",
-                ValidationSeverity = ValidationSeverity.Warning, //ili error
+                ValidationSeverity = ValidationSeverity.Error, //ili error
                 ValidationType = ValidationType.FormalValidation
             };
 

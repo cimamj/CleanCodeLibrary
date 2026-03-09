@@ -31,7 +31,7 @@ namespace CleanCode.Api.Controllers
             return result.ToActionResult(this);
         }
 
-        [HttpPut("{id}")] 
+        [HttpPut("{id}/return")] 
         public async Task<ActionResult> ReturnBook(
             [FromRoute] int id,
             [FromServices] IBorrowUnitOfWork unitOfWork

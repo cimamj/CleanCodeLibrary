@@ -132,8 +132,8 @@ namespace CleanCode.Api.Controllers
         }
 
 
-
-        [HttpGet("{id}/active")]
+        [Authorize]
+        [HttpGet("{id}/active-borrows")]
         public async Task<ActionResult> GetActiveBorrowsForStudent(
             [FromRoute] int id,
             [FromServices] IBorrowUnitOfWork unitOfWork
