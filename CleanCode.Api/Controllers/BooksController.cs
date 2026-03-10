@@ -31,7 +31,7 @@ namespace CleanCode.Api.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPut("{id}")] //ova metoda doli reagira samo na POST
+        [HttpPut("{id}")] 
         public async Task<ActionResult> Update(
                 [FromRoute] int id,
                 [FromServices] IBookRepository bookRepository,

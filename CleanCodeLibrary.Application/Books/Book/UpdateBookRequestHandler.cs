@@ -4,6 +4,7 @@ using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Books;
 using CleanCodeLibrary.Domain.Persistance.Students;
+using static CleanCodeLibrary.Domain.Common.Validation.ValidationItems.ValidationItems;
 
 
 namespace CleanCodeLibrary.Application.Books.Book
@@ -11,12 +12,12 @@ namespace CleanCodeLibrary.Application.Books.Book
     public class UpdateBookRequest
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public string Isbn { get; set; }
-        public int Year { get; set; }
-        public GenresEnum Genre { get; set; }
-        public int Amount { get; set; }
+        public string? Title { get; set; }
+        public string? Author { get; set; }
+        public string? Isbn { get; set; }
+        public int? Year { get; set; }
+        public GenresEnum? Genre { get; set; }
+        public int? Amount { get; set; }
     }
     public class UpdateBookRequestHandler : RequestHandler<UpdateBookRequest, SuccessPostResponse>
     {
@@ -37,38 +38,38 @@ namespace CleanCodeLibrary.Application.Books.Book
             //    return result;/*; ne kroz domain nego*/
             //try
             //{
-                var existingBook = await _bookRepository.GetByIdEntity(request.Id);
+            var existingBook = await _bookRepository.GetByIdEntity(request.Id);
 
-                if (existingBook == null)
+            if (existingBook == null)
+            {
+                result.AddError(new ValidationResultItem
                 {
-                    result.AddError(new ValidationResultItem
-                    {
-                        Code = "Book.NotFound",
-                        Message = "Knjiga ne postoji",
-                        ValidationSeverity = ValidationSeverity.Error,
-                        ValidationType = ValidationType.NotFound //novo dodano, rjesi za create
-                    });
-                    return result;
-                }
-
-                existingBook.Title = request.Title;
-                existingBook.Author = request.Author;
-                existingBook.Isbn = request.Isbn;
-                existingBook.Year = request.Year;
-                existingBook.Genre = request.Genre;
-                existingBook.Amount = request.Amount;
-
-
-                var validationResult = await existingBook.Update(_bookRepository);
-                result.SetValidationResult(validationResult.ValidationResult);
-
-                if (result.HasError) //dugo ime je error
-                    return result;
-
-                await existingBook.SaveChanges(_bookRepository);
-
-                result.SetResult(new SuccessPostResponse(existingBook.Id)); //koji id jel ovi ili novi od req
+                    Code = "Book.NotFound",
+                    Message = "Knjiga ne postoji",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound //novo dodano, rjesi za create
+                });
                 return result;
+            }
+
+            if (!string.IsNullOrEmpty(request.Title)) existingBook.Title = request.Title;
+            if (!string.IsNullOrEmpty(request.Author)) existingBook.Author = request.Author;
+            if (!string.IsNullOrEmpty(request.Isbn)) existingBook.Isbn = request.Isbn;
+            if (request.Year.HasValue) existingBook.Year = request.Year.Value;
+            if (request.Amount.HasValue) existingBook.Amount = request.Amount.Value;
+            if (request.Genre.HasValue) existingBook.Genre = request.Genre.Value;
+
+
+            var validationResult = await existingBook.Update(_bookRepository);
+            result.SetValidationResult(validationResult.ValidationResult);
+
+            if (result.HasError) //dugo ime je error
+                return result;
+
+            await existingBook.SaveChanges(_bookRepository);
+
+            result.SetResult(new SuccessPostResponse(existingBook.Id)); //koji id jel ovi ili novi od req
+            return result;
             //}
             //catch (Exception ex)
             //{

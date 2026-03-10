@@ -1,0 +1,1485 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CleanCode Knjižnica</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0e0e0f;
+        --surface: #1a1a1c;
+        --border: #2e2e32;
+        --accent: #c8f135;
+        --accent2: #5b9cf6;
+        --text: #f0f0ee;
+        --muted: #666670;
+        --error: #ff6b6b;
+        --success: #6bffb8;
+        --warning: #ffd166;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Syne", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 0;
+      }
+
+      /* LAYOUT */
+      .app {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 260px;
+        min-height: 100vh;
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        padding: 32px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+      }
+
+      .logo {
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: var(--accent);
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .logo span {
+        color: var(--text);
+      }
+
+      .nav-section {
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--muted);
+        margin: 16px 0 8px;
+      }
+
+      .nav-btn {
+        width: 100%;
+        padding: 10px 14px;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: var(--muted);
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav-btn:hover:not(:disabled) {
+        background: rgba(200, 241, 53, 0.08);
+        border-color: var(--border);
+        color: var(--text);
+      }
+
+      .nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .nav-btn.active {
+        background: rgba(200, 241, 53, 0.12);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .nav-btn .icon {
+        font-size: 16px;
+      }
+
+      .role-badge {
+        margin-top: auto;
+        padding: 12px 14px;
+        background: rgba(91, 156, 246, 0.1);
+        border: 1px solid rgba(91, 156, 246, 0.3);
+        border-radius: 8px;
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        color: var(--accent2);
+        display: none;
+      }
+
+      .role-badge.visible {
+        display: block;
+      }
+
+      /* MAIN */
+      .main {
+        flex: 1;
+        padding: 40px 48px;
+        overflow-y: auto;
+      }
+
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+
+      .page-title {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 8px;
+      }
+
+      .page-sub {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 32px;
+        font-family: "DM Mono", monospace;
+      }
+
+      /* CARDS */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        margin-bottom: 20px;
+      }
+
+      .card-title {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 20px;
+        font-family: "DM Mono", monospace;
+      }
+
+      /* FORM */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-grid.single {
+        grid-template-columns: 1fr;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        font-family: "DM Mono", monospace;
+      }
+
+      input,
+      select {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: var(--text);
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        transition: border-color 0.15s;
+        width: 100%;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      select option {
+        background: var(--surface);
+      }
+
+      /* BUTTONS */
+      .btn {
+        padding: 11px 24px;
+        border: none;
+        border-radius: 8px;
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #0e0e0f;
+      }
+      .btn-primary:hover {
+        background: #d4f54a;
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+      .btn-secondary:hover {
+        border-color: var(--text);
+        color: var(--text);
+      }
+
+      .btn-danger {
+        background: transparent;
+        color: var(--error);
+        border: 1px solid rgba(255, 107, 107, 0.3);
+      }
+      .btn-danger:hover {
+        background: rgba(255, 107, 107, 0.1);
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      /* RESULT */
+      .result-box {
+        margin-top: 20px;
+        padding: 16px 20px;
+        border-radius: 10px;
+        font-family: "DM Mono", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        display: none;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .result-box.visible {
+        display: block;
+      }
+      .result-box.success {
+        background: rgba(107, 255, 184, 0.08);
+        border: 1px solid rgba(107, 255, 184, 0.25);
+        color: var(--success);
+      }
+      .result-box.error {
+        background: rgba(255, 107, 107, 0.08);
+        border: 1px solid rgba(255, 107, 107, 0.25);
+        color: var(--error);
+      }
+      .result-box.info {
+        background: rgba(91, 156, 246, 0.08);
+        border: 1px solid rgba(91, 156, 246, 0.25);
+        color: var(--accent2);
+      }
+
+      /* TABLE */
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th {
+        text-align: left;
+        padding: 10px 14px;
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+      }
+
+      td {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(46, 46, 50, 0.5);
+        color: var(--text);
+      }
+
+      tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      /* ADMIN ONLY field */
+      .admin-only {
+        display: none;
+      }
+      .admin-only.visible {
+        display: block;
+      }
+
+      /* LOGIN PAGE */
+      .login-wrap {
+        max-width: 420px;
+        margin: 60px auto;
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .login-header h1 {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+      }
+
+      .login-header h1 span {
+        color: var(--accent);
+      }
+
+      .login-header p {
+        color: var(--muted);
+        font-family: "DM Mono", monospace;
+        font-size: 13px;
+        margin-top: 8px;
+      }
+
+      /* LOADING */
+      .loading {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--border);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+      }
+
+      .tag-admin {
+        background: rgba(200, 241, 53, 0.15);
+        color: var(--accent);
+      }
+      .tag-student {
+        background: rgba(91, 156, 246, 0.15);
+        color: var(--accent2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">clean<span>lib</span></div>
+
+        <!-- Login/logout -->
+        <button
+          class="nav-btn active"
+          id="navLogin"
+          onclick="showPage('login')"
+        >
+          <span class="icon">🔑</span> Prijava
+        </button>
+        <button
+          class="nav-btn"
+          id="navLogout"
+          style="display: none"
+          onclick="logout()"
+        >
+          <span class="icon">🚪</span> Odjava
+        </button>
+
+        <div class="nav-section">Studenti</div>
+        <button class="nav-btn" id="navMe" onclick="showPage('me')" disabled>
+          <span class="icon">👤</span> Moj profil
+        </button>
+        <button
+          class="nav-btn"
+          id="navUpdateMe"
+          onclick="showPage('updateStudent')"
+          disabled
+        >
+          <span class="icon">✏️</span> Uredi profil
+        </button>
+        <button
+          class="nav-btn"
+          id="navStudents"
+          onclick="showPage('students')"
+          disabled
+        >
+          <span class="icon">👥</span> Svi studenti
+        </button>
+        <button
+          class="nav-btn"
+          id="navAddStudent"
+          onclick="showPage('addStudent')"
+          disabled
+        >
+          <span class="icon">➕</span> Dodaj studenta
+        </button>
+
+        <button
+          class="nav-btn"
+          id="navDeleteStudent"
+          onclick="showPage('deleteStudent')"
+          disabled
+        >
+          <span class="icon">🗑️</span> Briši studenta
+        </button>
+        <button
+          class="nav-btn"
+          id="navActiveBorrows"
+          onclick="showPage('activeBorrows')"
+          disabled
+        >
+          <span class="icon">📋</span> Aktivne posudbe
+        </button>
+
+        <div class="nav-section">Knjige</div>
+        <button
+          class="nav-btn"
+          id="navBooks"
+          onclick="showPage('books')"
+          disabled
+        >
+          <span class="icon">📚</span> Sve knjige
+        </button>
+
+        <button
+          class="nav-btn"
+          id="navSingleBook"
+          onclick="showPage('singleBook')"
+          disabled
+        >
+          <span class="icon">🔍</span> Traži knjigu
+        </button>
+        <!-- pojedina knjiga  -->
+        <!-- <div class="field" style="margin: 12px 0">
+          <label style="font-size: 12px; color: var(--muted)"
+            >Dohvati knjigu po ID-u</label
+          >
+          <div style="display: flex; gap: 8px">
+            <input
+              type="number"
+              id="singleBookId"
+              placeholder="npr. 42"
+              style="
+                flex: 1;
+                background: var(--bg);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                padding: 8px;
+              "
+            />
+            <button
+              class="btn btn-primary"
+              onclick="getSingleBook()"
+              style="padding: 8px 16px"
+            >
+              Dohvati
+            </button>
+          </div>
+        </div> -->
+        <!-- ode doaj sad pojedina knjiga da se klikne na nju, upise id i onda preko mog backenda se dohvati  -->
+        <button
+          class="nav-btn"
+          id="navUpdateBook"
+          onclick="showPage('updateBook')"
+          disabled
+        >
+          <span class="icon">✏️</span> Uredi knjigu
+        </button>
+        <button
+          class="nav-btn"
+          id="navDeleteBook"
+          onclick="showPage('deleteBook')"
+          disabled
+        >
+          <span class="icon">🗑️</span> Briši knjigu
+        </button>
+        <button
+          class="nav-btn"
+          id="navAddBook"
+          onclick="showPage('addBook')"
+          disabled
+        >
+          <span class="icon">➕</span> Dodaj knjigu
+        </button>
+
+        <div class="nav-section">Posudbe</div>
+        <button
+          class="nav-btn"
+          id="navBorrow"
+          onclick="showPage('borrow')"
+          disabled
+        >
+          <span class="icon">📤</span> Posudi knjigu
+        </button>
+        <button
+          class="nav-btn"
+          id="navReturn"
+          onclick="showPage('returnBook')"
+          disabled
+        >
+          <span class="icon">📥</span> Vrati knjigu
+        </button>
+
+        <div class="role-badge" id="roleBadge">
+          Prijavljeni kao: <strong id="roleText">-</strong>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- LOGIN -->
+        <div class="page active" id="page-login">
+          <div class="login-wrap">
+            <div class="login-header">
+              <h1>clean<span>lib</span></h1>
+              <p>// knjižnični sustav</p>
+            </div>
+            <div class="card">
+              <div class="card-title">Prijava</div>
+              <div class="form-grid single">
+                <div class="field">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="ana@example.com"
+                  />
+                </div>
+                <div class="field">
+                  <label>Lozinka</label>
+                  <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Lozinka123!"
+                    onkeydown="if (event.key === 'Enter') login();"
+                  />
+                </div>
+              </div>
+              <div class="btn-row">
+                <button class="btn btn-primary" onclick="login()">
+                  Prijavi se
+                </button>
+              </div>
+              <div class="result-box" id="loginResult"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOJ PROFIL -->
+        <div class="page" id="page-me">
+          <div class="page-title">Moj profil</div>
+          <div class="page-sub">// GET /api/students/me</div>
+          <button class="btn btn-primary" onclick="getMyProfile()">
+            Dohvati profil
+          </button>
+          <div class="result-box" id="meResult"></div>
+        </div>
+
+        <!-- UREDI STUDENTA -->
+        <div class="page" id="page-updateStudent">
+          <div class="page-title">Uredi profil</div>
+          <div class="page-sub">// PUT /api/students/update</div>
+          <div class="card">
+            <div class="card-title">
+              Podaci za ažuriranje (prazno = ne mijenja se)
+            </div>
+            <div class="form-grid">
+              <div class="field admin-only" id="adminStudentIdField">
+                <label>ID studenta (samo Admin)</label>
+                <input type="number" id="updateTargetId" placeholder="npr. 5" />
+              </div>
+              <div class="field">
+                <label>Ime</label>
+                <input type="text" id="updateFirstName" placeholder="Ana" />
+              </div>
+              <div class="field">
+                <label>Prezime</label>
+                <input type="text" id="updateLastName" placeholder="Horvat" />
+              </div>
+              <div class="field">
+                <label>Email</label>
+                <input
+                  type="email"
+                  id="updateEmail"
+                  placeholder="nova@email.com"
+                />
+              </div>
+              <div class="field">
+                <label>Nova lozinka</label>
+                <input
+                  type="password"
+                  id="updatePassword"
+                  placeholder="ostavi prazno ako ne mijenjаš"
+                />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="sendUpdateStudent()">
+                Spremi promjene
+              </button>
+            </div>
+            <div class="result-box" id="updateStudentResult"></div>
+          </div>
+        </div>
+
+        <!-- SVI STUDENTI -->
+        <div class="page" id="page-students">
+          <div class="page-title">Svi studenti</div>
+          <div class="page-sub">// GET /api/students — samo Admin</div>
+          <button class="btn btn-primary" onclick="getStudentList()">
+            Učitaj studente
+          </button>
+          <div class="result-box" id="studentsResult"></div>
+        </div>
+
+        <!-- DODAJ STUDENTA -->
+        <div class="page" id="page-addStudent">
+          <div class="page-title">Dodaj studenta</div>
+          <div class="page-sub">// POST /api/students</div>
+          <div class="card">
+            <div class="card-title">Novi student</div>
+            <div class="form-grid">
+              <div class="field">
+                <label>Ime</label>
+                <input type="text" id="newFirstName" placeholder="Ana" />
+              </div>
+              <div class="field">
+                <label>Prezime</label>
+                <input type="text" id="newLastName" placeholder="Horvat" />
+              </div>
+              <div class="field">
+                <label>Datum rođenja</label>
+                <input type="date" id="newDob" />
+              </div>
+              <div class="field">
+                <label>Email</label>
+                <input
+                  type="email"
+                  id="newEmail"
+                  placeholder="ana@example.com"
+                />
+              </div>
+              <div class="field full">
+                <label>Lozinka</label>
+                <input
+                  type="password"
+                  id="newPassword"
+                  placeholder="Lozinka123!"
+                />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="sendAddStudent()">
+                Dodaj studenta
+              </button>
+            </div>
+            <div class="result-box" id="addStudentResult"></div>
+          </div>
+        </div>
+
+        <div class="page" id="page-deleteStudent">
+          <div class="page-title">Briši studenta</div>
+          <div class="page-sub">// DELETE /api/students/{id} — samo Admin</div>
+          <div class="card">
+            <div class="card-title">Brisanje studenta</div>
+            <div class="form-grid single">
+              <div class="field">
+                <label>ID studenta</label>
+                <input
+                  type="number"
+                  id="deleteStudentId"
+                  placeholder="npr. 5"
+                />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-danger" onclick="sendDeleteStudent()">
+                Briši studenta
+              </button>
+            </div>
+            <div class="result-box" id="deleteStudentResult"></div>
+          </div>
+        </div>
+
+        <div class="page" id="page-activeBorrows">
+          <div class="page-title">Aktivne posudbe</div>
+          <div class="page-sub">// GET /api/students/{id}/active-borrows</div>
+          <div class="card">
+            <div class="card-title">Pretraga po studentu</div>
+            <div class="form-grid single">
+              <div class="field">
+                <label>ID studenta</label>
+                <input
+                  type="number"
+                  id="activeBorrowsStudentId"
+                  placeholder="npr. 5"
+                />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="getActiveBorrows()">
+                Dohvati posudbe
+              </button>
+            </div>
+            <div class="result-box" id="activeBorrowsResult"></div>
+          </div>
+        </div>
+
+        <!-- SVE KNJIGE -->
+        <div class="page" id="page-books">
+          <div class="page-title">Sve knjige</div>
+          <div class="page-sub">// GET /api/books</div>
+          <button class="btn btn-primary" onclick="getBooksList()">
+            Učitaj knjige
+          </button>
+          <div class="result-box" id="booksResult"></div>
+        </div>
+
+        <div class="page" id="page-singleBook">
+          <div class="page-title">Traži knjigu</div>
+          <div class="page-sub">// GET /api/books/{id}</div>
+          <div class="card">
+            <div class="card-title">Pretraga po ID-u</div>
+            <div class="form-grid single">
+              <div class="field">
+                <label>ID knjige</label>
+                <input type="number" id="singleBookId" placeholder="npr. 42" />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="getSingleBook()">
+                Dohvati
+              </button>
+            </div>
+            <div class="result-box" id="singleBookResult"></div>
+          </div>
+        </div>
+
+        <!-- DODAJ KNJIGU -->
+        <div class="page" id="page-addBook">
+          <div class="page-title">Dodaj knjigu</div>
+          <div class="page-sub">// POST /api/books — samo Admin</div>
+          <div class="card">
+            <div class="card-title">Nova knjiga</div>
+            <div class="form-grid">
+              <div class="field">
+                <label>Naslov</label>
+                <input type="text" id="bookTitle" placeholder="1984" />
+              </div>
+              <div class="field">
+                <label>Autor</label>
+                <input
+                  type="text"
+                  id="bookAuthor"
+                  placeholder="George Orwell"
+                />
+              </div>
+              <div class="field">
+                <label>ISBN</label>
+                <input
+                  type="text"
+                  id="bookIsbn"
+                  placeholder="978-3-16-148410-0"
+                />
+              </div>
+              <div class="field">
+                <label>Količina</label>
+                <input type="number" id="bookAmount" value="1" min="1" />
+              </div>
+              <div class="field">
+                <label>Godina</label>
+                <input
+                  type="number"
+                  id="bookYear"
+                  placeholder="1949"
+                  min="1800"
+                  max="2100"
+                />
+              </div>
+              <div class="field">
+                <label>Žanr</label>
+                <select id="bookGenre">
+                  <option value="">Odaberi žanr</option>
+                  <option value="0">Fiction</option>
+                  <option value="1">NonFiction</option>
+                  <option value="2">Mystery</option>
+                  <option value="3">SciFi</option>
+                  <option value="4">Fantasy</option>
+                  <option value="5">Romance</option>
+                  <option value="6">Thriller</option>
+                  <option value="7">Horror</option>
+                  <option value="8">Biography</option>
+                  <option value="9">History</option>
+                </select>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="sendAddBook()">
+                Dodaj knjigu
+              </button>
+            </div>
+            <div class="result-box" id="addBookResult"></div>
+          </div>
+        </div>
+
+        <!-- UREDI KNJIGU -->
+        <div class="page" id="page-updateBook">
+          <div class="page-title">Uredi knjigu</div>
+          <div class="page-sub">// PUT /api/books/{id} — samo Admin</div>
+          <div class="card">
+            <div class="card-title">
+              Podaci za ažuriranje (prazno = ne mijenja se)
+            </div>
+            <div class="form-grid">
+              <div class="field full">
+                <label>ID knjige (obavezno)</label>
+                <input type="number" id="bookIdUpdate" placeholder="npr. 3" />
+              </div>
+              <div class="field">
+                <label>Naslov</label>
+                <input type="text" id="titleUpdate" placeholder="npr. 1984" />
+              </div>
+              <div class="field">
+                <label>Autor</label>
+                <input
+                  type="text"
+                  id="authorUpdate"
+                  placeholder="npr. George Orwell"
+                />
+              </div>
+              <div class="field">
+                <label>ISBN</label>
+                <input
+                  type="text"
+                  id="isbnUpdate"
+                  placeholder="978-3-16-148410-0"
+                />
+              </div>
+              <div class="field">
+                <label>Količina</label>
+                <input type="number" id="amountUpdate" placeholder="npr. 5" />
+              </div>
+              <div class="field">
+                <label>Godina</label>
+                <input type="number" id="yearUpdate" placeholder="npr. 1949" />
+              </div>
+              <div class="field">
+                <!-- VAŽNO: šalje se kao int (0-9), ne kao string -->
+                <label
+                  >Žanr (šalje se kao broj: 0=Fiction, 1=NonFiction...)</label
+                >
+                <select id="genreUpdate">
+                  <option value="">— ne mijenja se —</option>
+                  <option value="0">0 — Fiction</option>
+                  <option value="1">1 — NonFiction</option>
+                  <option value="2">2 — Mystery</option>
+                  <option value="3">3 — SciFi</option>
+                  <option value="4">4 — Fantasy</option>
+                  <option value="5">5 — Romance</option>
+                  <option value="6">6 — Thriller</option>
+                  <option value="7">7 — Horror</option>
+                  <option value="8">8 — Biography</option>
+                  <option value="9">9 — History</option>
+                </select>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="sendUpdateBook()">
+                Spremi promjene
+              </button>
+            </div>
+            <div class="result-box" id="updateBookResult"></div>
+          </div>
+        </div>
+
+        <!-- BRIŠI KNJIGU -->
+        <div class="page" id="page-deleteBook">
+          <div class="page-title">Briši knjigu</div>
+          <div class="page-sub">// DELETE /api/books/{id} — samo Admin</div>
+          <div class="card">
+            <div class="card-title">Brisanje knjige</div>
+            <div class="form-grid single">
+              <div class="field">
+                <label>ID knjige</label>
+                <input type="number" id="deleteBookId" placeholder="npr. 3" />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-danger" onclick="sendDeleteBook()">
+                Briši knjigu
+              </button>
+            </div>
+            <div class="result-box" id="deleteBookResult"></div>
+          </div>
+        </div>
+
+        <!-- POSUDI KNJIGU -->
+        <div class="page" id="page-borrow">
+          <div class="page-title">Posudi knjigu</div>
+          <div class="page-sub">// POST /api/borrows — samo Student</div>
+          <div class="card">
+            <div class="card-title">Nova posudba</div>
+            <div class="form-grid">
+              <div class="field">
+                <label>ID knjige</label>
+                <input type="number" id="borrowBookId" placeholder="1" />
+              </div>
+              <div class="field">
+                <label>Količina</label>
+                <input type="number" id="borrowAmount" value="1" min="1" />
+              </div>
+              <div class="field full">
+                <label>Rok vraćanja</label>
+                <input type="date" id="borrowDueDate" />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="sendBorrowBook()">
+                Posudi
+              </button>
+            </div>
+            <div class="result-box" id="borrowResult"></div>
+          </div>
+        </div>
+
+        <!-- VRATI KNJIGU -->
+        <div class="page" id="page-returnBook">
+          <div class="page-title">Vrati knjigu</div>
+          <div class="page-sub">// PUT /api/borrows/{id}/return</div>
+          <div class="card">
+            <div class="card-title">Povrat posudbe</div>
+            <div class="form-grid single">
+              <div class="field">
+                <label>ID posudbe (BorrowId)</label>
+                <input type="number" id="returnBorrowId" placeholder="npr. 3" />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="sendReturnBook()">
+                Vrati knjigu
+              </button>
+            </div>
+            <div class="result-box" id="returnResult"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const BASE = "https://localhost:7184";
+
+      function getStudentIdFromToken() {
+        const token = localStorage.getItem("jwtToken");
+        if (!token) return null;
+
+        try {
+          const payload = JSON.parse(atob(token.split(".")[1])); // dekodira middle dio JWT-a
+          return payload.studentId || payload["studentId"]; // claim može biti "studentId" ili sa malim slovom
+        } catch (e) {
+          console.error("Greška pri parsiranju tokena", e);
+          return null;
+        }
+      }
+
+      // ─── HELPERS ───────────────────────────────────────────
+      const token = () => localStorage.getItem("jwtToken");
+      const role = () => localStorage.getItem("userRole");
+
+      function authHeaders() {
+        return {
+          Authorization: `Bearer ${token()}`,
+          "Content-Type": "application/json",
+        };
+      }
+
+      function showResult(id, type, msg) {
+        const el = document.getElementById(id);
+        el.className = `result-box visible ${type}`;
+        el.textContent =
+          typeof msg === "object" ? JSON.stringify(msg, null, 2) : msg;
+      }
+
+      function clearResult(id) {
+        const el = document.getElementById(id);
+        el.className = "result-box";
+        el.textContent = "";
+      }
+
+      function loading(id) {
+        const el = document.getElementById(id);
+        el.className = "result-box visible info";
+        el.innerHTML = '<span class="loading"></span>Učitavam...';
+      }
+
+      async function apiFetch(url, options = {}) {
+        const res = await fetch(BASE + url, options);
+        const data = await res.json().catch(() => ({}));
+        return { ok: res.ok, status: res.status, data };
+      }
+
+      function getApiError(data) {
+        if (data?.errors?.length)
+          return data.errors.map((e) => e.message || e.Message).join("\n");
+        if (data?.message) return data.message;
+        return "Nepoznata greška";
+      }
+
+      // ─── NAVIGATION ────────────────────────────────────────
+      function showPage(name) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("page-" + name).classList.add("active");
+        const map = {
+          login: "navLogin",
+          me: "navMe",
+          updateStudent: "navUpdateMe",
+          students: "navStudents",
+          addStudent: "navAddStudent",
+          books: "navBooks",
+          sigleBook: "navSingleBook",
+          addBook: "navAddBook",
+          borrow: "navBorrow",
+          returnBook: "navReturn",
+          updateBook: "navUpdateBook",
+          deleteBook: "navDeleteBook",
+        };
+        if (map[name])
+          document.getElementById(map[name])?.classList.add("active");
+
+        // show admin field on update page
+        if (name === "updateStudent") {
+          const adminField = document.getElementById("adminStudentIdField");
+          if (role() === "Admin") adminField.classList.add("visible");
+          else adminField.classList.remove("visible");
+        }
+      }
+
+      function updateNav() {
+        const loggedIn = !!token();
+        const isAdmin = role() === "Admin";
+
+        [
+          "navMe",
+          "navUpdateMe",
+          "navBooks",
+          "navSingleBook",
+          "navBorrow",
+          "navActiveBorrows", //bilo je nacActiveBorrows k rivo pisalo i autoamtski ne radi admin prijava ne pusta mu njegove opcije, null  "Cannot set properties of null
+          "navReturn",
+        ].forEach((id) => {
+          document.getElementById(id).disabled = !loggedIn;
+        });
+
+        // Admin only
+        [
+          "navStudents",
+          "navAddStudent",
+          "navAddBook",
+          "navDeleteStudent",
+          "navUpdateBook",
+          "navDeleteBook",
+        ].forEach((id) => {
+          document.getElementById(id).disabled = !(loggedIn && isAdmin);
+        });
+
+        document.getElementById("navLogin").style.display = loggedIn
+          ? "none"
+          : "flex";
+        document.getElementById("navLogout").style.display = loggedIn
+          ? "flex"
+          : "none";
+
+        const badge = document.getElementById("roleBadge");
+        if (loggedIn) {
+          badge.classList.add("visible");
+          document.getElementById("roleText").textContent = role();
+        } else {
+          badge.classList.remove("visible");
+        }
+      }
+
+      // ─── AUTH ───────────────────────────────────────────────
+      async function login() {
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+        if (!email || !password)
+          return showResult("loginResult", "error", "Unesite email i lozinku.");
+
+        loading("loginResult");
+        const { ok, data } = await apiFetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (!ok) return showResult("loginResult", "error", getApiError(data));
+
+        localStorage.setItem("jwtToken", data.value.token);
+        localStorage.setItem("userRole", data.value.role);
+
+        showResult(
+          "loginResult",
+          "success",
+          `Prijavljeni ste kao ${data.value.role} (ID: ${data.value.studentId})`,
+        );
+        updateNav();
+        setTimeout(() => showPage("me"), 800);
+      }
+
+      function logout() {
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("userRole");
+        updateNav();
+        showPage("login");
+      }
+
+      // ─── STUDENTI ───────────────────────────────────────────
+      async function getMyProfile() {
+        loading("meResult");
+        const { ok, data } = await apiFetch("/api/students/me", {
+          headers: authHeaders(),
+        });
+        if (!ok) return showResult("meResult", "error", getApiError(data));
+        showResult("meResult", "success", data);
+      }
+
+      async function getStudentList() {
+        loading("studentsResult");
+        const { ok, data } = await apiFetch("/api/students", {
+          headers: authHeaders(),
+        });
+        if (!ok)
+          return showResult("studentsResult", "error", getApiError(data));
+        showResult("studentsResult", "success", data);
+      }
+
+      async function sendAddStudent() {
+        const body = {
+          firstName: document.getElementById("newFirstName").value.trim(),
+          lastName: document.getElementById("newLastName").value.trim(),
+          dateOfBirth: document.getElementById("newDob").value || null,
+          email: document.getElementById("newEmail").value.trim(),
+          password: document.getElementById("newPassword").value.trim(),
+        };
+        if (!body.firstName || !body.lastName || !body.email || !body.password)
+          return showResult(
+            "addStudentResult",
+            "error",
+            "Sva obavezna polja su potrebna.",
+          );
+
+        loading("addStudentResult");
+        const { ok, data } = await apiFetch("/api/students", {
+          method: "POST",
+          headers: authHeaders(),
+          body: JSON.stringify(body),
+        });
+        if (!ok)
+          return showResult("addStudentResult", "error", getApiError(data));
+        showResult("addStudentResult", "success", data);
+      }
+
+      async function sendUpdateStudent() {
+        const body = {};
+        const targetId = document.getElementById("updateTargetId").value.trim();
+        const firstName = document
+          .getElementById("updateFirstName")
+          .value.trim();
+        const lastName = document.getElementById("updateLastName").value.trim();
+        const email = document.getElementById("updateEmail").value.trim();
+        const password = document.getElementById("updatePassword").value.trim();
+
+        if (role() === "Admin" && targetId) body.id = parseInt(targetId);
+        if (firstName) body.firstName = firstName;
+        if (lastName) body.lastName = lastName;
+        if (email) body.email = email;
+        if (password) body.newPassword = password;
+
+        if (!Object.keys(body).length)
+          return showResult(
+            "updateStudentResult",
+            "error",
+            "Izmijeni barem jedno polje.",
+          );
+
+        loading("updateStudentResult");
+        const { ok, data } = await apiFetch("/api/students/update", {
+          method: "PUT",
+          headers: authHeaders(),
+          body: JSON.stringify(body),
+        });
+        if (!ok)
+          return showResult("updateStudentResult", "error", getApiError(data));
+        showResult("updateStudentResult", "success", data);
+      }
+
+      // ─── KNJIGE ─────────────────────────────────────────────
+      async function getBooksList() {
+        loading("booksResult");
+        const { ok, data } = await apiFetch("/api/books", {
+          headers: authHeaders(),
+        });
+        if (!ok) return showResult("booksResult", "error", getApiError(data));
+        showResult("booksResult", "success", data);
+      }
+
+      async function sendAddBook() {
+        const genre = document.getElementById("bookGenre").value;
+        const body = {
+          title: document.getElementById("bookTitle").value.trim(),
+          author: document.getElementById("bookAuthor").value.trim(),
+          isbn: document.getElementById("bookIsbn").value.trim(),
+          amount: parseInt(document.getElementById("bookAmount").value),
+          year: parseInt(document.getElementById("bookYear").value),
+          genre: genre ? parseInt(genre) : null,
+        };
+        if (
+          !body.title ||
+          !body.author ||
+          !body.isbn ||
+          !body.year ||
+          genre === ""
+        )
+          return showResult("addBookResult", "error", "Sva polja su obavezna.");
+
+        loading("addBookResult");
+        const { ok, data } = await apiFetch("/api/books", {
+          method: "POST",
+          headers: authHeaders(),
+          body: JSON.stringify(body),
+        });
+        if (!ok) return showResult("addBookResult", "error", getApiError(data));
+        showResult("addBookResult", "success", data);
+      }
+
+      // ─── POSUDBE ─────────────────────────────────────────────
+      async function sendBorrowBook() {
+        const studentId = getStudentIdFromToken();
+        if (!studentId) {
+          showResult(
+            "borrowResult",
+            "error",
+            "Niste prijavljeni ili token nije valjan.",
+          );
+          return;
+        }
+        const body = {
+          studentId: parseInt(studentId),
+          bookId: parseInt(document.getElementById("borrowBookId").value),
+          amount: parseInt(document.getElementById("borrowAmount").value),
+          dueDate: document.getElementById("borrowDueDate").value,
+        };
+        if (!body.bookId || !body.amount || !body.dueDate)
+          return showResult(
+            "borrowResult",
+            "error",
+            "ID knjige i rok vraćanja su obavezni.",
+          );
+
+        loading("borrowResult");
+        const { ok, data } = await apiFetch("/api/borrows", {
+          method: "POST",
+          headers: authHeaders(),
+          body: JSON.stringify(body),
+        });
+        if (!ok) return showResult("borrowResult", "error", getApiError(data));
+        showResult("borrowResult", "success", data);
+      }
+
+      async function sendReturnBook() {
+        const id = parseInt(document.getElementById("returnBorrowId").value);
+        if (!id)
+          return showResult("returnResult", "error", "Unesite ID posudbe.");
+
+        loading("returnResult");
+        const { ok, data } = await apiFetch(`/api/borrows/${id}/return`, {
+          method: "PUT",
+          headers: authHeaders(),
+        });
+        if (!ok) return showResult("returnResult", "error", getApiError(data));
+        showResult("returnResult", "success", data);
+      }
+
+      // ─── INIT ────────────────────────────────────────────────
+      window.onload = () => {
+        updateNav();
+        if (token()) showPage("me");
+      };
+
+      // dohvat pojedine knjige
+
+      async function getSingleBook() {
+        const id = parseInt(document.getElementById("singleBookId").value);
+        if (!id || id <= 0)
+          return showResult("singleBookResult", "error", "Unesi valjani ID.");
+        loading("singleBookResult");
+        const { ok, data } = await apiFetch(`/api/books/${id}`, {
+          headers: authHeaders(),
+        });
+        if (!ok)
+          return showResult("singleBookResult", "error", getApiError(data));
+        showResult("singleBookResult", "success", data);
+      }
+
+      async function sendDeleteStudent() {
+        const id = parseInt(document.getElementById("deleteStudentId").value);
+        if (!id || id <= 0)
+          return showResult(
+            "deleteStudentResult",
+            "error",
+            "Unesi valjani ID.",
+          );
+        loading("deleteStudentResult");
+        const { ok, data } = await apiFetch(`/api/students/${id}`, {
+          method: "DELETE",
+          headers: authHeaders(),
+        });
+        if (!ok)
+          return showResult("deleteStudentResult", "error", getApiError(data));
+        showResult("deleteStudentResult", "success", data);
+      }
+
+      async function getActiveBorrows() {
+        const id = parseInt(
+          document.getElementById("activeBorrowsStudentId").value,
+        );
+        if (!id || id <= 0)
+          return showResult(
+            "activeBorrowsResult",
+            "error",
+            "Unesi valjani ID.",
+          );
+        loading("activeBorrowsResult");
+        const { ok, data } = await apiFetch(
+          `/api/students/${id}/active-borrows`,
+          {
+            headers: authHeaders(),
+          },
+        );
+        if (!ok)
+          return showResult("activeBorrowsResult", "error", getApiError(data));
+        showResult("activeBorrowsResult", "success", data);
+      }
+
+      async function sendUpdateBook() {
+        const id = parseInt(document.getElementById("bookIdUpdate").value);
+        if (!id || id <= 0)
+          return showResult(
+            "updateBookResult",
+            "error",
+            "Unesite valjani ID knjige.",
+          );
+
+        const genreVal = document.getElementById("genreUpdate").value;
+        const body = {};
+        body.id = id;
+
+        const title = document.getElementById("titleUpdate").value.trim();
+        const author = document.getElementById("authorUpdate").value.trim();
+        const isbn = document.getElementById("isbnUpdate").value.trim();
+        const amount = document.getElementById("amountUpdate").value.trim();
+        const year = document.getElementById("yearUpdate").value.trim();
+
+        if (title) body.title = title;
+        if (author) body.author = author;
+        if (isbn) body.isbn = isbn;
+        if (amount) body.amount = parseInt(amount); // int
+        if (year) body.year = parseInt(year); // int
+        if (genreVal !== "") body.genre = parseInt(genreVal); // int - ne string!
+
+        if (Object.keys(body).length < 2)
+          return showResult(
+            "updateBookResult",
+            "error",
+            "Popuni bar jedno polje.", //na razini frontenda validacija!!
+          );
+
+        loading("updateBookResult");
+        const { ok, data } = await apiFetch(`/api/books/${id}`, {
+          method: "PUT",
+          headers: authHeaders(),
+          body: JSON.stringify(body),
+        });
+        if (!ok)
+          return showResult("updateBookResult", "error", getApiError(data));
+        showResult("updateBookResult", "success", data);
+      }
+
+      async function sendDeleteBook() {
+        const id = parseInt(document.getElementById("deleteBookId").value);
+        if (!id || id <= 0)
+          return showResult(
+            "deleteBookResult",
+            "error",
+            "Unesite valjani ID knjige.",
+          );
+
+        loading("deleteBookResult");
+        const { ok, data } = await apiFetch(`/api/books/${id}`, {
+          method: "DELETE",
+          headers: authHeaders(),
+        });
+        if (!ok)
+          return showResult("deleteBookResult", "error", getApiError(data));
+        showResult("deleteBookResult", "success", data);
+      }
+    </script>
+  </body>
+</html>
