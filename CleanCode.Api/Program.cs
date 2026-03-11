@@ -52,6 +52,9 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<IBookCacheService, BookCacheService>();
+
 // Build() tek ovdje
 var app = builder.Build();
 

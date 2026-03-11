@@ -64,3 +64,6 @@ C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\refi
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\CleanCode.Api.pdb
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\CleanCode.Api.genruntimeconfig.cache
 C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\obj\Debug\net8.0\ref\CleanCode.Api.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Admin\source\repos\CleanCodeLibrary\CleanCode.Api\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

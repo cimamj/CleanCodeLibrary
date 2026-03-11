@@ -61,11 +61,12 @@ namespace CleanCode.Api.Controllers
         [Authorize]
         [HttpGet]
         public async Task<ActionResult> Get(
-            [FromServices] IBookRepository bookRepository
+            [FromServices] IBookRepository bookRepository,
+            [FromServices] IBookCacheService cacheService
             )
         {
             var request = new GetAllBooksRequest(); //
-            var requestHandler = new GetAllBooksRequestHandler(bookRepository);
+            var requestHandler = new GetAllBooksRequestHandler(bookRepository, cacheService);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }

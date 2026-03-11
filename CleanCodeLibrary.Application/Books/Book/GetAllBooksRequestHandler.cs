@@ -1,4 +1,5 @@
-﻿using CleanCodeLibrary.Application.Common.Model;
+﻿using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.Model;
 using CleanCodeLibrary.Domain.Common.Model; //problem sto sad nezna koji result koristiti, prominit cu ime u domainu resultDomain
 using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Domain.DTOs.Books;
@@ -13,10 +14,11 @@ namespace CleanCodeLibrary.Application.Books.Book
         : RequestHandler<GetAllBooksRequest, GetAllResponse<BookDto>>
     {
         private readonly IBookRepository _bookRepository;
-
-        public GetAllBooksRequestHandler(IBookRepository bookRepository)
+        private readonly IBookCacheService _cache;
+        public GetAllBooksRequestHandler(IBookRepository bookRepository, IBookCacheService cache)
         {
             _bookRepository = bookRepository;
+            _cache = cache;
         }
         //a npr kad mapiran u novu klasu radi
 
@@ -24,16 +26,18 @@ namespace CleanCodeLibrary.Application.Books.Book
             GetAllBooksRequest request,
             Result<GetAllResponse<BookDto>> result)
         {
-            var books = await _bookRepository.GetAllBookDtos();
-            if(books.Values.Count() == 0) //validan rezultat, samo warning, ili !Values.Any()
-            {
-                result.AddWarning(new ValidationResultItem
-                {
-                    Message = "Nema knjiga u bazi",
-                    ValidationSeverity = ValidationSeverity.Warning,
-                });
-                //return result; OVAKO RESULT NECE IMATI VALUE, UC CE U RESPONSEEXT I VRATIT CE 404, TO NE ZELIMO
-            }
+            var books = await _cache.GetOrSetBooksAsync(() => _bookRepository.GetAllBookDtos());
+
+                //var books = await _bookRepository.GetAllBookDtos();
+                //if(books.Values.Count() == 0) //validan rezultat, samo warning, ili !Values.Any()
+                //{
+                //    result.AddWarning(new ValidationResultItem
+                //    {
+                //        Message = "Nema knjiga u bazi",
+                //        ValidationSeverity = ValidationSeverity.Warning,
+                //    });
+                //    //return result; OVAKO RESULT NECE IMATI VALUE, UC CE U RESPONSEEXT I VRATIT CE 404, TO NE ZELIMO
+                //}
 
             result.SetResult(books);
             return result;
