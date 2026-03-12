@@ -10,6 +10,8 @@ using System.Text.Json.Serialization;
 using System.IdentityModel.Tokens.Jwt;
 using CleanCode.Api.Services;
 using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Domain.DTOs.Books;
+using CleanCodeLibrary.Domain.DTOs.Students;
 
 namespace CleanCode.Api.Controllers
 {
@@ -82,10 +84,11 @@ namespace CleanCode.Api.Controllers
         [HttpPost] //ova metoda doli reagira samo na POST
         public async Task<ActionResult> Post( //actionresult je tip povratne vrijednosti, ok, bad, vidis u ext
             [FromServices] IStudentRepository studentRepository, //.net ubacuje instacu iz addscoped, iz DI kontejnera
-            [FromBody] CreateStudentRequest request //uzmi iz tijela http zahtjeva { "firstName": "Jure", "lastName": "Horvat" }, .NET TO AUTOMATSKI DESERIALIZIRA U OBJEKT CreateStudentRequest DTO taj
+            [FromBody] CreateStudentRequest request, //uzmi iz tijela http zahtjeva { "firstName": "Jure", "lastName": "Horvat" }, .NET TO AUTOMATSKI DESERIALIZIRA U OBJEKT CreateStudentRequest DTO taj
+             [FromServices] ICacheService<GetAllResponse<StudentDto>> cacheService
             ) //from body iz {} izvuce
         {
-            var requestHandler = new CreateStudentRequestHandler(studentRepository);
+            var requestHandler = new CreateStudentRequestHandler(studentRepository, cacheService);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }
@@ -95,11 +98,12 @@ namespace CleanCode.Api.Controllers
         public async Task<ActionResult> Update(
             [FromServices] IStudentRepository studentRepository,
             [FromBody] UpdateStudentRequest request,
-            [FromServices] ICurrentUserService currentUser
+            [FromServices] ICurrentUserService currentUser,
+                 [FromServices] ICacheService<GetAllResponse<StudentDto>> cacheService
         )
         {
 
-            var requestHandler = new UpdateStudentRequestHandler(studentRepository, currentUser);
+            var requestHandler = new UpdateStudentRequestHandler(studentRepository, currentUser, cacheService);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }
@@ -108,11 +112,13 @@ namespace CleanCode.Api.Controllers
         [HttpDelete("{id}")] //ova metoda doli reagira samo na POST
         public async Task<ActionResult> Delete(
           [FromRoute] int id,
-          [FromServices] IStudentRepository studentRepository
+          [FromServices] IStudentRepository studentRepository,
+                           [FromServices] ICacheService<GetAllResponse<StudentDto>> cacheService
+
       )
         {
             var request = new DeleteStudentRequest { Id = id };
-            var requestHandler = new DeleteStudentRequestHandler(studentRepository);
+            var requestHandler = new DeleteStudentRequestHandler(studentRepository, cacheService);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }
@@ -122,11 +128,12 @@ namespace CleanCode.Api.Controllers
         public async Task<ActionResult> Get(
               [FromServices] IStudentRepository studentRepository,
              //  [FromBody] GetAllStudentsRequestHandler request  //u bodyu nemam nista, ali handle prima ovaj request, moram ga imati
-             [FromServices] ICurrentUserService currentUser
+             [FromServices] ICurrentUserService currentUser,
+            [FromServices] ICacheService<GetAllResponse<StudentDto>> cacheService
             )
         {
             var request = new GetAllStudentsRequest(); //instaciramo nista praznu klasu
-            var requestHandler = new GetAllStudentsRequestHandler(studentRepository, currentUser);
+            var requestHandler = new GetAllStudentsRequestHandler(studentRepository, currentUser, cacheService);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }

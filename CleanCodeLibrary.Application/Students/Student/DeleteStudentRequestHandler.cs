@@ -1,5 +1,9 @@
-﻿using CleanCodeLibrary.Application.Common.Model;
+﻿using CleanCodeLibrary.Application.Common.CacheKeys;
+using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Domain.DTOs.Students;
 using CleanCodeLibrary.Domain.Persistance.Books;
 using CleanCodeLibrary.Domain.Persistance.Students;
 
@@ -13,10 +17,13 @@ namespace CleanCodeLibrary.Application.Students.Student
     public class DeleteStudentRequestHandler : RequestHandler<DeleteStudentRequest, SuccessPostResponse>
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly ICacheService<GetAllResponse<StudentDto>> _cache;
 
-        public DeleteStudentRequestHandler(IStudentRepository studentRepository)
+
+        public DeleteStudentRequestHandler(IStudentRepository studentRepository, ICacheService<GetAllResponse<StudentDto>> cache)
         {
             _studentRepository = studentRepository;
+            _cache = cache;
         }
 
         //SuccessPostResponse uredu? jer svakako bi valjda vratio id studenta koji je obrisan
@@ -51,8 +58,11 @@ namespace CleanCodeLibrary.Application.Students.Student
                 return result;
             }
 
-            await _studentRepository.SaveAsync();
+            await _studentRepository.SaveAsync(); //vidi ovo wtf? static? NIJE STATIC IDIOTE NEGO IDES DIRKENTO NA REPO
             //nisam instacira znaci moram direktno iz repoziroija zvat savechanges
+            _cache.Invalidate(Keys.AllStudents);
+
+
 
             result.SetResult(new SuccessPostResponse(domainDeleteResult.Value));
             return result;

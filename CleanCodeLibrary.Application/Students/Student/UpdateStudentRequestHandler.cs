@@ -1,6 +1,9 @@
-﻿using CleanCodeLibrary.Application.Common.Interfaces;
+﻿using CleanCodeLibrary.Application.Common.CacheKeys;
+using CleanCodeLibrary.Application.Common.Interfaces;
 using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Domain.DTOs.Students;
 using CleanCodeLibrary.Domain.Persistance.Students;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
@@ -21,10 +24,13 @@ namespace CleanCodeLibrary.Application.Students.Student
     {
         private readonly IStudentRepository _studentRepository;
         private readonly ICurrentUserService _currentUser;
-        public UpdateStudentRequestHandler(IStudentRepository studentRepository, ICurrentUserService currentUser)
+        private readonly ICacheService<GetAllResponse<StudentDto>> _cache;
+
+        public UpdateStudentRequestHandler(IStudentRepository studentRepository, ICurrentUserService currentUser, ICacheService<GetAllResponse<StudentDto>> cache)
         {
             _studentRepository = studentRepository;
             _currentUser = currentUser;
+            _cache = cache;
         }
 
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(UpdateStudentRequest request, Result<SuccessPostResponse> result) //ne  zaboravi dodat Result<> jer nemos pritupit validaiciji, btw kad se ovo instacira pa da ga korsiitm
@@ -42,9 +48,9 @@ namespace CleanCodeLibrary.Application.Students.Student
 
             int currId;
             if (role == "Student")
-                currId = _currentUser.GetStudentId().Value; // iz tokena
+                currId = _currentUser.GetStudentId().Value; // iz tokena, student more sebe samo
             else
-                currId = request.Id; //iz bodya/req
+                currId = request.Id; //iz bodya/req, ADMIN sve more
 
 
 
@@ -85,6 +91,7 @@ namespace CleanCodeLibrary.Application.Students.Student
                 return result;
 
             await studentRepoResult.SaveChanges(_studentRepository); //komuniciramo s domain ne infra
+            _cache.Invalidate(Keys.AllStudents);
 
             result.SetResult(new SuccessPostResponse(studentRepoResult.Id)); //koji id jel ovi ili novi od req
             return result;

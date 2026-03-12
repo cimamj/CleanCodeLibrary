@@ -28,17 +28,17 @@ namespace CleanCodeLibrary.Application.Books.Book
         {
             var books = await _cache.GetOrSetBooksAsync(() => _bookRepository.GetAllBookDtos());
 
-                //var books = await _bookRepository.GetAllBookDtos();
-                //if(books.Values.Count() == 0) //validan rezultat, samo warning, ili !Values.Any()
-                //{
-                //    result.AddWarning(new ValidationResultItem
-                //    {
-                //        Message = "Nema knjiga u bazi",
-                //        ValidationSeverity = ValidationSeverity.Warning,
-                //    });
-                //    //return result; OVAKO RESULT NECE IMATI VALUE, UC CE U RESPONSEEXT I VRATIT CE 404, TO NE ZELIMO
-                //}
-
+            //var books = await _bookRepository.GetAllBookDtos();
+            if (books.Values.Count() == 0) //validan rezultat, samo warning, ili !Values.Any()
+            {
+                result.AddWarning(new ValidationResultItem
+                {
+                    Message = "Nema knjiga u bazi",
+                    ValidationSeverity = ValidationSeverity.Warning,
+                });
+                //return result; OVAKO RESULT NECE IMATI VALUE, UC CE U RESPONSEEXT I VRATIT CE 404, TO NE ZELIMO
+            }
+            
             result.SetResult(books);
             return result;
         }

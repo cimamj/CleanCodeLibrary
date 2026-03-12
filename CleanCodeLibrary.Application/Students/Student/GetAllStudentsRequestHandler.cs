@@ -11,6 +11,7 @@ using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.DTOs.Students;
 using CleanCodeLibrary.Domain.Common.Validation;
 using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.CacheKeys;
 
 namespace CleanCodeLibrary.Application.Students.Student
 {
@@ -43,11 +44,14 @@ namespace CleanCodeLibrary.Application.Students.Student
     {
         private readonly IStudentRepository _studentRepository;
         private readonly ICurrentUserService _currentUser;
+        private readonly ICacheService<GetAllResponse<StudentDto>> _cache;
 
-        public GetAllStudentsRequestHandler(IStudentRepository studentRepository, ICurrentUserService currentUser)
+
+        public GetAllStudentsRequestHandler(IStudentRepository studentRepository, ICurrentUserService currentUser, ICacheService<GetAllResponse<StudentDto>> cache)
         {
             _studentRepository = studentRepository;
             _currentUser = currentUser;
+            _cache = cache;
         }
 
         protected async override Task<Result<GetAllResponse<StudentDto>>> HandleRequest(
@@ -73,7 +77,10 @@ namespace CleanCodeLibrary.Application.Students.Student
 
 
 
-            var students = await _studentRepository.GetAllStudentDtos();
+            //var students = await _studentRepository.GetAllStudentDtos();
+
+
+            var students = await _cache.GetOrSetAsync(Keys.AllStudents, () => _studentRepository.GetAllStudentDtos(), TimeSpan.FromMinutes(7));
 
             if (students.Values.Count() == 0)
             {

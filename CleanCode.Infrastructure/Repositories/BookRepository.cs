@@ -85,6 +85,16 @@ namespace CleanCode.Infrastructure.Repositories
             //ili FindAsync(id)
         }
 
+        public async Task<List<GenresEnum>> GetUsedGenresAsync()
+        {
+           return await _dbContext.Books
+                .Select(x=>x.Genre)
+                .Distinct()
+                .ToListAsync();
+        }
+
+
+
 
 
 

@@ -20,7 +20,7 @@ namespace CleanCode.Api.Services
                 return cached;
 
             var result = await factory(); //AWAIT
-            _cache.Set(KEY, result);
+            _cache.Set(KEY, result, TimeSpan.FromMinutes(5)); //brise se 
             return result;
         }
 

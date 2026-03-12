@@ -54,6 +54,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<IBookCacheService, BookCacheService>();
+builder.Services.AddScoped(typeof(ICacheService<>), typeof(CacheService<>)); 
 
 // Build() tek ovdje
 var app = builder.Build();

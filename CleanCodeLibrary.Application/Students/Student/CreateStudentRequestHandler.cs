@@ -1,6 +1,10 @@
 ﻿
+using CleanCodeLibrary.Application.Common.CacheKeys;
+using CleanCodeLibrary.Application.Common.Interfaces;
 using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Domain.DTOs.Students;
 using CleanCodeLibrary.Domain.Persistance.Students;
 
 namespace CleanCodeLibrary.Application.Students.Student
@@ -18,10 +22,12 @@ namespace CleanCodeLibrary.Application.Students.Student
     {
         //saljemo u create Repo , di ti je??
         private readonly IStudentRepository _studentRepository; //interface iz domaina, iako je ovaj objekt iz infrastrukture, tj referenca, dependency injection? nije objekt nego referencana ovaj interface,on ima metodu saveasync, 
+        private readonly ICacheService<GetAllResponse<StudentDto>> _cache;
 
-        public CreateStudentRequestHandler(IStudentRepository studentRepository)
+        public CreateStudentRequestHandler(IStudentRepository studentRepository, ICacheService<GetAllResponse<StudentDto>> cache)
         {
             _studentRepository = studentRepository;
+            _cache = cache;
         }
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(CreateStudentRequest request, Result<SuccessPostResponse> result) //protected vidljivo samo ode i child, zasto?????
         {
@@ -66,8 +72,8 @@ namespace CleanCodeLibrary.Application.Students.Student
                 return result; //success... ima i prazni konstruktor mozda onda moze value bit prazan? value iz resulta je klasa i moze bit null, DA VALUE CE OAVKO OSTAT PRAZAN, NISI GA POPUNIA BIT CE NULL, API će dobiti: { "value": null, "errors": [...] }
             }
 
-            await student.SaveChanges(_studentRepository); 
- 
+            await student.SaveChanges(_studentRepository);
+            _cache.Invalidate(Keys.AllStudents); //novo
 
             result.SetResult(new SuccessPostResponse(student.Id)); //tek sad onaj value iz Result postaje taj id
             return result;
