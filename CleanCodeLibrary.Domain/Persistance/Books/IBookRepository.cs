@@ -23,7 +23,11 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
         Task DecrementAmount(int bookId, int amount);
         Task IncrementAmount(int bookId, int amount);
 
-        Task<List<GenresEnum>> GetUsedGenresAsync();
+        Task IncrementBorrowCount(int  bookId, int amount);
+
+        Task<List<string>> GetUsedGenresAsync();
+
+        Task<List<BookDto>> GetTopBooksByBorrowCountAsync(int count);
 
     }
 }

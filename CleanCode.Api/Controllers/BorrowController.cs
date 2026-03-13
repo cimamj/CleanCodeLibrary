@@ -1,5 +1,8 @@
 ﻿using CleanCode.Api.Common;
 using CleanCodeLibrary.Application.Borrows.Borrow;
+using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Domain.Common.Model;
+using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +27,11 @@ namespace CleanCode.Api.Controllers
         [HttpPost] 
         public async Task<ActionResult> BorrowBook(
         [FromServices] IBorrowUnitOfWork unitOfWork,
-        [FromBody] CreateBorrowAndUpdateBookAmountRequest request)
+        [FromBody] CreateBorrowAndUpdateBookAmountRequest request,
+        [FromServices] ICacheService<GetAllResponse<BookDto>> cacheService
+        )
         {
-            var handler = new CreateBorrowAndUpdateBookAmountRequestHandler(unitOfWork);
+            var handler = new CreateBorrowAndUpdateBookAmountRequestHandler(unitOfWork, cacheService);
             var result = await handler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }

@@ -42,6 +42,10 @@ namespace CleanCode.Infrastructure.Database.Configurations.Books
             builder.Property(t => t.Genre)
             .HasColumnName("genre")
                .IsRequired();
+
+            builder.Property(t => t.BorrowCount)
+            .HasColumnName("borrowcount");
+           
             //npr ovo nisam imao isreq
 
         }

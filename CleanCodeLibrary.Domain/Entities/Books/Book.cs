@@ -21,8 +21,10 @@ namespace CleanCodeLibrary.Domain.Entities.Books
         //polje za kolicinu ovakvih
         //STO ako ovog polja uopce nema u bazu a vec sam spojio bazu sa ovim backendom, jel se da to azurirat ili moram tamo rucno takoder ALTER TABLE ...add column...?
         public int Amount { get; set; }
+        public int BorrowCount { get; set; } = 0;
 
         public ICollection<Borrow> Borrows { get; set; }
+
 
         public async Task<ResultDomain<int?>> Create(IBookRepository bookRepository)
         {

@@ -11,7 +11,7 @@ namespace CleanCode.Infrastructure.Repositories
 {
     public class BookRepository : Repository<Book, int>, IBookRepository //zali se a ima tu funkciju koji kurac
     {
-        private readonly ApplicationDbContext _dbContext; 
+        private readonly ApplicationDbContext _dbContext;
 
         public BookRepository(ApplicationDbContext dbContext)
             : base(dbContext)
@@ -85,14 +85,28 @@ namespace CleanCode.Infrastructure.Repositories
             //ili FindAsync(id)
         }
 
-        public async Task<List<GenresEnum>> GetUsedGenresAsync()
+        public async Task<List<string>> GetUsedGenresAsync()
         {
-           return await _dbContext.Books
-                .Select(x=>x.Genre)
+            return await _dbContext.Books
+                .Select(x => x.Genre.ToString())
                 .Distinct()
                 .ToListAsync();
         }
 
+        public async Task<List<BookDto>> GetTopBooksByBorrowCountAsync(int count) 
+        {
+            return await _dbContext.Books
+                .OrderByDescending(b=>b.BorrowCount)
+                .Take(count)
+                .Select(b=> new BookDto
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = b.Author,
+                    BorrowCount = b.BorrowCount
+                })
+                .ToListAsync();
+        }
 
 
 
@@ -136,7 +150,7 @@ namespace CleanCode.Infrastructure.Repositories
         public async Task<bool> IsbnExists(string isbn)
         {
             return await _dbContext.Books
-                .AnyAsync(b=>b.Isbn == isbn);
+                .AnyAsync(b => b.Isbn == isbn);
         }//ne triba mi zapravo, uvik cu eleminirati trenutnu knjigu radi UPDATE metode, promini title, isbn ostane isti, puca ovo
 
         public async Task<bool> IsbnExistsForOtherBook(string isbn, int currentBookId)
@@ -160,5 +174,13 @@ namespace CleanCode.Infrastructure.Repositories
 
             var entries = _dbContext.ChangeTracker.Entries();
         }
+        public async Task IncrementBorrowCount(int bookId, int amount)
+        {
+            //vec odradena provjera je li null
+            var book = await _dbContext.Books.FindAsync(bookId);
+            book.BorrowCount += amount;
+            _dbContext.Books.Update(book);
+        }
+
     }
 }

@@ -1,5 +1,8 @@
-﻿using CleanCodeLibrary.Application.Common.Model;
+﻿using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Entities.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
@@ -19,9 +22,11 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
     public class BorrowBookRequestHandler : RequestHandler<BorrowBookRequest, SuccessPostResponse>
     {
         public IBorrowUnitOfWork _unitOfWork;
-        public BorrowBookRequestHandler(IBorrowUnitOfWork unitOfWork)
+        private readonly ICacheService<GetAllResponse<BookDto>> _cache;
+        public BorrowBookRequestHandler(IBorrowUnitOfWork unitOfWork, ICacheService<GetAllResponse<BookDto>> cache)
         {
             _unitOfWork = unitOfWork;
+            _cache = cache;
         }
 
 
@@ -48,8 +53,11 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
 
                 await _unitOfWork.SaveAsync();
 
+            //_cache.Invalidate(CacheKeys.AllBooks);
+            //_cache.Invalidate(CacheKeys.TopBooks10);
 
-                result.SetResult(new SuccessPostResponse(borrow.Id));
+
+            result.SetResult(new SuccessPostResponse(borrow.Id));
                 return result;
             
            

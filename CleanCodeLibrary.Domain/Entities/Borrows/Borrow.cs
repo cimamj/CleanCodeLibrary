@@ -32,6 +32,7 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
            
             await unitOfWork.BorrowRepository.InsertBorrow(this, AmountBorrowed);
             await unitOfWork.BookRepository.DecrementAmount(BookId, AmountBorrowed);
+            await unitOfWork.BookRepository.IncrementBorrowCount(BookId, AmountBorrowed);
             return new ResultDomain<int?>(Id, validationResult);
         }
 

@@ -1,4 +1,8 @@
-﻿using CleanCodeLibrary.Application.Common.Model;
+﻿using CleanCodeLibrary.Application.Common.CacheKeys;
+using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Model;
+using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Entities.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
@@ -21,9 +25,11 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
     public class CreateBorrowAndUpdateBookAmountRequestHandler : RequestHandler<CreateBorrowAndUpdateBookAmountRequest, SuccessPostResponse>
     {
         public IBorrowUnitOfWork _unitOfWork;
-        public CreateBorrowAndUpdateBookAmountRequestHandler(IBorrowUnitOfWork unitOfWork)
+        private readonly ICacheService<GetAllResponse<BookDto>> _cache;
+        public CreateBorrowAndUpdateBookAmountRequestHandler(IBorrowUnitOfWork unitOfWork, ICacheService<GetAllResponse<BookDto>> cache)
         {
             _unitOfWork = unitOfWork;
+            _cache = cache;
         }
 
         protected override async Task<Result<SuccessPostResponse>> HandleRequest(CreateBorrowAndUpdateBookAmountRequest request, Result<SuccessPostResponse> result)
@@ -50,7 +56,10 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
                 }
 
                 await _unitOfWork.SaveAsync();
-                await _unitOfWork.Commit(); 
+                await _unitOfWork.Commit();
+
+                _cache.Invalidate(Keys.AllBooks);
+                _cache.Invalidate(Keys.TopBooks10);  
 
                 result.SetResult(new SuccessPostResponse(borrowDto.Id));
 

@@ -18,5 +18,7 @@ namespace CleanCodeLibrary.Domain.DTOs.Books
 
         //idiote poremeceni zaboravia si amonut polje dodat
         public int Amount { get; init; }
+
+        public int BorrowCount { get; init; }
     }
 }

@@ -7,6 +7,9 @@ using CleanCodeLibrary.Domain.Persistance.Books;
 using Microsoft.AspNetCore.Authorization;
 using CleanCode.Api.Services;
 using CleanCodeLibrary.Application.Common.Interfaces;
+using Microsoft.Extensions.Caching.Memory;
+using CleanCodeLibrary.Domain.Entities.Books;
+using CleanCodeLibrary.Domain.DTOs.Books;
 
 namespace CleanCode.Api.Controllers
 {
@@ -17,7 +20,7 @@ namespace CleanCode.Api.Controllers
 
         // POST IMAMO
         [Authorize] //necemo stavit roles=admin nego u authorization to implementirati 
-        [HttpPost] 
+        [HttpPost]
         public async Task<ActionResult> Post( //actionresult je tip povratne vrijednosti, ok, bad, vidis u ext, KAZE CLAUDE DA ODE IDE CREATEBOOK...HANDLER A NE OVO, DI RJESAVA SVE, DA JA RUCNO INSTACIRAM HANDLER DA JE TO LSOE
                 [FromServices] IBookRepository bookRepository, //.net ubacuje instacu iz addscoped, iz DI kontejnera
                 [FromBody] CreateBookRequest request, //uzmi iz tijela http zahtjeva { "firstName": "Jure", "lastName": "Horvat" }, .NET TO AUTOMATSKI DESERIALIZIRA U OBJEKT CreateStudentRequest DTO taj
@@ -31,7 +34,7 @@ namespace CleanCode.Api.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPut("{id}")] 
+        [HttpPut("{id}")]
         public async Task<ActionResult> Update(
                 [FromRoute] int id,
                 [FromServices] IBookRepository bookRepository,
@@ -85,6 +88,33 @@ namespace CleanCode.Api.Controllers
 
             return result.ToActionResult(this);
         }
+
+
+        //Novo
+        [Authorize]
+        [HttpGet("used-genres")]
+        public async Task<ActionResult> GetUsedGenres(
+        [FromServices] IBookRepository bookRepository,
+        [FromServices] ICacheService<List<string>> cacheService
+    )
+        {
+            var request = new GetUsedGenresRequest(); //ne iz bodya?
+            var handler = new GetUsedGenresRequestHandler(bookRepository, cacheService);
+            var result = await handler.ProcessAuthorizedRequestAsync(request);
+
+            return result.ToActionResult(this);
+        }
+
+        [Authorize]
+        [HttpGet("top")]
+        public async Task<ActionResult> GetTopBooks([FromServices] IBookRepository repo, [FromServices] ICacheService<List<BookDto>> cache)
+        {
+            var handler = new GetTopBooksRequestHandler(repo, cache);
+            var result = await handler.ProcessAuthorizedRequestAsync(new GetTopBooksRequest());
+            return result.ToActionResult(this);
+        }
+
+
 
         // [HttpDelete("{id}")] //ova metoda doli reagira samo na POST
         // public async Task<ActionResult> Delete(
