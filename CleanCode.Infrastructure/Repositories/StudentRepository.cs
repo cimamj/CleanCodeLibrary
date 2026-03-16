@@ -10,12 +10,14 @@ namespace CleanCode.Infrastructure.Repositories
     public class StudentRepository : Repository<Student, int>, IStudentRepository
     {
         private readonly ApplicationDbContext _dbContext; //zasto bas application, a ne obicni kao u parentu
+        private readonly IDapperManager _dapperManager;
 
-        public StudentRepository(ApplicationDbContext dbContext)
+        public StudentRepository(ApplicationDbContext dbContext, IDapperManager dapperManager)
             : base(dbContext)
         {
 
             _dbContext = dbContext;
+            _dapperManager = dapperManager;
         }
 
         public async Task<Student?> GetById(int id) //mozda ovi argument cisci GetByIdRequest<int> request
@@ -104,29 +106,60 @@ namespace CleanCode.Infrastructure.Repositories
 
         public async Task<GetAllResponse<ActiveBorrowsDto>> GetActiveBorrowsDtos(int id)
         {
-            var activeBorrows = await _dbContext.Borrows
-                .Where(x => x.StudentId == id && x.ReturnDate == null)
-                .Select(x => new ActiveBorrowsDto
-                {
-                    Id = x.Id,
-                    BorrowDate = x.BorrowDate,
-                    DueDate = x.DueDate,
-                    ReturnDate = x.ReturnDate,
-                    AmountBorrowed = x.AmountBorrowed,
-                    FirstName = x.Student.FirstName,
-                    LastName = x.Student.LastName,
-                    DateOfBirth = x.Student.DateOfBirth,
-                    Title = x.Book.Title,
-                    Author = x.Book.Author,
-                    Year = x.Book.Year,
-                    Genre = x.Book.Genre
-                })
-                .ToListAsync();
+            //var activeBorrows = await _dbContext.Borrows
+            //    .Where(x => x.StudentId == id && x.ReturnDate == null)
+            //    .Select(x => new ActiveBorrowsDto
+            //    {
+            //        Id = x.Id,
+            //        BorrowDate = x.BorrowDate,
+            //        DueDate = x.DueDate,
+            //        ReturnDate = x.ReturnDate,
+            //        AmountBorrowed = x.AmountBorrowed,
+            //        FirstName = x.Student.FirstName,
+            //        LastName = x.Student.LastName,
+            //        DateOfBirth = x.Student.DateOfBirth,
+            //        Title = x.Book.Title,
+            //        Author = x.Book.Author,
+            //        Year = x.Book.Year,
+            //        Genre = x.Book.Genre
+            //    })
+            //    .ToListAsync();
             //na get i sa ovim selectom , ne triba include
             //bez select nebi moga pristupit first
             //da ga zelim edit update triban ga include
 
-            return new GetAllResponse<ActiveBorrowsDto> { Values = activeBorrows };
+            const string sql = @"
+            SELECT 
+             b.Id,
+             b.BorrowDate,
+             b.DueDate,
+             b.AmountBorrowed,
+             bk.Title,
+             bk.Author
+            FROM Borrows b
+            JOIN Books bk ON b.BookId = bk.Id
+            WHERE b.StudentId = @Id 
+              AND b.ReturnDate IS NULL
+            ORDER BY b.BorrowDate DESC";
+            var parameters = new
+            {
+                Id = id
+            }; //ovo ide pod @
+
+
+            var borrows = (await _dapperManager.QueryAsync<ActiveBorrowsDto>(sql, parameters)).ToList();
+            //var result = borrows.Select(b => new ActiveBorrowsDto
+            //{
+            //    Id = b.Id,
+            //    BorrowDate = DateOnly.FromDateTime(b.BorrowDate), //zali se jer je vec dateonly ovaj b.borrowsdate
+            //    DueDate = DateOnly.FromDateTime(b.DueDate),
+            //    AmountBorrowed = b.AmountBorrowed,
+            //    Title = b.Title,
+            //    Author = b.Author
+            //}).ToList();
+
+
+            return new GetAllResponse<ActiveBorrowsDto> { Values = borrows };
         }
 
         public async Task<bool> IsEmailUnique(string email, int currentId)

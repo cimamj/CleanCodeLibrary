@@ -126,6 +126,13 @@ namespace CleanCodeLibrary.Domain.Entities.Students
             }
 
             var activeBorrows = await unitOfWork.StudentRepository.GetActiveBorrowsDtos(Id);
+            Console.WriteLine(activeBorrows);
+            if (!activeBorrows.Values.Any())
+            {
+
+                validationResult.AddValidationItem(ValidationItems.Student.No_Active_Borrows);
+                return new ResultDomain<GetAllResponse<ActiveBorrowsDto>>(null, validationResult);
+            }
             return new ResultDomain<GetAllResponse<ActiveBorrowsDto>>(activeBorrows, validationResult);
         }
 

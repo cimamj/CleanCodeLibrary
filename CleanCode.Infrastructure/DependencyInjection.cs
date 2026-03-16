@@ -21,6 +21,7 @@ namespace CleanCode.Infrastructure
         {
             AddDatabase(services, configuration);
             AddRepositories(services);
+            AddDapper(services, configuration);
 
             //ako dapper
 
@@ -59,11 +60,12 @@ namespace CleanCode.Infrastructure
 
         }
 
-        private static void AddDapper(IServiceCollection services)
+        private static void AddDapper(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IDapperManager, DapperManager>();
+            var connectionString = configuration.GetConnectionString("Database");
+
+            services.AddScoped<IDapperManager>(_ => new DapperManager(connectionString)); //kad se salje arg, razlika
         }
     }
 }
-//je li ovo dobro pitaj ivu
 

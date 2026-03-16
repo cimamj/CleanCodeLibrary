@@ -32,6 +32,7 @@ namespace CleanCode.Infrastructure.Repositories
                      Genre = x.Genre,
                      Year = x.Year,
                      Amount = x.Amount, //novo dodano nije ga bilo nije radilo 
+                     BorrowCount = x.BorrowCount
                  })
                  .SingleOrDefaultAsync();
             return book; //u handleru cu provjerti je li null
@@ -93,7 +94,7 @@ namespace CleanCode.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<List<BookDto>> GetTopBooksByBorrowCountAsync(int count) 
+        public async Task<List<BookDto>> GetTopBooksByBorrowCountAsync(int count)  //vidi stae
         {
             return await _dbContext.Books
                 .OrderByDescending(b=>b.BorrowCount)
@@ -140,7 +141,8 @@ namespace CleanCode.Infrastructure.Repositories
                     Isbn = b.Isbn,
                     Year = b.Year,
                     Genre = b.Genre,
-                    Amount = b.Amount
+                    Amount = b.Amount,
+                    BorrowCount = b.BorrowCount
                 })
                 .ToListAsync();
 

@@ -125,6 +125,15 @@ namespace CleanCodeLibrary.Domain.Common.Validation.ValidationItems
                 ValidationSeverity = ValidationSeverity.Error, //ili error
                 ValidationType = ValidationType.SystemError
             };
+
+            
+                  public static readonly ValidationItem No_Active_Borrows = new ValidationItem
+                  {
+                      Code = $"NO_ACTIVE_BORROWS",
+                      Message = $"Nema aktivnih posudbi, vracene su",
+                      ValidationSeverity = ValidationSeverity.Error, //ili error
+                      ValidationType = ValidationType.FormalValidation
+                  };
         }
     }
 }

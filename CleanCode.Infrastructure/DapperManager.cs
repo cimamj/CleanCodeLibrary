@@ -2,12 +2,25 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanCode.Infrastructure
 {
+    public class DateOnlyTypeHandler : SqlMapper.TypeHandler<DateOnly>
+    {
+        public override void SetValue(IDbDataParameter parameter, DateOnly value)
+        {
+            parameter.Value = value.ToDateTime(TimeOnly.MinValue);  // salje u bazu DateTime
+        }
+
+        public override DateOnly Parse(object value)
+        {
+            return DateOnly.FromDateTime((DateTime)value);  // cita iz baze i pretvara u DateOnly
+        }
+    }
     internal sealed class DapperManager : IDapperManager
     {
         private readonly string _connectionString;
@@ -15,6 +28,7 @@ namespace CleanCode.Infrastructure
         public DapperManager(string connectionString)
         {
             _connectionString = connectionString;
+            SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
         }
     //konekcija na bazu
 

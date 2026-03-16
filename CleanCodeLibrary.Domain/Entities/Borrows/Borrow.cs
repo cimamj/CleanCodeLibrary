@@ -92,9 +92,9 @@ namespace CleanCodeLibrary.Domain.Entities.Borrows
             if (!studentExists)
                 vr.AddValidationItem(ValidationItems.Borrow.NoStudentFound);
 
-            var isBorrowed = await unitOfWork.BorrowRepository.IsBookCurrentlyBorrowed(BookId);
-            if (isBorrowed)
-                vr.AddValidationItem(ValidationItems.Borrow.BookBorrowed);
+            //var isBorrowed = await unitOfWork.BorrowRepository.IsBookCurrentlyBorrowed(BookId); //ovo glupo , jer ima jos na lageru amounta 
+            //if (isBorrowed)
+            //    vr.AddValidationItem(ValidationItems.Borrow.BookBorrowed);
 
             return vr;
         }

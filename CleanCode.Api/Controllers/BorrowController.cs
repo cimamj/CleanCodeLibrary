@@ -39,10 +39,11 @@ namespace CleanCode.Api.Controllers
         [HttpPut("{id}/return")] 
         public async Task<ActionResult> ReturnBook(
             [FromRoute] int id,
-            [FromServices] IBorrowUnitOfWork unitOfWork
+            [FromServices] IBorrowUnitOfWork unitOfWork,
+             [FromServices] ICacheService<GetAllResponse<BookDto>> cacheService
            )
         {
-            var handler = new ReturnBookRequestHandler(unitOfWork);
+            var handler = new ReturnBookRequestHandler(unitOfWork, cacheService);
             var result = await handler.ProcessAuthorizedRequestAsync(new ReturnBookRequest { BorrowId = id });
             return result.ToActionResult(this);
         }

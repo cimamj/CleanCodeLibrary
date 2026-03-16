@@ -40,7 +40,7 @@ namespace CleanCodeLibrary.Application.Borrows.Borrow
                 {
                     StudentId = request.StudentId,
                     BookId = request.BookId,
-                    DueDate = DateOnly.FromDateTime(request.DueDate),
+                    DueDate = DateOnly.FromDateTime(request.DueDate), //ponisti datetime
                     AmountBorrowed = request.Amount
                 };
 

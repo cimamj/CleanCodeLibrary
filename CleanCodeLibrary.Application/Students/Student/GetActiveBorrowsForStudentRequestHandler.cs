@@ -30,9 +30,10 @@ namespace CleanCodeLibrary.Application.Students.Student
             };
 
             var domainResult = await item.ActiveBorrows(_unitOfWork);
-            var validationResult = domainResult.ValidationResult;
+            result.SetValidationResult(domainResult.ValidationResult);
+            //var validationResult = domainResult.ValidationResult;
 
-            if (validationResult.HasError)
+            if (result.HasError)
                 return result;
             
             result.SetResult(domainResult.Value);

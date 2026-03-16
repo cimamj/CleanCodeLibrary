@@ -1,5 +1,9 @@
-﻿using CleanCodeLibrary.Application.Common.Model;
+﻿using CleanCodeLibrary.Application.Common.CacheKeys;
+using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Application.Common.Model;
+using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.Common.Validation;
+using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
 using Borrow = CleanCodeLibrary.Domain.Entities.Borrows.Borrow;
@@ -13,10 +17,11 @@ public class ReturnBookRequestHandler
     : RequestHandler<ReturnBookRequest, SuccessResponse>
 {
     private readonly IBorrowUnitOfWork _unitOfWork;
-
-    public ReturnBookRequestHandler(IBorrowUnitOfWork unitOfWork)
+    private readonly ICacheService<GetAllResponse<BookDto>> _cache; //bilo koji tip, jer pozivas invalidate metodu koja ne ovisi o generickom tipu T koji moze bit npr GetAllResponse<BookDto> ili GetTitles<BookTitles> nebitno
+    public ReturnBookRequestHandler(IBorrowUnitOfWork unitOfWork, ICacheService<GetAllResponse<BookDto>> cache)
     {
         _unitOfWork = unitOfWork;
+        _cache = cache;
     }
 
     protected override async Task<Result<SuccessResponse>> HandleRequest(
@@ -48,6 +53,9 @@ public class ReturnBookRequestHandler
             return result;
 
         await _unitOfWork.SaveAsync();
+
+        _cache.Invalidate(Keys.AllBooks);
+        _cache.Invalidate(Keys.TopBooks10);
 
         result.SetResult(new SuccessResponse { IsSuccess = true });
         return result;
