@@ -5,15 +5,16 @@ using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.DTOs.Books;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using CleanCodeLibrary.Domain.Persistance.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanCode.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/borrows")]
     [ApiController]
     public class BorrowsController : ControllerBase
     {
-       
+
         //[HttpPost]
         //public async Task<ActionResult> BorrowBook(
         //    [FromServices] IUnitOfWork unitOfWork,
@@ -23,7 +24,7 @@ namespace CleanCode.Api.Controllers
         //    var result = await handler.ProcessAuthorizedRequestAsync(request);
         //    return result.ToActionResult(this);
         //}
-
+        [Authorize]
         [HttpPost] 
         public async Task<ActionResult> BorrowBook(
         [FromServices] IBorrowUnitOfWork unitOfWork,
@@ -35,7 +36,7 @@ namespace CleanCode.Api.Controllers
             var result = await handler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }
-
+        [Authorize]
         [HttpPut("{id}/return")] 
         public async Task<ActionResult> ReturnBook(
             [FromRoute] int id,
@@ -45,6 +46,18 @@ namespace CleanCode.Api.Controllers
         {
             var handler = new ReturnBookRequestHandler(unitOfWork, cacheService);
             var result = await handler.ProcessAuthorizedRequestAsync(new ReturnBookRequest { BorrowId = id });
+            return result.ToActionResult(this);
+        }
+
+        [Authorize]
+        [HttpGet("{studentId}/borrow-statistics")]
+        public async Task<ActionResult> GetBorrowStatistics(
+    [FromRoute] int studentId,
+    [FromServices] IBorrowRepository borrowRepository)
+        {
+            var handler = new GetBorrowStatisticsRequestHandler(borrowRepository);
+            var request = new GetBorrowStatisticsRequest(studentId);
+            var result = await handler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using CleanCodeLibrary.Domain.Common.Model;
 using CleanCodeLibrary.Domain.DTOs.Books;
+using CleanCodeLibrary.Domain.DTOs.Students;
 using CleanCodeLibrary.Domain.Entities.Books;
 using CleanCodeLibrary.Domain.Persistance.Common;
 
@@ -28,6 +29,7 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
         Task<List<string>> GetUsedGenresAsync();
 
         Task<List<BookDto>> GetTopBooksByBorrowCountAsync(int count);
+
 
     }
 }
