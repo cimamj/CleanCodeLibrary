@@ -1,4 +1,5 @@
-﻿using CleanCodeLibrary.Application.Common.Interfaces;
+﻿using CleanCodeLibrary.Application.Common.CacheKeys;
+using CleanCodeLibrary.Application.Common.Interfaces;
 using CleanCodeLibrary.Application.Common.Model;
 using CleanCodeLibrary.Domain.Common.Model; //problem sto sad nezna koji result koristiti, prominit cu ime u domainu resultDomain
 using CleanCodeLibrary.Domain.Common.Validation;
@@ -19,10 +20,12 @@ namespace CleanCodeLibrary.Application.Books.Book
     {
         private readonly IBookRepository _bookRepository;
         private readonly IBookCacheService _cache;
-        public GetAllBooksRequestHandler(IBookRepository bookRepository, IBookCacheService cache)
+        private readonly ICacheService<TotalCount> _cacheGeneric;      
+        public GetAllBooksRequestHandler(IBookRepository bookRepository, IBookCacheService cache, ICacheService<TotalCount> cacheGeneric)
         {
             _bookRepository = bookRepository;
             _cache = cache;
+            _cacheGeneric = cacheGeneric;
         }
         //a npr kad mapiran u novu klasu radi
 
@@ -35,8 +38,14 @@ namespace CleanCodeLibrary.Application.Books.Book
 
             //sad kako iskoristit request? pa slat kroz ovu doli metodu oboje 
             //moram novi objekt vracat, ne samo books pod values, nego i totalCount!
-            var (books, totalCount) = await _bookRepository.GetAllPagedAsync(request.PageNumber, request.PageSize);
-                    
+            var books = await _bookRepository.GetAllPagedAsync(request.PageNumber, request.PageSize);
+
+            var totalCountCache = await _cacheGeneric.GetOrSetAsync(
+                        Keys.TotalCountKey,
+                        () => _bookRepository.GetTotalCountAsync(),
+                        TimeSpan.FromMinutes(10)
+                        );
+
 
 
             //var books = await _bookRepository.GetAllBookDtos();
@@ -53,7 +62,7 @@ namespace CleanCodeLibrary.Application.Books.Book
             var paged = new PagedResponse<BookDto>
             {
                 Values = books,
-                TotalCount = totalCount,
+                TotalCount = totalCountCache.value,
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize
             };

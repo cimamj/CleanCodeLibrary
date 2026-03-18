@@ -66,12 +66,13 @@ namespace CleanCode.Api.Controllers
         public async Task<ActionResult> Get(
             [FromServices] IBookRepository bookRepository,
             [FromServices] IBookCacheService cacheService,
+            [FromServices] ICacheService<TotalCount> cacheServiceGeneric,
             [FromQuery] int pageNumber = 1, //defaultne vrijednosti
             [FromQuery] int pageSize = 20
             )
         {
             var request = new GetAllBooksRequest { PageNumber = pageNumber, PageSize = pageSize }; 
-            var requestHandler = new GetAllBooksRequestHandler(bookRepository, cacheService);
+            var requestHandler = new GetAllBooksRequestHandler(bookRepository, cacheService, cacheServiceGeneric);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this);
         }

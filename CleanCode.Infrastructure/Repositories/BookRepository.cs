@@ -187,11 +187,11 @@ namespace CleanCode.Infrastructure.Repositories
             _dbContext.Books.Update(book);
         }
 
-        public async Task<(List<BookDto> Books, int TotalCount)> GetAllPagedAsync(int pageNumber, int pageSize)
+        public async Task<List<BookDto>> GetAllPagedAsync(int pageNumber, int pageSize)
         {
 
-            const string countSql = "SELECT COUNT(*) FROM Books";
-            int totalCount = await _dapperManager.QuerySingleAsync<int>(countSql); 
+            //const string countSql = "SELECT COUNT(*) FROM Books";
+            //int totalCount = await _dapperManager.QuerySingleAsync<int>(countSql); 
 
             const string dataSql = @"
                 SELECT Id, Title, Author, BorrowCount
@@ -207,7 +207,16 @@ namespace CleanCode.Infrastructure.Repositories
             };
 
             var books = (await _dapperManager.QueryAsync<BookDto>(dataSql, parameters)).ToList();
-            return (books, totalCount);
+            return books;
+        }
+
+        public async Task<TotalCount> GetTotalCountAsync()
+        {
+            const string sql = "SELECT COUNT(*) FROM Books";
+
+            var totalCount = await _dapperManager.QuerySingleAsync<int>(sql);
+
+            return new TotalCount (totalCount);
         }
     }
 }

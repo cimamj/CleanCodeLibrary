@@ -30,6 +30,8 @@ namespace CleanCodeLibrary.Domain.Persistance.Books
 
         Task<List<BookDto>> GetTopBooksByBorrowCountAsync(int count);
 
-        Task<(List<BookDto> Books, int TotalCount)> GetAllPagedAsync(int pageNumber, int pageSize);
+        Task<List<BookDto>> GetAllPagedAsync(int pageNumber, int pageSize);
+
+        Task<TotalCount> GetTotalCountAsync();
     }
 }

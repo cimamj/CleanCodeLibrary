@@ -1,4 +1,7 @@
 ﻿using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCodeLibrary.Domain.Common.Model;
+using CleanCodeLibrary.Domain.DTOs.Books;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace CleanCode.Api.Services
@@ -25,10 +28,8 @@ namespace CleanCode.Api.Services
             {
                 entry.AbsoluteExpirationRelativeToNow =
                     expiration ?? TimeSpan.FromMinutes(5);
-
                 return await factory();
             });
-
         }
 
         public void Invalidate(string key)
