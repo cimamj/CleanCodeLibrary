@@ -7,11 +7,15 @@ using CleanCodeLibrary.Domain.Persistance.Books;
 
 namespace CleanCodeLibrary.Application.Books.Book
 {
-    public class GetAllBooksRequest { }
+    public class GetAllBooksRequest 
+    {
+        public int PageNumber { get; set; } = 1;
+        public int PageSize { get; set; } = 20;
+    }
 
 
     public class GetAllBooksRequestHandler //pitaj ivu koji kurac
-        : RequestHandler<GetAllBooksRequest, GetAllResponse<BookDto>>
+        : RequestHandler<GetAllBooksRequest, PagedResponse<BookDto>>
     {
         private readonly IBookRepository _bookRepository;
         private readonly IBookCacheService _cache;
@@ -22,14 +26,21 @@ namespace CleanCodeLibrary.Application.Books.Book
         }
         //a npr kad mapiran u novu klasu radi
 
-        protected override async Task<Result<GetAllResponse<BookDto>>> HandleRequest(
+        protected override async Task<Result<PagedResponse<BookDto>>> HandleRequest(
             GetAllBooksRequest request,
-            Result<GetAllResponse<BookDto>> result)
+            Result<PagedResponse<BookDto>> result)
         {
-            var books = await _cache.GetOrSetBooksAsync(() => _bookRepository.GetAllBookDtos());
+            //i cachiranje sam maka radi paginacije , kasnie mozda dodat
+            //var books = await _cache.GetOrSetBooksAsync(() => _bookRepository.GetAllBookDtos());
+
+            //sad kako iskoristit request? pa slat kroz ovu doli metodu oboje 
+            //moram novi objekt vracat, ne samo books pod values, nego i totalCount!
+            var (books, totalCount) = await _bookRepository.GetAllPagedAsync(request.PageNumber, request.PageSize);
+                    
+
 
             //var books = await _bookRepository.GetAllBookDtos();
-            if (books.Values.Count() == 0) //validan rezultat, samo warning, ili !Values.Any()
+            if (!books.Any()) //validan rezultat, samo warning, ili !Values.Any()
             {
                 result.AddWarning(new ValidationResultItem
                 {
@@ -38,8 +49,16 @@ namespace CleanCodeLibrary.Application.Books.Book
                 });
                 //return result; OVAKO RESULT NECE IMATI VALUE, UC CE U RESPONSEEXT I VRATIT CE 404, TO NE ZELIMO
             }
-            
-            result.SetResult(books);
+
+            var paged = new PagedResponse<BookDto>
+            {
+                Values = books,
+                TotalCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize
+            };
+
+            result.SetResult(paged);
             return result;
         }
 

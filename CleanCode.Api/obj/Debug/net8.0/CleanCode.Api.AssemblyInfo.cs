@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CleanCode.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bad80983c13dfa325bcbc777f1ee96789805a36")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+378f95a5ff6aa35112bac02f17f19a8c22333fab")]
 [assembly: System.Reflection.AssemblyProductAttribute("CleanCode.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CleanCode.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

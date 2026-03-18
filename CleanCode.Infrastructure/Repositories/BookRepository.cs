@@ -13,12 +13,14 @@ namespace CleanCode.Infrastructure.Repositories
     public class BookRepository : Repository<Book, int>, IBookRepository //zali se a ima tu funkciju koji kurac
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IDapperManager _dapperManager;
 
-        public BookRepository(ApplicationDbContext dbContext)
+        public BookRepository(ApplicationDbContext dbContext, IDapperManager dapperManager)
             : base(dbContext)
         {
 
             _dbContext = dbContext;
+            _dapperManager = dapperManager;
         }
         public async Task<BookDto?> GetById(int id)
         {
@@ -185,6 +187,27 @@ namespace CleanCode.Infrastructure.Repositories
             _dbContext.Books.Update(book);
         }
 
- 
+        public async Task<(List<BookDto> Books, int TotalCount)> GetAllPagedAsync(int pageNumber, int pageSize)
+        {
+
+            const string countSql = "SELECT COUNT(*) FROM Books";
+            int totalCount = await _dapperManager.QuerySingleAsync<int>(countSql); 
+
+            const string dataSql = @"
+                SELECT Id, Title, Author, BorrowCount
+                FROM Books
+                ORDER BY Title
+                LIMIT @PageSize 
+                OFFSET @Offset;";
+
+            var parameters = new
+            {
+                PageSize = pageSize,
+                Offset = (pageNumber - 1) * pageSize,
+            };
+
+            var books = (await _dapperManager.QueryAsync<BookDto>(dataSql, parameters)).ToList();
+            return (books, totalCount);
+        }
     }
 }
