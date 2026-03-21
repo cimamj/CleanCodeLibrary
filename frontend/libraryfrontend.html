@@ -1021,6 +1021,10 @@
     <script>
       const BASE = "https://localhost:7184";
 
+      let currentPage = 1;
+      let currentPageSize = 20;
+      let totalCount = 0;
+
       function getStudentIdFromToken() {
         const token = localStorage.getItem("jwtToken");
         if (!token) return null;
@@ -1093,7 +1097,7 @@
           students: "navStudents",
           addStudent: "navAddStudent",
           books: "navBooks",
-          sigleBook: "navSingleBook",
+          singleBook: "navSingleBook",
           addBook: "navAddBook",
           borrow: "navBorrow",
           returnBook: "navReturn",
@@ -1110,6 +1114,75 @@
           else adminField.classList.remove("visible");
         }
       }
+
+      //     function showPagedBooks(response) {
+      //       const items = response.items || [];
+
+      //       if (!items.length) {
+      //         showResult("booksResult", "info", "Nema podataka.");
+      //         return;
+      //       }
+
+      //       let html = `
+      //   <div class="table-wrap">
+      //     <table>
+      //       <thead>
+      //         <tr>
+      //           <th>ID</th>
+      //           <th>Naslov</th>
+      //           <th>Autor</th>
+      //           <th>ISBN</th>
+      //           <th>Količina</th>
+      //           <th>Godina</th>
+      //         </tr>
+      //       </thead>
+      //       <tbody>
+      // `;
+
+      //       items.forEach((b) => {
+      //         html += `
+      //     <tr>
+      //       <td>${b.id}</td>
+      //       <td>${b.title}</td>
+      //       <td>${b.author}</td>
+      //       <td>${b.isbn}</td>
+      //       <td>${b.amount}</td>
+      //       <td>${b.year}</td>
+      //     </tr>
+      //   `;
+      //       });
+
+      //       html += `</tbody></table></div>`;
+
+      //       // PAGINATION
+      //       const totalPages = Math.ceil(totalCount / currentPageSize);
+
+      //       html += `<div style="margin-top:20px; display:flex; gap:10px; align-items:center;">`;
+
+      //       html += `
+      //   <button class="btn btn-secondary"
+      //     onclick="getBooksList(${currentPage - 1}, ${currentPageSize})"
+      //     ${currentPage === 1 ? "disabled" : ""}>
+      //     ⬅ Prethodna
+      //   </button>
+      // `;
+
+      //       html += `<span>Stranica ${currentPage} / ${totalPages}</span>`;
+
+      //       html += `
+      //   <button class="btn btn-secondary"
+      //     onclick="getBooksList(${currentPage + 1}, ${currentPageSize})"
+      //     ${currentPage === totalPages ? "disabled" : ""}>
+      //     Sljedeća ➡
+      //   </button>
+      // `;
+
+      //       html += `</div>`;
+
+      //       const el = document.getElementById("booksResult");
+      //       el.className = "result-box visible info";
+      //       el.innerHTML = html;
+      //     }
 
       function updateNav() {
         const loggedIn = !!token();
@@ -1271,13 +1344,103 @@
       }
 
       // ─── KNJIGE ─────────────────────────────────────────────
-      async function getBooksList() {
+      // async function getBooksList() {
+      //   loading("booksResult");
+      //   const { ok, data } = await apiFetch("/api/books", {
+      //     headers: authHeaders(),
+      //   });
+      //   if (!ok) return showResult("booksResult", "error", getApiError(data));
+      //   showResult("booksResult", "success", data);
+      // }
+
+      //paginacija
+      async function getBooksList(page = 1, size = 20) {
+        currentPage = page;
+        currentPageSize = size;
+
         loading("booksResult");
-        const { ok, data } = await apiFetch("/api/books", {
+
+        const url = `/api/books?pageNumber=${page}&pageSize=${size}`;
+        const { ok, data } = await apiFetch(url, {
           headers: authHeaders(),
         });
-        if (!ok) return showResult("booksResult", "error", getApiError(data));
-        showResult("booksResult", "success", data);
+
+        if (!ok) {
+          return showResult("booksResult", "error", getApiError(data));
+        }
+
+        const response = data.value ?? data;
+
+        console.log("API RESPONSE:", response);
+
+        if (!response || !response.values) {
+          return showResult("booksResult", "info", "Nema podataka.");
+        }
+
+        totalCount = response.totalCount ?? 0;
+        const items = response.values;
+
+        if (!items.length) {
+          return showResult("booksResult", "info", "Prazna lista.");
+        }
+
+        // 🔥 HTML GENERATION
+        let html = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Naslov</th>
+            <th>Autor</th>
+            <th>ISBN</th>
+            <th>Količina</th>
+            <th>Godina</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+        items.forEach((b) => {
+          html += `
+      <tr>
+        <td>${b.id}</td>
+        <td>${b.title}</td>
+        <td>${b.author}</td>
+        <td>${b.isbn}</td>
+        <td>${b.amount}</td>
+        <td>${b.year}</td>
+      </tr>
+    `;
+        });
+
+        html += `</tbody></table></div>`;
+
+        // 🔥 PAGINATION
+        const totalPages = Math.ceil(totalCount / currentPageSize);
+
+        html += `
+    <div style="margin-top:20px; display:flex; gap:10px; align-items:center;">
+      <button class="btn btn-secondary"
+        onclick="getBooksList(${currentPage - 1}, ${currentPageSize})"
+        ${currentPage === 1 ? "disabled" : ""}>
+        ⬅ Prethodna
+      </button>
+
+      <span>Stranica ${currentPage} / ${totalPages}</span>
+
+      <button class="btn btn-secondary"
+        onclick="getBooksList(${currentPage + 1}, ${currentPageSize})"
+        ${currentPage === totalPages ? "disabled" : ""}>
+        Sljedeća ➡
+      </button>
+    </div>
+  `;
+
+        // 🔥 PRIKAZ
+        const el = document.getElementById("booksResult");
+        el.className = "result-box visible info";
+        el.innerHTML = html;
       }
 
       async function sendAddBook() {
