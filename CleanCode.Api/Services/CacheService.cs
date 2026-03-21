@@ -6,7 +6,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace CleanCode.Api.Services
 {
-    public class CacheService<T> : ICacheService<T> where T : class
+    public class CacheService<T> : ICacheService<T> where T : class //bitno za vidjeti je li null
     {
         private readonly IMemoryCache _cache;
 
@@ -14,20 +14,21 @@ namespace CleanCode.Api.Services
         {
             _cache = cache;
         }
-        public Task<T> GetOrSetAsync(string key, Func<Task<T>> factory, TimeSpan? expiration = null)
+        public Task<T?> GetOrSetAsync(string key, Func<Task<T>> factory, TimeSpan? expiration = null)
         {
             //if (_cache.TryGetValue(key, out T cached))
             //    return cached;
 
             //var result = await factory();
-
+            //ode ubacis    if (result is null) return result; ne kashiraj
             //_cache.Set(key, result, TimeSpan.FromMinutes(5));
             //return result;
 
+           
+           
             return _cache.GetOrCreateAsync(key, async entry => //ZAKLJUCA po keyu i provjerava cache inace tuce factory
             {
-                entry.AbsoluteExpirationRelativeToNow =
-                    expiration ?? TimeSpan.FromMinutes(5);
+                entry.AbsoluteExpirationRelativeToNow = expiration ?? TimeSpan.FromMinutes(5);
                 return await factory();
             });
         }

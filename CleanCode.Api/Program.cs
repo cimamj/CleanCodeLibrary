@@ -7,7 +7,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// SVE builder.Services OVDJE - prije Build()
+// faza 1 - konfiguracija , svi servisi
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -52,13 +52,14 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddMemoryCache();
+builder.Services.AddMemoryCache(); 
 builder.Services.AddScoped<IBookCacheService, BookCacheService>();
 builder.Services.AddScoped(typeof(ICacheService<>), typeof(CacheService<>)); 
 
-// Build() tek ovdje
-var app = builder.Build();
 
+//sve builder services ide prije BUILDa
+var app = builder.Build(); //DI se zakljuca, kreira se app
+//faza 2 pipeline middleware
 
 
 app.UseCors("AllowAll");

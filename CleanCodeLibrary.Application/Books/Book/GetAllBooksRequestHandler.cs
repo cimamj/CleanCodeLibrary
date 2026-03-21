@@ -46,7 +46,7 @@ namespace CleanCodeLibrary.Application.Books.Book
                         TimeSpan.FromMinutes(10)
                         );
 
-
+            //mozda provjera je li null?
 
             //var books = await _bookRepository.GetAllBookDtos();
             if (!books.Any()) //validan rezultat, samo warning, ili !Values.Any()
