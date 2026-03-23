@@ -1,3 +1,4 @@
+using CleanCode.Api.Middleware;
 using CleanCode.Api.Services;
 using CleanCode.Infrastructure;
 using CleanCodeLibrary.Application.Common.Interfaces;
@@ -60,9 +61,9 @@ builder.Services.AddScoped(typeof(ICacheService<>), typeof(CacheService<>));
 //sve builder services ide prije BUILDa
 var app = builder.Build(); //DI se zakljuca, kreira se app
 //faza 2 pipeline middleware
+app.UseMiddleware<GlobalExceptionMiddleware>(); //mora bit prvi
 
-
-app.UseCors("AllowAll");
+app.UseCors("AllowAll"); //na ovo pokazuje next pokazivac iz Global...
 
 // SVE app. OVDJE - nakon Build()
 if (app.Environment.IsDevelopment())

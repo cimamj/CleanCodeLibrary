@@ -10,7 +10,7 @@ using CleanCodeLibrary.Domain.DTOs.Students;
 
 namespace CleanCode.Infrastructure.Repositories
 {
-    public class BookRepository : Repository<Book, int>, IBookRepository //zali se a ima tu funkciju koji kurac
+    public class BookRepository : Repository<Book, int>, IBookRepository 
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IDapperManager _dapperManager;

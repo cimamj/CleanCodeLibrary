@@ -26,7 +26,7 @@ namespace CleanCode.Api.Services
 
            
            
-            return _cache.GetOrCreateAsync(key, async entry => //ZAKLJUCA po keyu i provjerava cache inace tuce factory
+            return _cache.GetOrCreateAsync(key, async entry => //provjeri postoji li key, ako ne, ZAKLJUCA po keyu (svi naredni zahtjevi za isti key stanu i cekaju da ovi setira iz factory) i provjerava cache inace tuce factory
             {
                 entry.AbsoluteExpirationRelativeToNow = expiration ?? TimeSpan.FromMinutes(5);
                 return await factory();
