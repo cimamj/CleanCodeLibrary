@@ -17,20 +17,21 @@ namespace CleanCode.Api.Services
 
         public int? GetStudentId()
         {
-            var idSt = User.Claims.FirstOrDefault(x => x.Type == "studentId");
-            if (idSt == null)
-                return null;
-            if (int.TryParse(idSt.Value, out int id))
-                return id;
-            return null;
+            //var idSt = User.Claims.FirstOrDefault(x => x.Type == "studentId");
+            //if (idSt == null)
+            //    return null;
+            //if (int.TryParse(idSt.Value, out int id))
+            //    return id;
+            //return null; 
+            var value = User.FindFirst("studentId")?.Value;
+            return int.TryParse(value, out int id) ? id : null;
         }//nullabilan jer neki tokeni nece imati id,
         //mozes maknuti ? i provjeriti je li null, baciti Exception, ako nije odmah int.parse sigurno ce proci jer u claimu znas da imas 
         //ali ako imas 100 entiteta i neznas in sve tokene, ovo je ipak sigurnije, i generi
 
         public string GetRole()
         {
-            var role = User.FindFirst(ClaimTypes.Role); //ugradena metoda
-            return role?.Value;
+            return User.FindFirst(ClaimTypes.Role)?.Value; //ugradena metoda
             //var role = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role); //.Contains("Admin")
             //return role?.Value;            
         }

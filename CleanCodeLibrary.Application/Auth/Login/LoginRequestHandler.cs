@@ -71,7 +71,7 @@ namespace CleanCodeLibrary.Application.Auth.Login
                 ?? throw new InvalidOperationException("JWT SecretKey nije postavljen");
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); //dakle od hashiranog tajnog kljuca i ovog hmacSha algoritma se dobije creds - podaci za potpis
 
             var claims = new[]
             {

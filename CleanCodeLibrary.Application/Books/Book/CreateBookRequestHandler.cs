@@ -9,23 +9,26 @@ namespace CleanCodeLibrary.Application.Books.Book
 {
     public class CreateBookRequest
     {
-        public string Title {  get; init; }
-        public string Author { get; set; }
-        public string Isbn { get; set;}//ocu sve stavit get set ili private set
-        public int Year { get; set; }
-        public GenresEnum Genre { get; init; }
+        //public string Title {  get; init; }
+        //public string Author { get; set; }
+        public string Isbn { get; init;} //oboje init , request opceinto ne minja polja
+        //public int Year { get; set; }
+        //public GenresEnum Genre { get; init; }
 
-        public int Amount { get; init; }
+        public int Amount { get; init; } 
     }
     public class CreateBookRequestHandler : RequestHandler<CreateBookRequest, SuccessPostResponse>
     {
         private readonly IBookRepository _bookRepository;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IBookExternalService _externalService; //apstrakcija briga me implementacija servisa, lako se zamini u DI da ode drugi nastupi 
+        
 
-        public CreateBookRequestHandler(IBookRepository bookRepository, ICurrentUserService currentUserService)
+        public CreateBookRequestHandler(IBookRepository bookRepository, ICurrentUserService currentUserService, IBookExternalService externalService)
         {
             _bookRepository = bookRepository;
             _currentUserService = currentUserService;
+            _externalService = externalService; //dodaj u DI tj controler
         }
 
         protected async override Task<Result<SuccessPostResponse>> HandleRequest(CreateBookRequest request, Result<SuccessPostResponse> result)
@@ -44,14 +47,29 @@ namespace CleanCodeLibrary.Application.Books.Book
                 return result; 
             }
 
+            var externalBookDto = await _externalService.GetBookByIsbnAsync(request.Isbn); 
+            if (externalBookDto == null)
+            {
+                result.AddError(new ValidationResultItem
+                {
+                    Code = "NoExternalBook",
+                    Message = "Knjiga s ovim isbn-om ne postoji",
+                    ValidationSeverity = ValidationSeverity.Error,
+                    ValidationType = ValidationType.NotFound,
+                });
+                return result;
+            }
+
+            //mapiranje i poziv domain validacija i injekt u bazu
             var book = new BookEntity
             {
-                Title = request.Title,
-                Author = request.Author,
+                Title = externalBookDto.Title,
+                Author = externalBookDto.Author,
                 Isbn = request.Isbn,
-                Year = request.Year,
-                Genre = request.Genre ,
-                Amount = request.Amount
+                Year = externalBookDto.Year ?? DateTime.UtcNow.Year,
+                Genre = MapGenre(externalBookDto.Genre), //kako mapgenre sto mi se vraca?
+                Amount = request.Amount,
+                BorrowCount = 0
             };
 
             var validationResult = await book.Create(_bookRepository); //uvik ZABORAVIS await
@@ -60,7 +78,7 @@ namespace CleanCodeLibrary.Application.Books.Book
             if(result.HasError)
                 return result;
 
-            await book.SaveChanges(_bookRepository); //kroz domain ili repo?
+            await book.SaveChanges(_bookRepository); 
 
             result.SetResult(new SuccessPostResponse(book.Id));
             return result;
@@ -68,10 +86,8 @@ namespace CleanCodeLibrary.Application.Books.Book
 
         protected override Task<bool> IsAuthorized()
         {
-            //var user = _currentUserService.GetRole();
-            //if(user != "Admin")
-            //    return Task.FromResult(false);
-            return Task.FromResult(true);
+            var isAdmin = _currentUserService.GetRole() == "Admin";
+            return Task.FromResult(isAdmin);
         }
     }
 }

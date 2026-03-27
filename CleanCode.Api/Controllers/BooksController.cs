@@ -19,8 +19,9 @@ namespace CleanCode.Api.Controllers
     {
 
         // POST IMAMO
-        [Authorize] //necemo stavit roles=admin nego u authorization to implementirati 
+        [Authorize] //necemo stavit roles=admin nego u authorization to implementirati , JE LI OVO PRVI ZID SAMO DA PRODE AUTENTITIFKACIJA, samo se jwt token provjerava potpis exp
         [HttpPost]
+        //idemo sad isbn samo slat ode nista ne minjamo
         public async Task<ActionResult> Post( //actionresult je tip povratne vrijednosti, ok, bad, vidis u ext, KAZE CLAUDE DA ODE IDE CREATEBOOK...HANDLER A NE OVO, DI RJESAVA SVE, DA JA RUCNO INSTACIRAM HANDLER DA JE TO LSOE
                 [FromServices] IBookRepository bookRepository, //.net ubacuje instacu iz addscoped, iz DI kontejnera
                 [FromBody] CreateBookRequest request, //uzmi iz tijela http zahtjeva { "firstName": "Jure", "lastName": "Horvat" }, .NET TO AUTOMATSKI DESERIALIZIRA U OBJEKT CreateStudentRequest DTO taj

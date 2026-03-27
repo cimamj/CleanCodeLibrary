@@ -16,7 +16,11 @@ namespace CleanCode.Api.Common
             //        message = "Nemate dozvolu za ovu akciju",
             //        requestId = result.RequestId
             //    }); // jer response nisam napunio validacijom za unatuhorized
-            //}// 401 Unauthorized   ocu da mi ise ispise iz handlera poruka specififcnaaa
+            //}// 401 Unauthorized   ocu da mi ise ispise iz handlera poruka specififcnaaa jer ode ne mogu vidit role ili nesto specificno
+            if (!result.isAuthorized) // koristim isAuth iz result
+            {
+                return controller.StatusCode(403, response); // Vracam forbiden sa response, eventualno neka poruka
+            }
 
             if (response.HasError) 
             {

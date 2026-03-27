@@ -98,7 +98,7 @@ namespace CleanCodeLibrary.Application.Students.Student
 
         }
 
-        protected override Task<bool> IsAuthorized() 
+        protected override Task<bool> IsAuthorized()  //ode se analiziraju uloge , da pustimo studenta i admina
         { //admin sve, user samo sebe moze update
             //var currentId = _currentUser.GetStudentId();
             //if (currentId == null)
@@ -109,3 +109,16 @@ namespace CleanCodeLibrary.Application.Students.Student
         } //Middleware već garantira da je token valjan pa null provjera nije potrebna.
     }
 }
+
+
+//protected override Task<bool> IsAuthorized()
+//{
+//    var role = _currentUser.GetRole();
+//    var currentId = _currentUser.GetStudentId();
+
+//    // Admin može sve
+//    if (role == "Admin") return Task.FromResult(true);
+
+//    // Ako je Student, smije samo ako je ID iz tokena isti kao ID u zahtjevu (requestu)
+//    return Task.FromResult(role == "Student" && currentId == request.Id);
+//}

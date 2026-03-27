@@ -169,7 +169,7 @@ namespace CleanCode.Infrastructure.Repositories
             //AnyAsync
         }
 
-        public async Task<Student> GetByEmail(string email)
+        public async Task<Student?> GetByEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return null;
