@@ -67,7 +67,7 @@ namespace CleanCodeLibrary.Application.Books.Book
                 Author = externalBookDto.Author,
                 Isbn = request.Isbn,
                 Year = externalBookDto.Year ?? DateTime.UtcNow.Year,
-                Genre = MapGenre(externalBookDto.Genre), //kako mapgenre sto mi se vraca?
+                Genre = externalBookDto.Genre, 
                 Amount = request.Amount,
                 BorrowCount = 0
             };

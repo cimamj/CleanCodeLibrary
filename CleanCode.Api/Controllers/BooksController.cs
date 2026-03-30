@@ -25,10 +25,11 @@ namespace CleanCode.Api.Controllers
         public async Task<ActionResult> Post( //actionresult je tip povratne vrijednosti, ok, bad, vidis u ext, KAZE CLAUDE DA ODE IDE CREATEBOOK...HANDLER A NE OVO, DI RJESAVA SVE, DA JA RUCNO INSTACIRAM HANDLER DA JE TO LSOE
                 [FromServices] IBookRepository bookRepository, //.net ubacuje instacu iz addscoped, iz DI kontejnera
                 [FromBody] CreateBookRequest request, //uzmi iz tijela http zahtjeva { "firstName": "Jure", "lastName": "Horvat" }, .NET TO AUTOMATSKI DESERIALIZIRA U OBJEKT CreateStudentRequest DTO taj
-                [FromServices] ICurrentUserService currentUser
+                [FromServices] ICurrentUserService currentUser,
+                [FromServices] IBookExternalService externalService
                 ) //from body iz {} izvuce
         {
-            var requestHandler = new CreateBookRequestHandler(bookRepository, currentUser);
+            var requestHandler = new CreateBookRequestHandler(bookRepository, currentUser, externalService);
             var result = await requestHandler.ProcessAuthorizedRequestAsync(request);
             return result.ToActionResult(this); //this je instaca ovog controllera automatski se radi 
                                                 //urednije nego ResponseExtension.ToActionResult(result, this); 

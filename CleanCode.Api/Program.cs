@@ -1,6 +1,7 @@
 using CleanCode.Api.Middleware;
 using CleanCode.Api.Services;
 using CleanCode.Infrastructure;
+using CleanCode.Infrastructure.ExternalServices;
 using CleanCodeLibrary.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -55,7 +56,8 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddMemoryCache(); 
 builder.Services.AddScoped<IBookCacheService, BookCacheService>();
-builder.Services.AddScoped(typeof(ICacheService<>), typeof(CacheService<>)); 
+builder.Services.AddScoped(typeof(ICacheService<>), typeof(CacheService<>));
+builder.Services.AddHttpClient<IBookExternalService, OpenLibraryService>();
 
 
 //sve builder services ide prije BUILDa

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleanCodeLibrary.Domain.Entities.Books;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace CleanCodeLibrary.Domain.DTOs.Books
         public string Title { get; set; } = string.Empty;
         public string Author { get; set; } = string.Empty;
         public int? Year { get; set; }
-        public string? Genre { get; set; }        
+        public GenresEnum Genre { get; set; }        
     }
 }

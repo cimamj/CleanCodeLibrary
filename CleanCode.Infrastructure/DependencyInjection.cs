@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CleanCodeLibrary.Domain.Persistance.Borrows;
 using Microsoft.Extensions.Logging;
 using CleanCodeLibrary.Application.Common.Interfaces;
+using CleanCode.Infrastructure.ExternalServices;
 
 namespace CleanCode.Infrastructure
 {
@@ -56,7 +57,7 @@ namespace CleanCode.Infrastructure
             services.AddScoped<IBorrowRepository, BorrowRepository>(); 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBorrowUnitOfWork, BorrowUnitOfWork>();
-            services.AddScoped<IBookExternalService, OpenLibraryService>();
+            //services.AddScoped<IBookExternalService, OpenLibraryService>();
                            
             
 
